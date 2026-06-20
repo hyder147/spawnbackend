@@ -1,0 +1,12 @@
+/* SpawnPoint Gaming — Global Base */
+body {
+    margin: 0;
+    background: #0A0A0F;
+    color: #EEEEFF;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+#root {
+    min-height: 100vh;
+}

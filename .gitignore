@@ -1,0 +1,25 @@
+# ─── Backend ──────────────────────────────────────────────────
+SpawnPointBackend/bin/
+SpawnPointBackend/obj/
+SpawnPointBackend/*.user
+SpawnPointBackend/appsettings.Production.json
+
+# ─── Frontend ─────────────────────────────────────────────────
+SpawnPointFrontend/node_modules/
+SpawnPointFrontend/dist/
+SpawnPointFrontend/.env.development
+SpawnPointFrontend/.env.production
+
+# ─── IDE ──────────────────────────────────────────────────────
+.vs/
+.vscode/
+*.suo
+*.user
+
+# ─── OS ───────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ─── Logs ─────────────────────────────────────────────────────
+*.log
+logs/
