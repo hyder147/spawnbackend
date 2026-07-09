@@ -35,4 +35,8 @@ namespace SpawnPointBackend.Services
             request.Headers.Add("Authorization", $"Bearer {apiKey}");
             request.Content = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json");
 
-            var response = await
+            var response = await _httpClient.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+        }
+    }
+}
