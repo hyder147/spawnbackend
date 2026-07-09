@@ -32,7 +32,8 @@ interface CardOrder {
     deliveredAt?: string; createdAt: string;
 }
 
-interface CheckoutResponse { orderId: string; checkoutUrl: string; fields: Record<string, string>; }
+// LemonSqueezy checkout only needs a URL to redirect to — no hidden form fields.
+interface CheckoutResponse { orderId: string; checkoutUrl: string; }
 
 const CARD_TYPES: { type: CardType; title: string; tagline: string; sample: string }[] = [
     { type: 'Gaming', title: 'Gamer ID Card', tagline: 'Your rank, K/D, stats and gamer flex — custom designed.', sample: '/gaming-card-sample.png' },
@@ -49,21 +50,12 @@ const statusMeta: Record<string, { label: string; color: string }> = {
     Rejected: { label: 'Rejected', color: 'var(--danger)' },
 };
 
-// ─── Submit a hidden form to JazzCash hosted checkout ─────────────────────────
+// ─── Redirect to LemonSqueezy hosted checkout ─────────────────────────────────
+// LemonSqueezy checkout is a plain hosted URL — just navigate the browser there.
+// (No hidden-form POST needed like the old JazzCash flow required.)
 
-const submitToJazzCash = (checkoutUrl: string, fields: Record<string, string>) => {
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = checkoutUrl;
-    Object.entries(fields).forEach(([k, v]) => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = k;
-        input.value = v ?? '';
-        form.appendChild(input);
-    });
-    document.body.appendChild(form);
-    form.submit();
+const redirectToCheckout = (checkoutUrl: string) => {
+    window.location.href = checkoutUrl;
 };
 
 // ─── Small reusable list editors ──────────────────────────────────────────────
@@ -332,7 +324,7 @@ const DeliveredCard: React.FC<{ order: CardOrder }> = ({ order }) => (
 // ─── Per-card-type block ──────────────────────────────────────────────────────
 
 const CardTypeBlock: React.FC<{
-    info: typeof CARD_TYPES[number]; order: CardOrder | null; pricing: { priceUsd: number; priceInPkr: number } | null;
+    info: typeof CARD_TYPES[number]; order: CardOrder | null; pricing: { priceUsd: number; priceInPkr?: number } | null;
     onChanged: () => void; onMsg: (m: string, ok: boolean) => void; onPreview: (src: string) => void;
 }> = ({ info, order, pricing, onChanged, onMsg, onPreview }) => {
     const [busy, setBusy] = useState(false);
@@ -342,7 +334,7 @@ const CardTypeBlock: React.FC<{
         setBusy(true);
         try {
             const res = await api.post<CheckoutResponse>('/cards/checkout', { cardType: info.type });
-            submitToJazzCash(res.checkoutUrl, res.fields);
+            redirectToCheckout(res.checkoutUrl);
         } catch (e: any) {
             onMsg(e.message || 'Could not start checkout.', false);
             setBusy(false);
@@ -379,7 +371,7 @@ const CardTypeBlock: React.FC<{
                             )}
                             <button className="btn-gradient" onClick={startCheckout} disabled={busy}>
                                 {busy ? <Loader2 size={15} className="spin" /> : <Lock size={15} />}
-                                {busy ? 'Redirecting to JazzCash...' : `Get My Card — $${pricing?.priceUsd ?? 20}${pricing ? ` (Rs. ${pricing.priceInPkr.toLocaleString()})` : ''}`}
+                                {busy ? 'Redirecting to checkout...' : `Get My Card — $${pricing?.priceUsd ?? 20}${pricing?.priceInPkr ? ` (Rs. ${pricing.priceInPkr.toLocaleString()})` : ''}`}
                             </button>
                         </>
                     )}
@@ -394,7 +386,7 @@ const CardTypeBlock: React.FC<{
                             )}
                             <button className="btn-gradient" onClick={startCheckout} disabled={busy}>
                                 {busy ? <Loader2 size={15} className="spin" /> : <RotateCcw size={15} />}
-                                {busy ? 'Redirecting to JazzCash...' : 'Complete Payment via JazzCash'}
+                                {busy ? 'Redirecting to checkout...' : 'Complete Payment'}
                             </button>
                         </>
                     )}
@@ -458,7 +450,7 @@ const Cards: React.FC = () => {
     const navigate = useNavigate();
 
     const [orders, setOrders] = useState<CardOrder[]>([]);
-    const [pricing, setPricing] = useState<{ priceUsd: number; priceInPkr: number } | null>(null);
+    const [pricing, setPricing] = useState<{ priceUsd: number; priceInPkr?: number } | null>(null);
     const [loading, setLoading] = useState(true);
     const [msg, setMsg] = useState<{ text: string; ok: boolean } | null>(null);
     const [preview, setPreview] = useState<string | null>(null);
@@ -473,7 +465,7 @@ const Cards: React.FC = () => {
         try {
             const [o, p] = await Promise.all([
                 api.get<CardOrder[]>('/cards/my'),
-                api.get<{ priceUsd: number; priceInPkr: number }>('/cards/pricing'),
+                api.get<{ priceUsd: number; priceInPkr?: number }>('/cards/pricing'),
             ]);
             setOrders(o || []);
             setPricing(p);
@@ -483,7 +475,7 @@ const Cards: React.FC = () => {
 
     useEffect(() => { load(); }, [load]);
 
-    // Handle redirect back from the JazzCash payment-result hop
+    // Handle redirect back from the payment-result hop
     useEffect(() => {
         const state = location.state as { paymentStatus?: string; orderId?: string; reason?: string } | null;
         if (state?.paymentStatus) {
