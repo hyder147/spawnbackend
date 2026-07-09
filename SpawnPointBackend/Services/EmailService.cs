@@ -1,65 +1,38 @@
-using System.Net;
-using System.Net.Mail;
+using System.Text;
+using System.Text.Json;
 
 namespace SpawnPointBackend.Services
 {
     public class EmailService : IEmailService
     {
         private readonly IConfiguration _config;
+        private readonly HttpClient _httpClient;
 
-        public EmailService(IConfiguration config)
+        public EmailService(IConfiguration config, IHttpClientFactory httpClientFactory)
         {
             _config = config;
+            _httpClient = httpClientFactory.CreateClient();
         }
 
         public async Task SendOtpAsync(string toEmail, string otp, string purpose)
         {
-            var smtpHost = _config["Email:SmtpHost"]!;
-            var smtpPort = int.Parse(_config["Email:SmtpPort"]!);
-            var smtpUser = _config["Email:SmtpUser"]!;
-            var smtpPass = _config["Email:SmtpPass"]!;
-            var fromName = _config["Email:FromName"] ?? "SpawnPoint";
-
+            var apiKey = _config["Resend:ApiKey"]!;
             var subject = purpose == "EmailVerification"
                 ? "SpawnPoint - Verify Your Email"
                 : "SpawnPoint - Reset Your Password";
 
-            var body = purpose == "EmailVerification"
-                ? $@"
-                    <div style='font-family:Arial,sans-serif;max-width:500px;margin:auto;padding:30px;border:1px solid #e0e0e0;border-radius:10px;'>
-                        <h2 style='color:#6c63ff;'>Welcome to SpawnPoint! 🎮</h2>
-                        <p>Thanks for signing up! Use the OTP below to verify your email address.</p>
-                        <div style='background:#f4f4f4;padding:20px;text-align:center;border-radius:8px;margin:20px 0;'>
-                            <h1 style='letter-spacing:10px;color:#333;'>{otp}</h1>
-                        </div>
-                        <p style='color:#888;font-size:13px;'>This OTP expires in <strong>10 minutes</strong>. Do not share it with anyone.</p>
-                    </div>"
-                : $@"
-                    <div style='font-family:Arial,sans-serif;max-width:500px;margin:auto;padding:30px;border:1px solid #e0e0e0;border-radius:10px;'>
-                        <h2 style='color:#6c63ff;'>SpawnPoint - Password Reset 🔐</h2>
-                        <p>We received a request to reset your password. Use the OTP below.</p>
-                        <div style='background:#f4f4f4;padding:20px;text-align:center;border-radius:8px;margin:20px 0;'>
-                            <h1 style='letter-spacing:10px;color:#333;'>{otp}</h1>
-                        </div>
-                        <p style='color:#888;font-size:13px;'>This OTP expires in <strong>10 minutes</strong>. If you didn't request this, ignore this email.</p>
-                    </div>";
+            var body = $"<h2>SpawnPoint</h2><p>Your OTP is: <strong>{otp}</strong></p><p>Expires in 10 minutes.</p>";
 
-            using var client = new SmtpClient(smtpHost, smtpPort)
+            var payload = new
             {
-                EnableSsl = true,
-                Credentials = new NetworkCredential(smtpUser, smtpPass)
+                from = "SpawnPoint <onboarding@resend.dev>",
+                to = new[] { toEmail },
+                subject = subject,
+                html = body
             };
 
-            var mail = new MailMessage
-            {
-                From = new MailAddress(smtpUser, fromName),
-                Subject = subject,
-                Body = body,
-                IsBodyHtml = true
-            };
-            mail.To.Add(toEmail);
+            var request = new HttpRequestMessage(HttpMethod.Post, "https://api.resend.com/emails");
+            request.Headers.Add("Authorization", $"Bearer {apiKey}");
+            request.Content = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json");
 
-            await client.SendMailAsync(mail);
-        }
-    }
-}
+            var response = await

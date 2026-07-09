@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
@@ -13,18 +14,19 @@ namespace SpawnPointBackend.Controllers
     public class CardsController : ControllerBase
     {
         private readonly MongoDbContext _ctx;
-        private readonly IJazzCashService _jazzCash;
+        private readonly ILemonSqueezyService _lemonSqueezy;
         private readonly IConfiguration _config;
+        private readonly ILogger<CardsController> _logger;
 
-        public CardsController(MongoDbContext ctx, IJazzCashService jazzCash, IConfiguration config)
+        public CardsController(MongoDbContext ctx, ILemonSqueezyService lemonSqueezy, IConfiguration config, ILogger<CardsController> logger)
         {
             _ctx = ctx;
-            _jazzCash = jazzCash;
+            _lemonSqueezy = lemonSqueezy;
             _config = config;
+            _logger = logger;
         }
 
         private decimal PriceUsd => decimal.TryParse(_config["CardPricing:PriceUsd"], out var u) ? u : 20m;
-        private decimal PriceInPkr => decimal.TryParse(_config["CardPricing:PriceInPkr"], out var p) ? p : 5600m;
 
         // ─── PRICING (logged-in users only — previews live in the dashboard) ───
 
@@ -32,7 +34,7 @@ namespace SpawnPointBackend.Controllers
         [Authorize]
         public IActionResult GetPricing()
         {
-            return Ok(new { priceUsd = PriceUsd, priceInPkr = PriceInPkr, currency = "PKR" });
+            return Ok(new { priceUsd = PriceUsd, currency = "USD" });
         }
 
         // ─── MY ORDERS ───────────────────────────────────────────────────────
@@ -48,14 +50,14 @@ namespace SpawnPointBackend.Controllers
             return Ok(orders);
         }
 
-        // ─── CHECKOUT (creates/refreshes a JazzCash hosted-checkout form) ──────
+        // ─── CHECKOUT (creates a Lemon Squeezy hosted checkout session) ────────
 
         [HttpPost("checkout")]
         [Authorize]
         public async Task<IActionResult> Checkout([FromBody] CardCheckoutDto dto)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
-            if (!_jazzCash.IsConfigured)
+            if (!_lemonSqueezy.IsConfigured)
                 return BadRequest(new { message = "Payments are not configured yet. Please contact support." });
 
             var userId = User.GetUserId();
@@ -84,7 +86,6 @@ namespace SpawnPointBackend.Controllers
                 order = existing;
                 order.TxnRefNo = txnRefNo;
                 order.Status = "AwaitingPayment";
-                order.AmountPkr = PriceInPkr;
                 order.PriceUsd = PriceUsd;
                 order.UpdatedAt = DateTime.UtcNow;
                 await _ctx.CardOrders.ReplaceOneAsync(o => o.Id == order.Id, order);
@@ -98,80 +99,104 @@ namespace SpawnPointBackend.Controllers
                     Email = user.Email,
                     CardType = dto.CardType,
                     PriceUsd = PriceUsd,
-                    AmountPkr = PriceInPkr,
                     TxnRefNo = txnRefNo,
                     Status = "AwaitingPayment",
                 };
                 await _ctx.CardOrders.InsertOneAsync(order);
             }
 
-            var fields = _jazzCash.BuildCheckoutFields(
-                txnRefNo,
-                PriceInPkr,
-                $"{dto.CardType}Card-{order.Id}",
-                $"SpawnPoint {dto.CardType} Identity Card");
-
-            return Ok(new
+            try
             {
-                orderId = order.Id,
-                checkoutUrl = _jazzCash.CheckoutUrl,
-                fields,
-            });
+                var (checkoutId, checkoutUrl) = await _lemonSqueezy.CreateCheckoutAsync(
+                    dto.CardType, txnRefNo, user.Email, user.Username, order.Id!);
+
+                order.LsCheckoutId = checkoutId;
+                order.UpdatedAt = DateTime.UtcNow;
+                await _ctx.CardOrders.ReplaceOneAsync(o => o.Id == order.Id, order);
+
+                return Ok(new { orderId = order.Id, checkoutUrl });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to create Lemon Squeezy checkout for order {OrderId}", order.Id);
+                return StatusCode(502, new { message = "Could not start checkout with our payment provider. Please try again shortly." });
+            }
         }
 
-        // ─── JAZZCASH CALLBACK (server-to-server / browser redirect from JazzCash) ──
+        // ─── LEMON SQUEEZY WEBHOOK (server-to-server order notifications) ──────
 
-        [HttpPost("jazzcash/callback")]
-        [HttpGet("jazzcash/callback")]
+        [HttpPost("lemonsqueezy/webhook")]
         [AllowAnonymous]
-        public async Task<IActionResult> JazzCashCallback()
+        public async Task<IActionResult> LemonSqueezyWebhook()
         {
-            var frontendUrl = _config["JazzCash:FrontendResultUrl"] ?? "/cards";
-            IFormCollection form;
-            try { form = await Request.ReadFormAsync(); }
-            catch { return Redirect($"{frontendUrl}?status=error&reason=bad_request"); }
+            Request.EnableBuffering();
+            using var reader = new StreamReader(Request.Body, leaveOpen: true);
+            var rawBody = await reader.ReadToEndAsync();
+            Request.Body.Position = 0;
 
-            var fields = form.Keys.ToDictionary(k => k, k => form[k].ToString());
+            var signature = Request.Headers["X-Signature"].FirstOrDefault();
+            if (!_lemonSqueezy.VerifyWebhookSignature(rawBody, signature))
+            {
+                _logger.LogWarning("Rejected Lemon Squeezy webhook with invalid signature.");
+                return Unauthorized();
+            }
 
-           fields.TryGetValue("pp_TxnRefNo", out var txnRefNo);
-if (string.IsNullOrWhiteSpace(txnRefNo))
-{
-    // Try pp_TxnRefNo from query string as fallback
-    txnRefNo = Request.Query["pp_TxnRefNo"].ToString();
-}
-if (string.IsNullOrWhiteSpace(txnRefNo))
-    return Redirect($"{frontendUrl}?status=error&reason=missing_txn");
+            LemonSqueezyWebhookPayload? payload;
+            try
+            {
+                payload = JsonSerializer.Deserialize<LemonSqueezyWebhookPayload>(rawBody,
+                    new JsonSerializerOptions(JsonSerializerDefaults.Web));
+            }
+            catch (JsonException)
+            {
+                return BadRequest(new { message = "Malformed webhook payload." });
+            }
 
-            var order = await _ctx.CardOrders.Find(o => o.TxnRefNo == txnRefNo).FirstOrDefaultAsync();
+            if (payload == null) return BadRequest();
+
+            var txnRefNo = payload.Meta.CustomData?.TxnRefNo;
+            var orderIdFromCustomData = payload.Meta.CustomData?.OrderId;
+
+            var order = !string.IsNullOrWhiteSpace(txnRefNo)
+                ? await _ctx.CardOrders.Find(o => o.TxnRefNo == txnRefNo).FirstOrDefaultAsync()
+                : null;
+
+            order ??= !string.IsNullOrWhiteSpace(orderIdFromCustomData)
+                ? await _ctx.CardOrders.Find(o => o.Id == orderIdFromCustomData).FirstOrDefaultAsync()
+                : null;
+
             if (order == null)
-                return Redirect($"{frontendUrl}?status=error&reason=order_not_found");
+            {
+                _logger.LogWarning("Lemon Squeezy webhook for unknown order (txnRefNo={TxnRefNo}).", txnRefNo);
+                return Ok(); // Acknowledge so Lemon Squeezy doesn't keep retrying an order we'll never find.
+            }
 
-            var hashValid = _jazzCash.VerifyCallbackHash(fields);
-            fields.TryGetValue("pp_ResponseCode", out var responseCode);
-            fields.TryGetValue("pp_ResponseMessage", out var responseMessage);
-            fields.TryGetValue("pp_RetreivalReferenceNo", out var retrievalRef);
-            fields.TryGetValue("pp_TxnDateTime", out var txnDateTime);
-
-            order.JazzCashResponseCode = responseCode;
-            order.JazzCashResponseMessage = responseMessage;
-            order.JazzCashRetrievalRefNo = retrievalRef;
-            order.PpTxnDateTime = txnDateTime;
+            var attrs = payload.Data.Attributes;
+            order.LsOrderId = payload.Data.Id;
+            order.LsOrderNumber = attrs.OrderNumber.ToString();
+            order.LsOrderStatus = attrs.Status;
+            order.LsReceiptUrl = attrs.Urls?.Receipt;
             order.UpdatedAt = DateTime.UtcNow;
 
-            var success = true;
-            if (success)
+            switch (payload.Meta.EventName)
             {
-                order.Status = "AwaitingDetails";
-                order.PaidAt = DateTime.UtcNow;
-            }
-            else
-            {
-                order.Status = "PaymentFailed";
+                case "order_created" when attrs.Status == "paid":
+                    order.Status = "AwaitingDetails";
+                    order.PaidAt = DateTime.UtcNow;
+                    break;
+                case "order_created":
+                    // Created but not yet paid (e.g. pending bank transfer) — leave as AwaitingPayment.
+                    break;
+                case "order_refunded":
+                    order.Status = "PaymentFailed";
+                    break;
+                default:
+                    // Ignore event types we don't act on (subscription events, etc. don't apply to one-off cards).
+                    break;
             }
 
             await _ctx.CardOrders.ReplaceOneAsync(o => o.Id == order.Id, order);
-
-            return Redirect($"{frontendUrl}?status={(success ? "success" : "failed")}&orderId={order.Id}");
+            return Ok();
         }
 
         // ─── SUBMIT CARD DETAILS (only once payment has cleared) ───────────────

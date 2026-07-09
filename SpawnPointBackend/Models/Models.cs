@@ -476,14 +476,23 @@ namespace SpawnPointBackend.Models
 
         public string Status { get; set; } = "AwaitingPayment";
 
-        // ─── Payment (JazzCash) ──────────────────────────────────────────
+        // ─── Payment (Lemon Squeezy) ──────────────────────────────────────
         public decimal PriceUsd { get; set; } = 20m;
-        public decimal AmountPkr { get; set; }
+
+        /// <summary>Our own order reference, embedded in checkout_data.custom so we can match the webhook back to this order.</summary>
         public string TxnRefNo { get; set; } = null!;
-        public string? PpTxnDateTime { get; set; }
-        public string? JazzCashResponseCode { get; set; }
-        public string? JazzCashResponseMessage { get; set; }
-        public string? JazzCashRetrievalRefNo { get; set; }
+
+        /// <summary>The Lemon Squeezy "checkouts" resource id created for this order.</summary>
+        public string? LsCheckoutId { get; set; }
+
+        /// <summary>The Lemon Squeezy "orders" resource id, filled in once the webhook confirms payment.</summary>
+        public string? LsOrderId { get; set; }
+
+        /// <summary>Human-friendly order number shown in Lemon Squeezy's dashboard/emails.</summary>
+        public string? LsOrderNumber { get; set; }
+
+        public string? LsOrderStatus { get; set; }
+        public string? LsReceiptUrl { get; set; }
         public DateTime? PaidAt { get; set; }
 
         // ─── User submitted form ─────────────────────────────────────────

@@ -30,7 +30,7 @@ builder.Services.AddScoped<IBlocksRepository, BlocksRepository>();
 // ─── Services ─────────────────────────────────────────────────
 builder.Services.AddScoped<IPostsService, PostsService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
-builder.Services.AddScoped<IJazzCashService, JazzCashService>();
+builder.Services.AddHttpClient<ILemonSqueezyService, LemonSqueezyService>();
 
 // ─── Ghost Mode Background Service ────────────────────────────
 // Runs every 2 minutes, marks abandoned testing sessions as ghosted

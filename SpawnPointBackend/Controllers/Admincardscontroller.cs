@@ -131,7 +131,7 @@ namespace SpawnPointBackend.Controllers
             return Ok(new { message = "Card delivered to the user." });
         }
 
-        // ─── MANUAL PAYMENT OVERRIDE (fallback if the JazzCash callback is missed) ──
+        // ─── MANUAL PAYMENT OVERRIDE (fallback if the Lemon Squeezy webhook is missed) ──
 
         [HttpPut("{id}/payment-override")]
         public async Task<IActionResult> PaymentOverride(string id, [FromBody] AdminCardPaymentOverrideDto dto)
