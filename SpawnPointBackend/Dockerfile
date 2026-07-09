@@ -15,10 +15,9 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=build /app/publish .
 
-# Render injects $PORT at runtime — bind Kestrel to whatever port
-# Render assigns instead of the hardcoded 5077 from appsettings.json.
-# Default to 8080 for local `docker run` testing.
-ENV PORT=8080
+# Railway injects its own port variable (HTTP_PORTS) and .NET 8
+# reads it automatically — no need to manually set ASPNETCORE_URLS
+# or hardcode a port like the old Render setup did.
 EXPOSE 8080
 
-ENTRYPOINT ["sh", "-c", "ASPNETCORE_URLS=http://0.0.0.0:${PORT} dotnet SpawnPointBackend.dll"]
+ENTRYPOINT ["dotnet", "SpawnPointBackend.dll"]
