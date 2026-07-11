@@ -152,7 +152,7 @@ const UserProfile: React.FC = () => {
                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.85rem' }}>
                             <div style={{ position: 'relative', cursor: 'pointer' }} onClick={() => fileInputRef.current?.click()}>
                                 {profile.profilePicture
-                                    ? <img src={profile.profilePicture} alt="pfp" style={{ width: 108, height: 108, borderRadius: '50%', objectFit: 'cover', border: '3px solid var(--accent-border)', boxShadow: '0 0 30px var(--accent-glow)' }} />
+                                    ? <img src={profile.profilePicture} alt={`${profile.username || 'User'}'s profile picture`} style={{ width: 108, height: 108, borderRadius: '50%', objectFit: 'cover', border: '3px solid var(--accent-border)', boxShadow: '0 0 30px var(--accent-glow)' }} />
                                     : <div style={{ width: 108, height: 108, borderRadius: '50%', background: 'var(--accent-soft)', border: '3px solid var(--accent-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.5rem', fontWeight: 800, color: 'var(--accent)', boxShadow: '0 0 30px var(--accent-glow)' }}>{profile.username[0]?.toUpperCase()}</div>
                                 }
                                 <div style={{ position: 'absolute', bottom: 4, right: 4, background: 'var(--accent)', borderRadius: '50%', width: 26, height: 26, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', border: '2px solid var(--bg-card)' }}><Pencil size={12} /></div>
@@ -263,7 +263,7 @@ const UserProfile: React.FC = () => {
                         <div className="card" style={{ width: '100%', maxWidth: 620, maxHeight: '85vh', overflowY: 'auto' }} onClick={e => e.stopPropagation()}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
                                 <h2 style={{ fontSize: '1.05rem', margin: 0 }}>Edit Profile</h2>
-                                <button type="button" onClick={() => setEditOpen(false)} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer' }}><X size={18} /></button>
+                                <button type="button" aria-label="Close edit profile" onClick={() => setEditOpen(false)} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer' }}><X size={18} /></button>
                             </div>
                             <div className="rg-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
                                 <div className="form-group"><label>Username</label><input className="form-control" value={profile.username} onChange={e => setProfile(p => ({ ...p, username: e.target.value }))} /></div>

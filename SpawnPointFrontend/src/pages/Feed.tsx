@@ -133,7 +133,7 @@ const Feed: React.FC = () => {
                                 </div>
 
                                 <p style={{ lineHeight: 1.7, margin: '0 0 1rem', fontSize: '0.93rem' }}>{post.content}</p>
-                                {post.mediaUrl && <img src={post.mediaUrl} alt="post" style={{ width: '100%', borderRadius: 10, marginBottom: '1rem' }} />}
+                                {post.mediaUrl && <img src={post.mediaUrl} alt={`Image shared by ${postAuthor}`} style={{ width: '100%', borderRadius: 10, marginBottom: '1rem' }} />}
 
                                 {/* Actions */}
                                 <div style={{ display: 'flex', gap: '0.5rem' }}>

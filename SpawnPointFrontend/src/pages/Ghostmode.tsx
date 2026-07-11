@@ -216,8 +216,8 @@ const GhostMode: React.FC = () => {
                 <div style={{
                     padding: '0.75rem 1.25rem', borderRadius: '8px', marginBottom: '1.5rem',
                     background: msg.type === 'success' ? 'rgba(0,255,128,0.1)' : 'rgba(255,60,60,0.1)',
-                    border: `1px solid ${msg.type === 'success' ? 'var(--neon-cyan)' : '#ff3c3c'}`,
-                    color: msg.type === 'success' ? 'var(--neon-cyan)' : '#ff3c3c',
+                    border: `1px solid ${msg.type === 'success' ? 'var(--neon-cyan)' : 'var(--danger)'}`,
+                    color: msg.type === 'success' ? 'var(--neon-cyan)' : 'var(--danger)',
                     fontSize: '0.9rem'
                 }}>
                     {msg.text}
@@ -272,8 +272,8 @@ const GhostMode: React.FC = () => {
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
                                 <span style={{
                                     display: 'inline-block', width: '10px', height: '10px',
-                                    borderRadius: '50%', background: '#00ff88',
-                                    boxShadow: '0 0 8px #00ff88', animation: 'pulse 1.5s infinite'
+                                    borderRadius: '50%', background: 'var(--success)',
+                                    boxShadow: '0 0 8px var(--success)', animation: 'pulse 1.5s infinite'
                                 }} />
                                 <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>
                                     {liveTesters.length} tester{liveTesters.length !== 1 ? 's' : ''} playing right now · auto-refreshes every 15s
@@ -296,8 +296,8 @@ const GhostMode: React.FC = () => {
                                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                                                 <span style={{
                                                     width: '8px', height: '8px', borderRadius: '50%',
-                                                    background: '#00ff88', display: 'inline-block',
-                                                    boxShadow: '0 0 6px #00ff88'
+                                                    background: 'var(--success)', display: 'inline-block',
+                                                    boxShadow: '0 0 6px var(--success)'
                                                 }} />
                                                 <span style={{ color: 'var(--text)', fontWeight: 600 }}>{t.testerUsername}</span>
                                             </div>
@@ -327,16 +327,16 @@ const GhostMode: React.FC = () => {
                                         }}>
                                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                                                 {s.isGhosted
-                                                    ? <Ghost size={16} color="#ff3c3c" />
+                                                    ? <Ghost size={16} color="var(--danger)" />
                                                     : s.endedCleanly
-                                                        ? <CheckCircle size={16} color="#00ff88" />
+                                                        ? <CheckCircle size={16} color="var(--success)" />
                                                         : <Clock size={16} color="var(--text-muted)" />
                                                 }
                                                 <span style={{ color: 'var(--text)' }}>{s.testerUsername}</span>
                                                 {s.isGhosted && (
                                                     <span style={{
                                                         fontSize: '0.7rem', background: 'rgba(255,60,60,0.15)',
-                                                        color: '#ff3c3c', padding: '0.15rem 0.5rem', borderRadius: '4px'
+                                                        color: 'var(--danger)', padding: '0.15rem 0.5rem', borderRadius: '4px'
                                                     }}>
                                                         GHOSTED
                                                     </span>
@@ -370,10 +370,10 @@ const GhostMode: React.FC = () => {
                                         }}>
                                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                                                 <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem', minWidth: '24px' }}>#{i + 1}</span>
-                                                <Ghost size={15} color="#ff3c3c" />
+                                                <Ghost size={15} color="var(--danger)" />
                                                 <span style={{ color: 'var(--text)' }}>{g.username}</span>
                                             </div>
-                                            <span style={{ color: '#ff3c3c', fontWeight: 700 }}>
+                                            <span style={{ color: 'var(--danger)', fontWeight: 700 }}>
                                                 {g.ghostCount}x ghost
                                             </span>
                                         </div>
@@ -398,10 +398,10 @@ const GhostMode: React.FC = () => {
                                 <div>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.3rem' }}>
                                         {pingStatus === 'ok'
-                                            ? <Wifi size={16} color="#00ff88" />
-                                            : <WifiOff size={16} color="#ff3c3c" />
+                                            ? <Wifi size={16} color="var(--success)" />
+                                            : <WifiOff size={16} color="var(--danger)" />
                                         }
-                                        <span style={{ color: '#00ff88', fontWeight: 700 }}>SESSION ACTIVE</span>
+                                        <span style={{ color: 'var(--success)', fontWeight: 700 }}>SESSION ACTIVE</span>
                                     </div>
                                     <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.85rem' }}>
                                         Testing: <strong style={{ color: 'var(--text)' }}>{activeGameTitle}</strong>
@@ -413,8 +413,8 @@ const GhostMode: React.FC = () => {
                                         onClick={() => handleEndSession(true)}
                                         disabled={loading}
                                         style={{
-                                            padding: '0.55rem 1.1rem', borderRadius: '8px', border: '1px solid #00ff88',
-                                            background: 'transparent', color: '#00ff88', cursor: 'pointer',
+                                            padding: '0.55rem 1.1rem', borderRadius: '8px', border: '1px solid var(--success)',
+                                            background: 'transparent', color: 'var(--success)', cursor: 'pointer',
                                             fontFamily: 'JetBrains Mono, monospace', fontSize: '0.82rem'
                                         }}
                                     >
@@ -425,8 +425,8 @@ const GhostMode: React.FC = () => {
                                         onClick={() => handleEndSession(false)}
                                         disabled={loading}
                                         style={{
-                                            padding: '0.55rem 1.1rem', borderRadius: '8px', border: '1px solid #ff3c3c',
-                                            background: 'transparent', color: '#ff3c3c', cursor: 'pointer',
+                                            padding: '0.55rem 1.1rem', borderRadius: '8px', border: '1px solid var(--danger)',
+                                            background: 'transparent', color: 'var(--danger)', cursor: 'pointer',
                                             fontFamily: 'JetBrains Mono, monospace', fontSize: '0.82rem'
                                         }}
                                     >

@@ -202,7 +202,7 @@ const styles: Record<string, React.CSSProperties> = {
     submitBtn: {
         width: '100%',
         padding: '0.85rem',
-        background: 'linear-gradient(135deg, #bf00ff 0%, #7700bb 100%)',
+        background: 'var(--gradient-purple)',
         border: 'none',
         borderRadius: '6px',
         color: '#fff',
@@ -268,7 +268,7 @@ const styles: Record<string, React.CSSProperties> = {
         left: 0,
         right: 0,
         height: '2px',
-        background: 'linear-gradient(135deg, #bf00ff 0%, #7700bb 100%)',
+        background: 'var(--gradient-purple)',
         opacity: 0.6,
     },
 };

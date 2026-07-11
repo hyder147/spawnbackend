@@ -32,6 +32,11 @@
     --warning: #FFB800;
     --warning-soft: rgba(255,184,0,0.08);
     --warning-border: rgba(255,184,0,0.25);
+    --caution: #FF7700;
+    --caution-soft: rgba(255,119,0,0.10);
+    --caution-border: rgba(255,119,0,0.28);
+    --ai-accent: #D966FF;
+    --ai-accent-soft: rgba(217,102,255,0.12);
     --info: #00D4FF;
     /* Backgrounds — layered void */
     --bg-base: #07070E;
@@ -48,8 +53,8 @@
     --border-purple: rgba(139,92,246,0.30);
     /* Text */
     --text-primary: #F0F0FF;
-    --text-secondary: #7070A0;
-    --text-muted: #3A3A58;
+    --text-secondary: #8888B8;
+    --text-muted: #7878A2;
     --text-accent: #C8FF00;
     /* Shadows */
     --shadow-sm: 0 2px 8px rgba(0,0,0,0.6);
@@ -326,6 +331,9 @@ label {
     }
 
 .nav-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     font-family: 'Orbitron', sans-serif;
     font-size: 1.05rem;
     font-weight: 900;

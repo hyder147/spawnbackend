@@ -359,19 +359,19 @@ const WeeklyDigestWidget: React.FC<{ postCount: number; friendCount: number }> =
         <div className="digest-card">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
                 <div>
-                    <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '1px', color: '#d966ff' }}>● WEEKLY AI DIGEST</div>
+                    <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--ai-accent)' }}>● WEEKLY AI DIGEST</div>
                     <div style={{ fontFamily: 'Orbitron, monospace', fontSize: '0.9rem', marginTop: '0.2rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}><BarChart2 size={15} /> Dev Summary</div>
                     <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.7rem', color: 'var(--text-dim)', marginTop: '0.2rem' }}>
                         Week of {new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                     </div>
                 </div>
-                <button onClick={generate} style={{ background: 'rgba(191,0,255,0.12)', border: '1px solid rgba(191,0,255,0.35)', color: '#d966ff', borderRadius: 8, padding: '0.4rem 0.9rem', cursor: 'pointer', fontSize: '0.75rem', fontFamily: 'JetBrains Mono' }}>
+                <button onClick={generate} style={{ background: 'rgba(191,0,255,0.12)', border: '1px solid rgba(191,0,255,0.35)', color: 'var(--ai-accent)', borderRadius: 8, padding: '0.4rem 0.9rem', cursor: 'pointer', fontSize: '0.75rem', fontFamily: 'JetBrains Mono' }}>
                     {loading ? <><Loader size={12} style={{ display: 'inline' }} /></> : done ? '↺ Regen' : 'Generate'}
                 </button>
             </div>
             {digest
                 ? <div style={{ fontSize: '0.85rem', lineHeight: 1.7, color: 'var(--text-primary)', whiteSpace: 'pre-line' }}>{digest}</div>
-                : <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>Click <strong style={{ color: '#d966ff' }}>Generate</strong> for your AI-powered weekly summary.</div>
+                : <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>Click <strong style={{ color: 'var(--ai-accent)' }}>Generate</strong> for your AI-powered weekly summary.</div>
             }
         </div>
     );

@@ -45,10 +45,10 @@ interface LeaderboardEntry {
 // ─── Badge color map ────────────────────────────────────────────────────────────
 
 const badgeStyle: Record<string, { bg: string; color: string }> = {
-    EliteHunter: { bg: 'rgba(255,200,0,0.15)', color: '#ffc800' },
+    EliteHunter: { bg: 'rgba(255,200,0,0.15)', color: 'var(--warning)' },
     GoldTester: { bg: 'rgba(255,165,0,0.15)', color: '#ffa500' },
     PriorityTester: { bg: 'rgba(0,200,255,0.15)', color: '#00c8ff' },
-    BugHunter: { bg: 'rgba(0,255,136,0.12)', color: '#00ff88' },
+    BugHunter: { bg: 'rgba(0,255,136,0.12)', color: 'var(--success)' },
 };
 
 const rewardLabels: Record<string, string> = {
@@ -243,8 +243,8 @@ const CrashBounty: React.FC = () => {
                 <div style={{
                     padding: '0.75rem 1.25rem', borderRadius: '8px', marginBottom: '1.5rem',
                     background: msg.type === 'success' ? 'rgba(0,255,128,0.1)' : 'rgba(255,60,60,0.1)',
-                    border: `1px solid ${msg.type === 'success' ? 'var(--neon-cyan)' : '#ff3c3c'}`,
-                    color: msg.type === 'success' ? 'var(--neon-cyan)' : '#ff3c3c', fontSize: '0.9rem'
+                    border: `1px solid ${msg.type === 'success' ? 'var(--neon-cyan)' : 'var(--danger)'}`,
+                    color: msg.type === 'success' ? 'var(--neon-cyan)' : 'var(--danger)', fontSize: '0.9rem'
                 }}>
                     {msg.text}
                 </div>
@@ -400,7 +400,7 @@ const CrashBounty: React.FC = () => {
                                                 <span style={{
                                                     fontSize: '0.7rem', padding: '0.15rem 0.5rem', borderRadius: '4px',
                                                     background: b.status === 'Open' ? 'rgba(0,255,136,0.12)' : b.status === 'Claimed' ? 'rgba(255,200,0,0.12)' : 'rgba(255,255,255,0.06)',
-                                                    color: b.status === 'Open' ? '#00ff88' : b.status === 'Claimed' ? '#ffc800' : 'var(--text-muted)'
+                                                    color: b.status === 'Open' ? 'var(--success)' : b.status === 'Claimed' ? 'var(--warning)' : 'var(--text-muted)'
                                                 }}>
                                                     {b.status.toUpperCase()}
                                                 </span>
@@ -408,7 +408,7 @@ const CrashBounty: React.FC = () => {
                                             </div>
                                             <p style={{ margin: 0, color: 'var(--text)', fontSize: '0.9rem' }}>{b.symptom}</p>
                                             {b.status === 'Claimed' && b.claimedByUsername && (
-                                                <p style={{ margin: '0.4rem 0 0', color: '#ffc800', fontSize: '0.8rem' }}>
+                                                <p style={{ margin: '0.4rem 0 0', color: 'var(--warning)', fontSize: '0.8rem' }}>
                                                     ✓ Claimed by {b.claimedByUsername}
                                                 </p>
                                             )}
@@ -422,7 +422,7 @@ const CrashBounty: React.FC = () => {
                                                         &nbsp;Submissions
                                                     </button>
                                                     <button onClick={() => handleClose(b.id)} disabled={loading}
-                                                        style={{ padding: '0.4rem 0.8rem', borderRadius: '6px', border: '1px solid #ff3c3c', background: 'transparent', color: '#ff3c3c', cursor: 'pointer', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.78rem' }}>
+                                                        style={{ padding: '0.4rem 0.8rem', borderRadius: '6px', border: '1px solid var(--danger)', background: 'transparent', color: 'var(--danger)', cursor: 'pointer', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.78rem' }}>
                                                         Close
                                                     </button>
                                                 </>
@@ -461,7 +461,7 @@ const CrashBounty: React.FC = () => {
                                                                 </button>
                                                             )}
                                                             {sub.status === 'Accepted' && (
-                                                                <span style={{ color: '#ffc800', fontSize: '0.8rem' }}>✓ Winner</span>
+                                                                <span style={{ color: 'var(--warning)', fontSize: '0.8rem' }}>✓ Winner</span>
                                                             )}
                                                         </div>
                                                     ))}
@@ -500,7 +500,7 @@ const CrashBounty: React.FC = () => {
                                         <div style={{ padding: '1rem 1.25rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                                             <div style={{ flex: 1 }}>
                                                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.5rem' }}>
-                                                    <span style={{ color: '#00ff88', fontSize: '0.75rem', background: 'rgba(0,255,136,0.1)', padding: '0.15rem 0.5rem', borderRadius: '4px' }}>
+                                                    <span style={{ color: 'var(--success)', fontSize: '0.75rem', background: 'rgba(0,255,136,0.1)', padding: '0.15rem 0.5rem', borderRadius: '4px' }}>
                                                         OPEN
                                                     </span>
                                                     <span style={{ color: 'var(--accent)', fontSize: '0.8rem' }}>{rewardLabels[b.rewardType]}</span>

@@ -105,9 +105,9 @@ const cardStatusColor: Record<string, string> = {
 const actionColor: Record<string, string> = {
     ban: 'var(--danger)', unban: 'var(--success)',
     suspend: 'var(--warning)', unsuspend: 'var(--success)',
-    delete_user: 'var(--danger)', delete_post: '#ff7700',
-    delete_game: '#ff7700', role_change: 'var(--accent)',
-    delete_community: '#ff7700', force_verify_email: 'var(--accent)',
+    delete_user: 'var(--danger)', delete_post: 'var(--caution)',
+    delete_game: 'var(--caution)', role_change: 'var(--accent)',
+    delete_community: 'var(--caution)', force_verify_email: 'var(--accent)',
     review_report: 'var(--accent)', recover_user: 'var(--success)',
     card_status_update: 'var(--accent)', card_delivered: 'var(--success)',
     card_payment_override: 'var(--warning)', card_order_deleted: 'var(--danger)',
@@ -1069,7 +1069,7 @@ const CardsTab: React.FC<{ onToast: (msg: string, ok: boolean) => void }> = ({ o
                                 {detailModal.details.specialization && <p><b style={{ color: 'var(--accent)' }}>Specialization:</b> {detailModal.details.specialization}</p>}
                                 {detailModal.details.location && <p><b style={{ color: 'var(--accent)' }}>Location:</b> {detailModal.details.location} {detailModal.details.age ? `· Age ${detailModal.details.age}` : ''}</p>}
                                 {detailModal.details.motto && <p><b style={{ color: 'var(--accent)' }}>Motto:</b> "{detailModal.details.motto}"</p>}
-                                {detailModal.details.profilePicture && <img src={detailModal.details.profilePicture} alt="pfp" style={{ width: 90, height: 90, borderRadius: 10, objectFit: 'cover', margin: '0.4rem 0' }} />}
+                                {detailModal.details.profilePicture && <img src={detailModal.details.profilePicture} alt={`${detailModal.details.fullName || 'User'}'s profile picture`} style={{ width: 90, height: 90, borderRadius: 10, objectFit: 'cover', margin: '0.4rem 0' }} />}
                                 {detailModal.details.skills?.length > 0 && <p><b style={{ color: 'var(--accent)' }}>Skills:</b> {detailModal.details.skills.join(', ')}</p>}
                                 {detailModal.details.proficiencyStats?.length > 0 && <p><b style={{ color: 'var(--accent)' }}>Proficiency:</b> {detailModal.details.proficiencyStats.map(s => `${s.label} ${s.percent}%`).join(', ')}</p>}
                                 {detailModal.details.quickStats?.length > 0 && <p><b style={{ color: 'var(--accent)' }}>Stats:</b> {detailModal.details.quickStats.map(s => `${s.key}: ${s.value}`).join(', ')}</p>}
@@ -1098,14 +1098,14 @@ const CardsTab: React.FC<{ onToast: (msg: string, ok: boolean) => void }> = ({ o
                         <div style={{ flex: 1, minWidth: 140, textAlign: 'center' }}>
                             <label style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', display: 'block', marginBottom: '0.4rem' }}>Front *</label>
                             <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: 110, borderRadius: 8, border: '1px dashed var(--border)', cursor: 'pointer', overflow: 'hidden', background: 'var(--bg-input)' }}>
-                                {frontImg ? <img src={frontImg} alt="front" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : <Upload size={18} style={{ color: 'var(--text-dim)' }} />}
+                                {frontImg ? <img src={frontImg} alt="ID card front side" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : <Upload size={18} style={{ color: 'var(--text-dim)' }} />}
                                 <input type="file" accept="image/*" style={{ display: 'none' }} onChange={e => handleImagePick(e, 'front')} />
                             </label>
                         </div>
                         <div style={{ flex: 1, minWidth: 140, textAlign: 'center' }}>
                             <label style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', display: 'block', marginBottom: '0.4rem' }}>Back</label>
                             <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: 110, borderRadius: 8, border: '1px dashed var(--border)', cursor: 'pointer', overflow: 'hidden', background: 'var(--bg-input)' }}>
-                                {backImg ? <img src={backImg} alt="back" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : <Upload size={18} style={{ color: 'var(--text-dim)' }} />}
+                                {backImg ? <img src={backImg} alt="ID card back side" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : <Upload size={18} style={{ color: 'var(--text-dim)' }} />}
                                 <input type="file" accept="image/*" style={{ display: 'none' }} onChange={e => handleImagePick(e, 'back')} />
                             </label>
                         </div>

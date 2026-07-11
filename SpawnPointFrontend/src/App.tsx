@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
-import { Bell, Info, CheckCircle, AlertTriangle, LayoutDashboard, Gamepad2, Users, Rss, Globe, UserPlus, MessageSquare, User, ShieldAlert, LogOut, LogIn, Zap, Ghost, Target, CreditCard, Menu, X } from 'lucide-react';
+import { Bell, Info, CheckCircle, AlertTriangle, LayoutDashboard, Gamepad2, Users, Rss, Globe, UserPlus, MessageSquare, User, ShieldAlert, LogOut, LogIn, Ghost, Target, CreditCard, Menu, X } from 'lucide-react';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { api } from './api';
+import SpawnLogo from './components/SpawnLogo';
 import Dashboard from './pages/Dashboard';
 import GameListing from './pages/GameListing';
 import UserProfile from './pages/UserProfile';
@@ -159,7 +160,7 @@ const NavBar: React.FC<{ onNotif: () => void }> = ({ onNotif }) => {
     return (
         <nav className="navbar">
             <Link to="/" className="nav-brand">
-                <Zap size={16} style={{ display: 'inline', marginRight: '0.35rem', verticalAlign: 'middle' }} />
+                <SpawnLogo size={22} />
                 SpawnPoint
             </Link>
             <button
@@ -314,11 +315,17 @@ const AppInner: React.FC = () => {
         return () => clearInterval(interval);
     }, [isLoggedIn, user?.id]);
 
+    // Admin and Messages are dense, functional screens — the glowing
+    // ambient orbs + scanline overlay look great on auth/dashboard/marketing
+    // screens but compete with content on data-heavy utility screens, so
+    // they're scoped out here rather than rendered globally on every route.
+    const isDenseUtilityRoute = location.pathname === '/admin' || location.pathname === '/messages';
+
     return (
         <>
             <CustomCursor />
-            <AmbientOrbs />
-            <ScanLines />
+            {!isDenseUtilityRoute && <AmbientOrbs />}
+            {!isDenseUtilityRoute && <ScanLines />}
 
             {notif && (
                 <NotifToast message={notif.message} type={notif.type} onClose={dismissNotif} />

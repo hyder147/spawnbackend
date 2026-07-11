@@ -3,6 +3,12 @@
   "short_name": "SpawnPoint",
   "icons": [
     {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
       "src": "/spawnpointlogo.jpeg",
       "sizes": "192x192",
       "type": "image/jpeg",
@@ -17,6 +23,6 @@
   ],
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#05040a",
-  "theme_color": "#00f5ff"
+  "background_color": "#07070E",
+  "theme_color": "#C8FF00"
 }

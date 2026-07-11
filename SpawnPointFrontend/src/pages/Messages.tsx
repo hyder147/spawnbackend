@@ -493,7 +493,7 @@ const Messages: React.FC = () => {
                                                 onClick={() => { setShowMenu(false); setShowBlockConfirm(true); }}
                                                 style={{
                                                     width: '100%', padding: '0.75rem 1rem', background: 'transparent',
-                                                    border: 'none', cursor: 'pointer', color: '#ff6b6b',
+                                                    border: 'none', cursor: 'pointer', color: 'var(--danger)',
                                                     display: 'flex', alignItems: 'center', gap: '0.6rem',
                                                     fontSize: '0.85rem', fontFamily: 'JetBrains Mono',
                                                     transition: 'background 0.15s',
@@ -508,7 +508,7 @@ const Messages: React.FC = () => {
                                                 onClick={() => { setShowMenu(false); setShowReportConfirm(true); }}
                                                 style={{
                                                     width: '100%', padding: '0.75rem 1rem', background: 'transparent',
-                                                    border: 'none', cursor: 'pointer', color: '#ffa94d',
+                                                    border: 'none', cursor: 'pointer', color: 'var(--warning)',
                                                     display: 'flex', alignItems: 'center', gap: '0.6rem',
                                                     fontSize: '0.85rem', fontFamily: 'JetBrains Mono',
                                                     transition: 'background 0.15s',
@@ -564,8 +564,8 @@ const Messages: React.FC = () => {
                                     <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
                                         {callState === 'incoming' ? (
                                             <>
-                                                <button style={callBtnStyle('linear-gradient(135deg,#00ff88,#00d4aa)')} onClick={answerCall} title="Answer"><CheckCircle size={20} /></button>
-                                                <button style={callBtnStyle('linear-gradient(135deg,#ff006e,#ff7700)')} onClick={() => hangUp()} title="Decline"><XCircle size={20} /></button>
+                                                <button style={callBtnStyle('linear-gradient(135deg,var(--success),#00d4aa)')} onClick={answerCall} title="Answer"><CheckCircle size={20} /></button>
+                                                <button style={callBtnStyle('linear-gradient(135deg,var(--neon-pink),var(--caution))')} onClick={() => hangUp()} title="Decline"><XCircle size={20} /></button>
                                             </>
                                         ) : (
                                             <>
@@ -580,7 +580,7 @@ const Messages: React.FC = () => {
                                                 <button style={{ ...callBtnStyle(isSpeakerOff ? '#444' : 'rgba(0,245,255,0.15)'), border: '1px solid rgba(0,245,255,0.25)' }} onClick={toggleSpeaker} title={isSpeakerOff ? 'Speaker on' : 'Speaker off'}>
                                                     {isSpeakerOff ? <VolumeX size={18} /> : <Volume2 size={18} />}
                                                 </button>
-                                                <button style={callBtnStyle('linear-gradient(135deg,#ff006e,#ff7700)')} onClick={() => hangUp()} title="Hang up"><PhoneOff size={18} /></button>
+                                                <button style={callBtnStyle('linear-gradient(135deg,var(--neon-pink),var(--caution))')} onClick={() => hangUp()} title="Hang up"><PhoneOff size={18} /></button>
                                             </>
                                         )}
                                     </div>
@@ -680,8 +680,8 @@ const Messages: React.FC = () => {
                 <div className="modal-overlay" onClick={() => setShowBlockConfirm(false)}>
                     <div className="modal-box" onClick={e => e.stopPropagation()} style={{ maxWidth: 380 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1rem' }}>
-                            <ShieldX size={20} color="#ff6b6b" />
-                            <h2 style={{ margin: 0, fontSize: '1rem', fontFamily: 'Orbitron, monospace', color: '#ff6b6b' }}>Block User</h2>
+                            <ShieldX size={20} color="var(--danger)" />
+                            <h2 style={{ margin: 0, fontSize: '1rem', fontFamily: 'Orbitron, monospace', color: 'var(--danger)' }}>Block User</h2>
                         </div>
                         <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', lineHeight: 1.55, marginBottom: '1.5rem' }}>
                             Are you sure you want to block <strong style={{ color: 'var(--text-primary)' }}>{activeConvName}</strong>? They won't be able to send you messages.
@@ -689,7 +689,7 @@ const Messages: React.FC = () => {
                         <div style={{ display: 'flex', gap: '0.75rem' }}>
                             <button
                                 onClick={handleBlock}
-                                style={{ flex: 1, padding: '0.65rem', borderRadius: 8, border: 'none', cursor: 'pointer', background: 'linear-gradient(135deg,#ff006e,#ff4444)', color: '#fff', fontFamily: 'JetBrains Mono', fontSize: '0.85rem', fontWeight: 600 }}
+                                style={{ flex: 1, padding: '0.65rem', borderRadius: 8, border: 'none', cursor: 'pointer', background: 'linear-gradient(135deg,var(--neon-pink),#ff4444)', color: '#fff', fontFamily: 'JetBrains Mono', fontSize: '0.85rem', fontWeight: 600 }}
                             >Block</button>
                             <button className="btn-outline" style={{ flex: 1 }} onClick={() => setShowBlockConfirm(false)}>Cancel</button>
                         </div>
@@ -702,8 +702,8 @@ const Messages: React.FC = () => {
                 <div className="modal-overlay" onClick={() => setShowReportConfirm(false)}>
                     <div className="modal-box" onClick={e => e.stopPropagation()} style={{ maxWidth: 380 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1rem' }}>
-                            <Flag size={20} color="#ffa94d" />
-                            <h2 style={{ margin: 0, fontSize: '1rem', fontFamily: 'Orbitron, monospace', color: '#ffa94d' }}>Report User</h2>
+                            <Flag size={20} color="var(--warning)" />
+                            <h2 style={{ margin: 0, fontSize: '1rem', fontFamily: 'Orbitron, monospace', color: 'var(--warning)' }}>Report User</h2>
                         </div>
                         <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', lineHeight: 1.55, marginBottom: '1.5rem' }}>
                             Report <strong style={{ color: 'var(--text-primary)' }}>{activeConvName}</strong> for inappropriate behavior? Our moderation team will review this.
@@ -711,7 +711,7 @@ const Messages: React.FC = () => {
                         <div style={{ display: 'flex', gap: '0.75rem' }}>
                             <button
                                 onClick={handleReport}
-                                style={{ flex: 1, padding: '0.65rem', borderRadius: 8, border: 'none', cursor: 'pointer', background: 'linear-gradient(135deg,#ffa94d,#ff7700)', color: '#fff', fontFamily: 'JetBrains Mono', fontSize: '0.85rem', fontWeight: 600 }}
+                                style={{ flex: 1, padding: '0.65rem', borderRadius: 8, border: 'none', cursor: 'pointer', background: 'linear-gradient(135deg,var(--warning),var(--caution))', color: '#fff', fontFamily: 'JetBrains Mono', fontSize: '0.85rem', fontWeight: 600 }}
                             >Report</button>
                             <button className="btn-outline" style={{ flex: 1 }} onClick={() => setShowReportConfirm(false)}>Cancel</button>
                         </div>
