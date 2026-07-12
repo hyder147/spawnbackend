@@ -44,7 +44,7 @@ const statusMeta: Record<string, { label: string; color: string }> = {
     PaymentFailed: { label: 'Payment Failed', color: 'var(--danger)' },
     AwaitingDetails: { label: 'Payment Received — Add Details', color: 'var(--accent)' },
     Submitted: { label: 'Submitted — In Queue', color: 'var(--accent)' },
-    InProgress: { label: 'Being Designed', color: 'var(--purple, #8B5CF6)' },
+    InProgress: { label: 'Being Designed', color: 'var(--purple, #7C5CFC)' },
     Completed: { label: 'Delivered', color: 'var(--success)' },
     Rejected: { label: 'Rejected', color: 'var(--danger)' },
 };

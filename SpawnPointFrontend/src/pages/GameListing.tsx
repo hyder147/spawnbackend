@@ -27,7 +27,7 @@ const GameCard: React.FC<{ game: Game; onApply: (g: Game) => void }> = ({ game, 
 
     return (
         <div
-            style={{ perspective: '1000px', cursor: 'pointer', height: '280px' }}
+            style={{ perspective: '1000px', cursor: 'pointer', height: '300px' }}
             onMouseEnter={() => setFlipped(true)}
             onMouseLeave={() => setFlipped(false)}
         >
@@ -44,12 +44,26 @@ const GameCard: React.FC<{ game: Game; onApply: (g: Game) => void }> = ({ game, 
                 }}>
                     <div>
                         <div style={{
-                            height: '100px', borderRadius: '8px', marginBottom: '1rem',
-                            background: `linear-gradient(135deg, ${c}22, ${c}08)`,
-                            border: `1px solid ${c}33`,
-                            display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.5rem'
+                            height: '110px', borderRadius: '8px', marginBottom: '1rem',
+                            border: `1px solid ${c}33`, position: 'relative', overflow: 'hidden',
                         }}>
-                            {game.genre === 'Action' ? <Zap size={16} /> : game.genre === 'RPG' ? <Swords size={16} /> : game.genre === 'Strategy' ? <Brain size={16} /> : <Joystick size={16} />}
+                            <img
+                                src={game.screenshots?.[0] || `https://picsum.photos/seed/${game.id || game.title}/400/220`}
+                                alt={game.title}
+                                loading="lazy"
+                                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                            />
+                            <div style={{
+                                position: 'absolute', inset: 0,
+                                background: `linear-gradient(180deg, ${c}00 40%, rgba(6,7,14,0.85) 100%)`,
+                            }} />
+                            <div style={{
+                                position: 'absolute', top: 6, right: 6, width: 26, height: 26, borderRadius: '50%',
+                                background: 'rgba(6,7,14,0.72)', border: `1px solid ${c}55`,
+                                display: 'flex', alignItems: 'center', justifyContent: 'center', color: c, backdropFilter: 'blur(4px)'
+                            }}>
+                                {game.genre === 'Action' ? <Zap size={13} /> : game.genre === 'RPG' ? <Swords size={13} /> : game.genre === 'Strategy' ? <Brain size={13} /> : <Joystick size={13} />}
+                            </div>
                         </div>
                         <h3 style={{ margin: '0 0 0.4rem', fontFamily: 'Orbitron, monospace', fontSize: '0.95rem' }}>{game.title}</h3>
                         <p style={{ color: 'var(--text-secondary)', fontSize: '0.82rem', lineHeight: 1.4, margin: 0 }}>{game.description.slice(0, 60)}...</p>

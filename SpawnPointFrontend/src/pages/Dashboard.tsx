@@ -438,7 +438,7 @@ const Dashboard: React.FC = () => {
                     <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem', color: 'var(--accent)', letterSpacing: '3px', textTransform: 'uppercase' }}>System Online</span>
                 </div>
                 <h1 style={{ fontFamily: 'Rajdhani, sans-serif', fontSize: '2.6rem', fontWeight: 800, margin: '0 0 0.4rem', letterSpacing: '-0.5px', textTransform: 'uppercase' }}>
-                    Welcome back, <span style={{ color: 'var(--accent)', textShadow: '0 0 30px rgba(200,255,0,0.3)' }}>{user?.username ?? 'Developer'}</span>
+                    Welcome back, <span style={{ color: 'var(--accent)', textShadow: '0 0 30px rgba(255,62,165,0.3)' }}>{user?.username ?? 'Developer'}</span>
                 </h1>
                 <p style={{ color: 'var(--text-secondary)', fontFamily: 'JetBrains Mono', fontSize: '0.72rem', margin: 0, letterSpacing: '1px' }}>
                     {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}

@@ -92,9 +92,9 @@ const CustomCursor: React.FC = () => {
 /* ─── Ambient Orbs ─── */
 const AmbientOrbs: React.FC = () => (
     <>
-        <div className="ambient-orb" style={{ width: 500, height: 500, background: '#C8FF00', top: '-10%', left: '-5%', animationDelay: '0s', animationDuration: '10s' }} />
-        <div className="ambient-orb" style={{ width: 400, height: 400, background: '#8B5CF6', top: '60%', right: '-8%', animationDelay: '3s', animationDuration: '13s' }} />
-        <div className="ambient-orb" style={{ width: 300, height: 300, background: '#00D4FF', bottom: '5%', left: '30%', animationDelay: '6s', animationDuration: '9s' }} />
+        <div className="ambient-orb" style={{ width: 500, height: 500, background: '#FF3EA5', top: '-10%', left: '-5%', animationDelay: '0s', animationDuration: '10s' }} />
+        <div className="ambient-orb" style={{ width: 400, height: 400, background: '#7C5CFC', top: '60%', right: '-8%', animationDelay: '3s', animationDuration: '13s' }} />
+        <div className="ambient-orb" style={{ width: 300, height: 300, background: '#22E5E5', bottom: '5%', left: '30%', animationDelay: '6s', animationDuration: '9s' }} />
     </>
 );
 
@@ -176,7 +176,7 @@ const NavBar: React.FC<{ onNotif: () => void }> = ({ onNotif }) => {
                     <Link key={item.to} to={item.to}
                         onClick={() => { haptic(); setMobileMenuOpen(false); }}
                         className={`nav-link${location.pathname === item.to ? ' active' : ''}`}
-                        style={location.pathname === item.to ? { color: 'var(--accent)', borderBottomColor: 'var(--accent)', background: 'rgba(200,255,0,0.06)' } : {}}>
+                        style={location.pathname === item.to ? { color: 'var(--accent)', borderBottomColor: 'var(--accent)', background: 'rgba(255,62,165,0.06)' } : {}}>
                         {item.icon}
                         {item.label}
                     </Link>
@@ -184,7 +184,7 @@ const NavBar: React.FC<{ onNotif: () => void }> = ({ onNotif }) => {
             </div>
             <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
                 <button onClick={onNotif} title="Notifications" style={{
-                    background: 'rgba(200,255,0,0.06)', border: '1px solid var(--border)',
+                    background: 'rgba(255,62,165,0.06)', border: '1px solid var(--border)',
                     color: 'var(--accent)', borderRadius: '4px', padding: '0.45rem 0.7rem',
                     cursor: 'none', fontSize: '1rem', transition: 'all 0.2s',
                     display: 'flex', alignItems: 'center', justifyContent: 'center'
@@ -199,7 +199,7 @@ const NavBar: React.FC<{ onNotif: () => void }> = ({ onNotif }) => {
                             textTransform: 'uppercase',
                             color: 'var(--accent)',
                             padding: '0.4rem 0.75rem',
-                            background: 'rgba(200,255,0,0.06)',
+                            background: 'rgba(255,62,165,0.06)',
                             borderRadius: '4px',
                             border: '1px solid var(--accent-border)',
                         }}>

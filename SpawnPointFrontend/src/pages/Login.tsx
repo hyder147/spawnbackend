@@ -90,8 +90,8 @@ const Login: React.FC = () => {
                 </div>
 
                 {/* Decorative orbs */}
-                <div style={{ position: 'absolute', top: '20%', right: '-60px', width: 200, height: 200, borderRadius: '50%', background: 'rgba(200,255,0,0.05)', filter: 'blur(60px)', pointerEvents: 'none' }} />
-                <div style={{ position: 'absolute', bottom: '15%', left: '10%', width: 150, height: 150, borderRadius: '50%', background: 'rgba(139,92,246,0.07)', filter: 'blur(50px)', pointerEvents: 'none' }} />
+                <div style={{ position: 'absolute', top: '20%', right: '-60px', width: 200, height: 200, borderRadius: '50%', background: 'rgba(255,62,165,0.05)', filter: 'blur(60px)', pointerEvents: 'none' }} />
+                <div style={{ position: 'absolute', bottom: '15%', left: '10%', width: 150, height: 150, borderRadius: '50%', background: 'rgba(124,92,252,0.07)', filter: 'blur(50px)', pointerEvents: 'none' }} />
             </div>
 
             {/* Right panel — form */}
@@ -199,8 +199,8 @@ const styles: Record<string, React.CSSProperties> = {
         position: 'absolute',
         inset: 0,
         backgroundImage: `
-            linear-gradient(rgba(200,255,0,0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(200,255,0,0.03) 1px, transparent 1px)
+            linear-gradient(rgba(255,62,165,0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,62,165,0.03) 1px, transparent 1px)
         `,
         backgroundSize: '60px 60px',
         pointerEvents: 'none',
@@ -214,8 +214,8 @@ const styles: Record<string, React.CSSProperties> = {
         flexDirection: 'column',
         justifyContent: 'center',
         padding: '3rem 3.5rem',
-        background: 'linear-gradient(135deg, rgba(200,255,0,0.03) 0%, transparent 60%)',
-        borderRight: '1px solid rgba(200,255,0,0.06)',
+        background: 'linear-gradient(135deg, rgba(255,62,165,0.03) 0%, transparent 60%)',
+        borderRight: '1px solid rgba(255,62,165,0.06)',
         position: 'relative',
         zIndex: 1,
     } as React.CSSProperties,
@@ -234,7 +234,7 @@ const styles: Record<string, React.CSSProperties> = {
         fontWeight: 900,
         letterSpacing: '5px',
         textTransform: 'uppercase' as const,
-        textShadow: '0 0 30px rgba(200,255,0,0.4)',
+        textShadow: '0 0 30px rgba(255,62,165,0.4)',
     },
     heroEyebrow: {
         fontFamily: "'JetBrains Mono', monospace",
@@ -278,7 +278,7 @@ const styles: Record<string, React.CSSProperties> = {
         fontWeight: 700,
         color: 'var(--accent)',
         lineHeight: 1,
-        textShadow: '0 0 20px rgba(200,255,0,0.3)',
+        textShadow: '0 0 20px rgba(255,62,165,0.3)',
     },
     statLabel: {
         fontFamily: "'JetBrains Mono', monospace",
@@ -303,10 +303,10 @@ const styles: Record<string, React.CSSProperties> = {
         width: '100%',
         maxWidth: '400px',
         background: 'linear-gradient(160deg, #16162A 0%, #111120 100%)',
-        border: '1px solid rgba(200,255,0,0.10)',
+        border: '1px solid rgba(255,62,165,0.10)',
         borderRadius: '16px',
         padding: '2.5rem',
-        boxShadow: '0 0 80px rgba(200,255,0,0.05), 0 0 0 1px rgba(200,255,0,0.03), 0 32px 80px rgba(0,0,0,0.8)',
+        boxShadow: '0 0 80px rgba(255,62,165,0.05), 0 0 0 1px rgba(255,62,165,0.03), 0 32px 80px rgba(0,0,0,0.8)',
         overflow: 'hidden',
     },
     mobileBrand: {
@@ -333,7 +333,7 @@ const styles: Record<string, React.CSSProperties> = {
         color: 'var(--accent)',
         margin: '0 0 0.4rem',
         letterSpacing: '4px',
-        textShadow: '0 0 24px rgba(200,255,0,0.35)',
+        textShadow: '0 0 24px rgba(255,62,165,0.35)',
     },
     form: { display: 'flex', flexDirection: 'column' as const, gap: '1.1rem' },
     field: { display: 'flex', flexDirection: 'column' as const, gap: '0.4rem' },
@@ -389,7 +389,7 @@ const styles: Record<string, React.CSSProperties> = {
         letterSpacing: '2px',
         cursor: 'pointer',
         transition: 'all 0.2s',
-        boxShadow: '0 0 24px rgba(200,255,0,0.20)',
+        boxShadow: '0 0 24px rgba(255,62,165,0.20)',
     },
     spinner: {
         display: 'inline-block',

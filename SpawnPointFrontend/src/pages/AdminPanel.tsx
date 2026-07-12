@@ -98,7 +98,7 @@ const cardStatusColor: Record<string, string> = {
     PaymentFailed: 'var(--danger)',
     AwaitingDetails: 'var(--warning)',
     Submitted: 'var(--warning)',
-    InProgress: 'var(--purple, #8B5CF6)',
+    InProgress: 'var(--purple, #7C5CFC)',
     Completed: 'var(--success)',
     Rejected: 'var(--danger)',
 };
@@ -1152,7 +1152,7 @@ const CardsTab: React.FC<{ onToast: (msg: string, ok: boolean) => void }> = ({ o
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.75rem', flexWrap: 'wrap' }}>
                                     <div style={{ flex: 1, minWidth: 0 }}>
                                         <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap', marginBottom: '0.3rem' }}>
-                                            <Badge label={o.cardType.toUpperCase()} color={o.cardType === 'Gaming' ? 'var(--accent)' : 'var(--purple, #8B5CF6)'} />
+                                            <Badge label={o.cardType.toUpperCase()} color={o.cardType === 'Gaming' ? 'var(--accent)' : 'var(--purple, #7C5CFC)'} />
                                             <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.82rem', color: 'var(--text-primary)' }}>@{o.username}</span>
                                             <Badge label={o.status} color={cardStatusColor[o.status] || 'var(--text-dim)'} />
                                         </div>
@@ -1167,7 +1167,7 @@ const CardsTab: React.FC<{ onToast: (msg: string, ok: boolean) => void }> = ({ o
                                     </div>
                                     <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
                                         {o.status === 'Submitted' && <Btn label="Review" color="var(--accent)" small onClick={() => setDetailModal(o)} />}
-                                        {o.status === 'Submitted' && <Btn label="→ In Progress" color="var(--purple, #8B5CF6)" small onClick={() => moveToInProgress(o)} />}
+                                        {o.status === 'Submitted' && <Btn label="→ In Progress" color="var(--purple, #7C5CFC)" small onClick={() => moveToInProgress(o)} />}
                                         {(o.status === 'Submitted' || o.status === 'InProgress') && <Btn label="Deliver" color="var(--success)" small onClick={() => setDeliverModal(o)} />}
                                         {(o.status === 'Submitted' || o.status === 'InProgress') && <Btn label="View" color="var(--text-secondary)" small onClick={() => setDetailModal(o)} />}
                                     </div>

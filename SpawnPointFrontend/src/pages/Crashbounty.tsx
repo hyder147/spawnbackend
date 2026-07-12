@@ -47,7 +47,7 @@ interface LeaderboardEntry {
 const badgeStyle: Record<string, { bg: string; color: string }> = {
     EliteHunter: { bg: 'rgba(255,200,0,0.15)', color: 'var(--warning)' },
     GoldTester: { bg: 'rgba(255,165,0,0.15)', color: '#ffa500' },
-    PriorityTester: { bg: 'rgba(0,200,255,0.15)', color: '#00c8ff' },
+    PriorityTester: { bg: 'rgba(34,229,229,0.15)', color: '#22e5e5' },
     BugHunter: { bg: 'rgba(0,255,136,0.12)', color: 'var(--success)' },
 };
 
