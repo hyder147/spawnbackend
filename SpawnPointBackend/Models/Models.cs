@@ -40,6 +40,14 @@ namespace SpawnPointBackend.Models
         // ─── Crash Bounty Fields ───────────────────────────────────────────────
         public int BountiesClaimed { get; set; } = 0;
         public List<string> Badges { get; set; } = new(); // e.g. "GoldTester", "BugHunter", "EliteHunter"
+
+        // ─── Scout Mode Fields ─────────────────────────────────────────────────
+        /// <summary>Career track this tester is scoutable for: QA | Community | Design | Production. Null = auto-derived.</summary>
+        public string? RoleTrack { get; set; }
+        /// <summary>Short bio shown on the Scout Mode talent card.</summary>
+        public string? ScoutBlurb { get; set; }
+        /// <summary>Whether this user is currently open to being scouted/offered by studios.</summary>
+        public bool OpenToOffers { get; set; } = true;
     }
 
     // ─── Admin Action Log ──────────────────────────────────────────────────────
@@ -407,6 +415,36 @@ namespace SpawnPointBackend.Models
         public string Status { get; set; } = "Pending";
 
         public DateTime SubmittedAt { get; set; } = DateTime.UtcNow;
+    }
+
+    // ══════════════════════════════════════════════════════════════════════════
+    // SCOUT MODE — Career/Recruiting Offers
+    // ══════════════════════════════════════════════════════════════════════════
+
+    /// <summary>
+    /// A direct recruiting offer sent from a developer/studio account to a
+    /// scouted tester, based on their verified in-app track record.
+    /// </summary>
+    public class ScoutOffer
+    {
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string? Id { get; set; }
+
+        public string FromDeveloperId { get; set; } = null!;
+        public string FromDeveloperUsername { get; set; } = null!;
+        public string ToUserId { get; set; } = null!;
+        public string ToUsername { get; set; } = null!;
+
+        public string? Note { get; set; }
+
+        /// <summary>Snapshot of the score shown to the developer at the time the offer was sent.</summary>
+        public int SignalScoreAtOffer { get; set; }
+
+        /// <summary>Pending | Accepted | Declined</summary>
+        public string Status { get; set; } = "Pending";
+
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
 
     // ══════════════════════════════════════════════════════════════════════════

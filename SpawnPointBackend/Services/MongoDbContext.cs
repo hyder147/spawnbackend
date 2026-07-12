@@ -43,6 +43,9 @@ namespace SpawnPointBackend.Services
         public IMongoCollection<CrashBounty> CrashBounties => _database.GetCollection<CrashBounty>("CrashBounties");
         public IMongoCollection<BountySubmission> BountySubmissions => _database.GetCollection<BountySubmission>("BountySubmissions");
 
+        // ─── Scout Mode Collections ─────────────────────────────────────────────
+        public IMongoCollection<ScoutOffer> ScoutOffers => _database.GetCollection<ScoutOffer>("ScoutOffers");
+
         // ─── Identity Cards (paid Gaming/Developer cards) ───────────────────────
         public IMongoCollection<CardOrder> CardOrders => _database.GetCollection<CardOrder>("CardOrders");
     }

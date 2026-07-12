@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
-import { Bell, Info, CheckCircle, AlertTriangle, LayoutDashboard, Gamepad2, Users, Rss, Globe, UserPlus, MessageSquare, User, ShieldAlert, LogOut, LogIn, Ghost, Target, CreditCard, Menu, X } from 'lucide-react';
+import { Bell, Info, CheckCircle, AlertTriangle, LayoutDashboard, Gamepad2, Users, Rss, Globe, UserPlus, MessageSquare, User, ShieldAlert, LogOut, LogIn, Ghost, Target, CreditCard, Menu, X, Briefcase } from 'lucide-react';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { api } from './api';
 import SpawnLogo from './components/SpawnLogo';
@@ -13,6 +13,7 @@ import Communities from './pages/Communities';
 import Feed from './pages/Feed';
 import Messages from './pages/Messages';
 import AdminPanel from './pages/AdminPanel';
+import ScoutMode from './pages/ScoutMode';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import VerifyEmail from './pages/VerifyEmail';
@@ -132,6 +133,7 @@ const navItems = [
     { to: '/messages', label: 'Messages', icon: <MessageSquare size={14} /> },
     { to: '/ghost', label: 'Ghost Mode', icon: <Ghost size={14} /> },
     { to: '/bounty', label: 'Bounty', icon: <Target size={14} /> },
+    { to: '/scout', label: 'Scout Mode', icon: <Briefcase size={14} /> },
     { to: '/cards', label: 'ID Cards', icon: <CreditCard size={14} /> },
     { to: '/profile', label: 'Profile', icon: <User size={14} /> },
 ];
@@ -353,6 +355,7 @@ const AppInner: React.FC = () => {
                     <Route path="/messages" element={<ProtectedRoute><Messages /></ProtectedRoute>} />
                     <Route path="/ghost" element={<ProtectedRoute><GhostMode /></ProtectedRoute>} />
                     <Route path="/bounty" element={<ProtectedRoute><CrashBounty /></ProtectedRoute>} />
+                    <Route path="/scout" element={<ProtectedRoute><ScoutMode /></ProtectedRoute>} />
                     <Route path="/cards" element={<ProtectedRoute><Cards /></ProtectedRoute>} />
                     <Route path="/cards/payment-result" element={<ProtectedRoute><CardPaymentResult /></ProtectedRoute>} />
                     <Route path="/communities/:id/chat" element={<ProtectedRoute><ComingSoon label="Community Chat" /></ProtectedRoute>} />
