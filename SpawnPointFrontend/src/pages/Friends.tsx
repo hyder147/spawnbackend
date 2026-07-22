@@ -70,11 +70,11 @@ const Friends: React.FC = () => {
             {/* Header */}
             <div style={{ marginBottom: '2.5rem', paddingBottom: '2rem', borderBottom: '1px solid var(--border)', position: 'relative' }}>
                 <div style={{ position: 'absolute', bottom: -1, left: 0, width: 80, height: 1, background: 'var(--gradient-accent)' }} />
-                <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem', color: 'var(--accent)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <div style={{ fontFamily: 'Fira Code', fontSize: '0.62rem', color: 'var(--accent)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--accent)', boxShadow: '0 0 8px var(--accent)', display: 'inline-block' }} />
                     Social
                 </div>
-                <h1 style={{ fontFamily: 'Rajdhani, sans-serif', fontSize: '2.4rem', fontWeight: 800, margin: 0, textTransform: 'uppercase' }}>Friends</h1>
+                <h1 style={{ fontFamily: "'Syne', sans-serif", fontSize: '2.4rem', fontWeight: 800, margin: 0, textTransform: 'uppercase' }}>Friends</h1>
             </div>
 
             {/* Tabs */}
@@ -95,8 +95,8 @@ const Friends: React.FC = () => {
                 <div className="friends-list">
                     {friends.length === 0
                         ? <div className="card" style={{ textAlign: 'center', padding: '3rem' }}>
-                            <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>👥</div>
-                            <p style={{ color: 'var(--text-muted)', fontFamily: 'JetBrains Mono', fontSize: '0.85rem' }}>No friends yet. Send some requests!</p>
+                            <Users size={40} strokeWidth={1.5} style={{ color: 'var(--text-muted)', marginBottom: '1rem' }} />
+                            <p style={{ color: 'var(--text-muted)', fontFamily: 'Fira Code', fontSize: '0.85rem' }}>No friends yet. Send some requests!</p>
                         </div>
                         : friends.map(f => (
                             <div key={f.id} className="card" style={{ display: 'flex', alignItems: 'center', gap: '1rem', position: 'relative', overflow: 'hidden' }}>
@@ -104,7 +104,7 @@ const Friends: React.FC = () => {
                                 <div className="avatar" style={{ background: f.userType === 'Developer' ? 'var(--gradient-accent)' : 'linear-gradient(135deg, var(--success), var(--info))', color: '#fff' }}>{f.username[0].toUpperCase()}</div>
                                 <div style={{ flex: 1, minWidth: 0 }}>
                                     <div style={{ fontWeight: 700, fontSize: '0.95rem' }}>{f.username}</div>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', fontSize: '0.72rem', color: 'var(--text-muted)', fontFamily: 'JetBrains Mono', marginTop: '0.15rem' }}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', fontSize: '0.72rem', color: 'var(--text-muted)', fontFamily: 'Fira Code', marginTop: '0.15rem' }}>
                                         {f.userType === 'Developer' ? <Code2 size={11} /> : <Gamepad2 size={11} />} {f.userType}
                                     </div>
                                 </div>
@@ -120,14 +120,14 @@ const Friends: React.FC = () => {
                 <div className="friends-list">
                     {received.length === 0
                         ? <div className="card" style={{ textAlign: 'center', padding: '3rem' }}>
-                            <p style={{ color: 'var(--text-muted)', fontFamily: 'JetBrains Mono', fontSize: '0.85rem' }}>No pending requests.</p>
+                            <p style={{ color: 'var(--text-muted)', fontFamily: 'Fira Code', fontSize: '0.85rem' }}>No pending requests.</p>
                         </div>
                         : received.map(r => (
                             <div key={r.id} className="card" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                                 <div className="avatar" style={{ background: 'var(--warning-soft)', border: '1px solid var(--warning-border)', color: 'var(--warning)' }}>{r.senderId[0].toUpperCase()}</div>
                                 <div style={{ flex: 1 }}>
                                     <div style={{ fontWeight: 700 }}>{r.senderId}</div>
-                                    <div style={{ fontSize: '0.72rem', color: 'var(--warning)', fontFamily: 'JetBrains Mono', display: 'flex', alignItems: 'center', gap: '0.3rem', marginTop: '0.15rem' }}><Clock size={11} /> Pending</div>
+                                    <div style={{ fontSize: '0.72rem', color: 'var(--warning)', fontFamily: 'Fira Code', display: 'flex', alignItems: 'center', gap: '0.3rem', marginTop: '0.15rem' }}><Clock size={11} /> Pending</div>
                                 </div>
                                 <div style={{ display: 'flex', gap: '0.5rem' }}>
                                     <button className="btn-gradient" style={{ fontSize: '0.78rem', padding: '0.35rem 0.85rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }} onClick={() => acceptRequest(r.id)}><CheckCircle size={13} /> Accept</button>
@@ -144,14 +144,14 @@ const Friends: React.FC = () => {
                 <div className="friends-list">
                     {sent.length === 0
                         ? <div className="card" style={{ textAlign: 'center', padding: '3rem' }}>
-                            <p style={{ color: 'var(--text-muted)', fontFamily: 'JetBrains Mono', fontSize: '0.85rem' }}>No sent requests.</p>
+                            <p style={{ color: 'var(--text-muted)', fontFamily: 'Fira Code', fontSize: '0.85rem' }}>No sent requests.</p>
                         </div>
                         : sent.map(r => (
                             <div key={r.id} className="card" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                                 <div className="avatar">{r.receiverId[0].toUpperCase()}</div>
                                 <div style={{ flex: 1 }}>
                                     <div style={{ fontWeight: 700 }}>{r.receiverId}</div>
-                                    <div style={{ fontSize: '0.72rem', color: 'var(--warning)', fontFamily: 'JetBrains Mono', display: 'flex', alignItems: 'center', gap: '0.3rem', marginTop: '0.15rem' }}><Clock size={11} /> Awaiting response</div>
+                                    <div style={{ fontSize: '0.72rem', color: 'var(--warning)', fontFamily: 'Fira Code', display: 'flex', alignItems: 'center', gap: '0.3rem', marginTop: '0.15rem' }}><Clock size={11} /> Awaiting response</div>
                                 </div>
                             </div>
                         ))

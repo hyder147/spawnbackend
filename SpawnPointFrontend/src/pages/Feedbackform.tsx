@@ -74,7 +74,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ gameId, betaTesterId, onSuc
                         onChange={e => setForm({ ...form, rating: +e.target.value })}
                         style={{ width: '100%', accentColor: 'var(--neon-cyan)' }}
                     />
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--text-dim)', fontFamily: 'JetBrains Mono' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--text-dim)', fontFamily: 'Fira Code' }}>
                         <span>1 — Unplayable</span><span style={{ color: 'var(--neon-cyan)' }}>{form.rating}</span><span>5 — Perfect</span>
                     </div>
                 </div>

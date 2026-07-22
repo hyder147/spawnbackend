@@ -72,10 +72,10 @@ const ReportModal: React.FC<ReportModalProps> = ({ targetType, targetId, targetN
                 {/* Header */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.25rem' }}>
                     <div>
-                        <h3 style={{ fontFamily: 'Orbitron, monospace', fontSize: '1rem', color: 'var(--neon-pink)', margin: 0 }}>
+                        <h3 style={{ fontFamily: "'Syne', sans-serif", fontSize: '1rem', color: 'var(--neon-pink)', margin: 0 }}>
                             ⚑ Report
                         </h3>
-                        <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', fontFamily: 'JetBrains Mono', margin: '0.3rem 0 0' }}>
+                        <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', fontFamily: 'Fira Code', margin: '0.3rem 0 0' }}>
                             {targetLabel} · {targetType}
                         </p>
                     </div>
@@ -86,22 +86,22 @@ const ReportModal: React.FC<ReportModalProps> = ({ targetType, targetId, targetN
                 {done ? (
                     <div style={{ textAlign: 'center', padding: '1.5rem 0' }}>
                         <div style={{ fontSize: '2.5rem', marginBottom: '0.75rem' }}>✓</div>
-                        <p style={{ fontFamily: 'Orbitron, monospace', fontSize: '0.9rem', color: 'var(--neon-green)', marginBottom: '0.5rem' }}>Report Submit Ho Gayi!</p>
+                        <p style={{ fontFamily: "'Syne', sans-serif", fontSize: '0.9rem', color: 'var(--neon-green)', marginBottom: '0.5rem' }}>Report Submit Ho Gayi!</p>
                         <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                             Admin review karega aur zaroorat parne par action lega.
                         </p>
                         <button onClick={onClose} style={{
-                            marginTop: '1.25rem', background: 'rgba(0,245,255,0.1)',
+                            marginTop: '1.25rem', background: 'rgba(0,245,212,0.1)',
                             border: '1px solid var(--neon-cyan)', color: 'var(--neon-cyan)',
                             borderRadius: 8, padding: '0.5rem 1.5rem', cursor: 'pointer',
-                            fontFamily: 'JetBrains Mono', fontSize: '0.82rem',
+                            fontFamily: 'Fira Code', fontSize: '0.82rem',
                         }}>Close</button>
                     </div>
                 ) : (
                     <>
                         {/* Quick reason chips */}
                         <div style={{ marginBottom: '0.85rem' }}>
-                            <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontFamily: 'JetBrains Mono', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: 1 }}>
+                            <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontFamily: 'Fira Code', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: 1 }}>
                                 Quick select (ya apna likho):
                             </p>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
@@ -112,7 +112,7 @@ const ReportModal: React.FC<ReportModalProps> = ({ targetType, targetId, targetN
                                         color: reason === r ? 'var(--neon-pink)' : 'var(--text-secondary)',
                                         borderRadius: 20, padding: '0.25rem 0.65rem',
                                         cursor: 'pointer', fontSize: '0.72rem',
-                                        fontFamily: 'JetBrains Mono', transition: 'all 0.15s',
+                                        fontFamily: 'Fira Code', transition: 'all 0.15s',
                                     }}>{r}</button>
                                 ))}
                             </div>
@@ -129,7 +129,7 @@ const ReportModal: React.FC<ReportModalProps> = ({ targetType, targetId, targetN
                                 border: `1px solid ${error ? 'var(--neon-pink)' : 'var(--border-dim)'}`,
                                 color: 'var(--text-primary)', borderRadius: 8,
                                 padding: '0.65rem 0.85rem', fontSize: '0.85rem',
-                                fontFamily: 'Inter, sans-serif', resize: 'vertical',
+                                fontFamily: 'Plus Jakarta Sans, sans-serif', resize: 'vertical',
                                 outline: 'none', boxSizing: 'border-box',
                                 lineHeight: 1.5,
                             }}
@@ -137,13 +137,13 @@ const ReportModal: React.FC<ReportModalProps> = ({ targetType, targetId, targetN
 
                         {/* Error */}
                         {error && (
-                            <p style={{ color: 'var(--neon-pink)', fontSize: '0.75rem', fontFamily: 'JetBrains Mono', margin: '0.4rem 0 0' }}>
+                            <p style={{ color: 'var(--neon-pink)', fontSize: '0.75rem', fontFamily: 'Fira Code', margin: '0.4rem 0 0' }}>
                                 ✗ {error}
                             </p>
                         )}
 
                         {/* Char count */}
-                        <p style={{ fontSize: '0.7rem', color: 'var(--text-dim)', fontFamily: 'JetBrains Mono', margin: '0.3rem 0 1rem', textAlign: 'right' }}>
+                        <p style={{ fontSize: '0.7rem', color: 'var(--text-dim)', fontFamily: 'Fira Code', margin: '0.3rem 0 1rem', textAlign: 'right' }}>
                             {reason.length} chars {reason.length < 10 ? `(${10 - reason.length} aur chahiye)` : '✓'}
                         </p>
 
@@ -153,14 +153,14 @@ const ReportModal: React.FC<ReportModalProps> = ({ targetType, targetId, targetN
                                 background: 'transparent', border: '1px solid var(--border-dim)',
                                 color: 'var(--text-secondary)', borderRadius: 8,
                                 padding: '0.5rem 1rem', cursor: 'pointer',
-                                fontFamily: 'JetBrains Mono', fontSize: '0.82rem',
+                                fontFamily: 'Fira Code', fontSize: '0.82rem',
                             }}>Cancel</button>
                             <button onClick={submit} disabled={loading || reason.trim().length < 10} style={{
                                 background: loading ? 'rgba(255,0,110,0.1)' : 'rgba(255,0,110,0.15)',
                                 border: '1px solid var(--neon-pink)', color: 'var(--neon-pink)',
                                 borderRadius: 8, padding: '0.5rem 1.25rem',
                                 cursor: loading || reason.trim().length < 10 ? 'not-allowed' : 'pointer',
-                                fontFamily: 'JetBrains Mono', fontSize: '0.82rem',
+                                fontFamily: 'Fira Code', fontSize: '0.82rem',
                                 opacity: reason.trim().length < 10 ? 0.5 : 1,
                                 transition: 'all 0.2s',
                             }}>
@@ -168,7 +168,7 @@ const ReportModal: React.FC<ReportModalProps> = ({ targetType, targetId, targetN
                             </button>
                         </div>
 
-                        <p style={{ fontSize: '0.7rem', color: 'var(--text-dim)', fontFamily: 'JetBrains Mono', marginTop: '0.85rem', lineHeight: 1.5 }}>
+                        <p style={{ fontSize: '0.7rem', color: 'var(--text-dim)', fontFamily: 'Fira Code', marginTop: '0.85rem', lineHeight: 1.5 }}>
                             ℹ Reports confidential hoti hain. False reports ki report bhi ho sakti hai.
                         </p>
                     </>
@@ -206,7 +206,7 @@ export const ReportButton: React.FC<{
                     padding: '0.3rem 0.6rem',
                     cursor: 'pointer',
                     fontSize: '0.72rem',
-                    fontFamily: 'JetBrains Mono',
+                    fontFamily: 'Fira Code',
                     transition: 'all 0.2s',
                     ...(style || {}),
                 }}

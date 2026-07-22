@@ -196,13 +196,13 @@ const GhostMode: React.FC = () => {
     // ─── UI ────────────────────────────────────────────────────────────────────
 
     return (
-        <div className="page-shell" style={{ padding: '2rem', maxWidth: '1100px', margin: '0 auto', fontFamily: 'JetBrains Mono, monospace' }}>
+        <div className="page-shell" style={{ padding: '2rem', maxWidth: '1100px', margin: '0 auto', fontFamily: 'Fira Code, monospace' }}>
 
             {/* Header */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
                 <Ghost size={32} color="var(--neon-cyan)" />
                 <div>
-                    <h1 style={{ margin: 0, fontFamily: 'Orbitron, monospace', fontSize: '1.6rem', color: 'var(--accent)' }}>
+                    <h1 style={{ margin: 0, fontFamily: "'Syne', sans-serif", fontSize: '1.6rem', color: 'var(--accent)' }}>
                         GHOST MODE
                     </h1>
                     <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.85rem' }}>
@@ -238,7 +238,7 @@ const GhostMode: React.FC = () => {
                             style={{
                                 background: 'var(--card-bg)', border: '1px solid var(--border)',
                                 color: 'var(--text)', padding: '0.6rem 1rem', borderRadius: '8px',
-                                fontFamily: 'JetBrains Mono, monospace', fontSize: '0.9rem', minWidth: '260px'
+                                fontFamily: 'Fira Code, monospace', fontSize: '0.9rem', minWidth: '260px'
                             }}
                         >
                             {myGames.map(g => <option key={g.id} value={g.id}>{g.title}</option>)}
@@ -253,7 +253,7 @@ const GhostMode: React.FC = () => {
                                 onClick={() => setActiveTab(tab)}
                                 style={{
                                     padding: '0.5rem 1.2rem', borderRadius: '8px', border: 'none',
-                                    cursor: 'pointer', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.85rem',
+                                    cursor: 'pointer', fontFamily: 'Fira Code, monospace', fontSize: '0.85rem',
                                     background: activeTab === tab ? 'var(--accent)' : 'var(--card-bg)',
                                     color: activeTab === tab ? '#000' : 'var(--text)',
                                     textTransform: 'uppercase', letterSpacing: '0.05em'
@@ -289,7 +289,7 @@ const GhostMode: React.FC = () => {
                                 <div style={{ display: 'grid', gap: '0.75rem' }}>
                                     {liveTesters.map(t => (
                                         <div key={t.testerId} style={{
-                                            background: 'var(--card-bg)', border: '1px solid rgba(0,255,136,0.3)',
+                                            background: 'var(--card-bg)', border: '1px solid rgba(52,211,153,0.3)',
                                             borderRadius: '10px', padding: '1rem 1.25rem',
                                             display: 'flex', justifyContent: 'space-between', alignItems: 'center'
                                         }}>
@@ -321,7 +321,7 @@ const GhostMode: React.FC = () => {
                                     {sessionHistory.map((s, i) => (
                                         <div key={i} style={{
                                             background: 'var(--card-bg)',
-                                            border: `1px solid ${s.isGhosted ? 'rgba(255,60,60,0.4)' : s.endedCleanly ? 'rgba(0,255,136,0.2)' : 'var(--border)'}`,
+                                            border: `1px solid ${s.isGhosted ? 'rgba(255,60,60,0.4)' : s.endedCleanly ? 'rgba(52,211,153,0.2)' : 'var(--border)'}`,
                                             borderRadius: '8px', padding: '0.85rem 1.1rem',
                                             display: 'flex', justifyContent: 'space-between', alignItems: 'center'
                                         }}>
@@ -391,7 +391,7 @@ const GhostMode: React.FC = () => {
                     {/* Active Session Banner */}
                     {isSessionRunning && (
                         <div style={{
-                            background: 'rgba(0,255,136,0.07)', border: '1px solid rgba(0,255,136,0.4)',
+                            background: 'rgba(52,211,153,0.07)', border: '1px solid rgba(52,211,153,0.4)',
                             borderRadius: '12px', padding: '1.25rem 1.5rem', marginBottom: '2rem'
                         }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
@@ -415,7 +415,7 @@ const GhostMode: React.FC = () => {
                                         style={{
                                             padding: '0.55rem 1.1rem', borderRadius: '8px', border: '1px solid var(--success)',
                                             background: 'transparent', color: 'var(--success)', cursor: 'pointer',
-                                            fontFamily: 'JetBrains Mono, monospace', fontSize: '0.82rem'
+                                            fontFamily: 'Fira Code, monospace', fontSize: '0.82rem'
                                         }}
                                     >
                                         <CheckCircle size={13} style={{ marginRight: '0.4rem' }} />
@@ -427,7 +427,7 @@ const GhostMode: React.FC = () => {
                                         style={{
                                             padding: '0.55rem 1.1rem', borderRadius: '8px', border: '1px solid var(--danger)',
                                             background: 'transparent', color: 'var(--danger)', cursor: 'pointer',
-                                            fontFamily: 'JetBrains Mono, monospace', fontSize: '0.82rem'
+                                            fontFamily: 'Fira Code, monospace', fontSize: '0.82rem'
                                         }}
                                     >
                                         <Square size={13} style={{ marginRight: '0.4rem' }} />
@@ -441,7 +441,7 @@ const GhostMode: React.FC = () => {
                     {/* Game List to Start Session */}
                     {!isSessionRunning && (
                         <div>
-                            <h2 style={{ fontFamily: 'Orbitron, monospace', fontSize: '1rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>
+                            <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: '1rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>
                                 START A TESTING SESSION
                             </h2>
                             <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '1.25rem' }}>

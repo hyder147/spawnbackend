@@ -24,7 +24,7 @@ interface ScoutProfile {
 }
 
 const roleMeta: Record<ScoutProfile['roleTrack'], { color: string; label: string }> = {
-    QA: { color: 'var(--cyan, #22E5E5)', label: 'QA / Bug Hunting' },
+    QA: { color: 'var(--cyan, #00F5D4)', label: 'QA / Bug Hunting' },
     Community: { color: 'var(--purple)', label: 'Community Mgmt' },
     Design: { color: 'var(--accent)', label: 'Game Design' },
     Production: { color: 'var(--warning)', label: 'Production' },
@@ -87,10 +87,10 @@ const ScoutMode: React.FC = () => {
                 borderRadius: 'var(--radius-lg)', padding: '2rem', marginBottom: '2rem',
                 background: 'var(--gradient-hero)', border: '1px solid var(--border-accent)', position: 'relative', overflow: 'hidden'
             }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--accent)', fontFamily: 'JetBrains Mono', fontSize: '0.75rem', letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: '0.6rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--accent)', fontFamily: 'Fira Code', fontSize: '0.75rem', letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: '0.6rem' }}>
                     <Sparkles size={14} /> New · Career Pipeline
                 </div>
-                <h1 style={{ fontFamily: 'Orbitron, monospace', fontSize: '1.8rem', margin: '0 0 0.6rem' }}>Scout Mode</h1>
+                <h1 style={{ fontFamily: "'Syne', sans-serif", fontSize: '1.8rem', margin: '0 0 0.6rem' }}>Scout Mode</h1>
                 <p style={{ color: 'var(--text-secondary)', maxWidth: '640px', lineHeight: 1.6, margin: 0 }}>
                     Every bug you've caught, every squad you've led, every piece of feedback you've written — it's already a verified track record.
                     Studios browse ranked talent here and recruit directly. No resume. No cold applications.
@@ -151,14 +151,14 @@ const ScoutMode: React.FC = () => {
                             }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                                     <div>
-                                        <div style={{ fontFamily: 'Orbitron, monospace', fontSize: '1rem' }}>@{p.username}</div>
-                                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem', fontSize: '0.7rem', color: meta.color, marginTop: '0.3rem', fontFamily: 'JetBrains Mono' }}>
+                                        <div style={{ fontFamily: "'Syne', sans-serif", fontSize: '1rem' }}>@{p.username}</div>
+                                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem', fontSize: '0.7rem', color: meta.color, marginTop: '0.3rem', fontFamily: 'Fira Code' }}>
                                             <span style={{ width: 6, height: 6, borderRadius: '50%', background: meta.color, display: 'inline-block' }} />
                                             {meta.label}
                                         </div>
                                     </div>
                                     <div style={{ textAlign: 'right' }}>
-                                        <div style={{ fontFamily: 'Orbitron, monospace', fontSize: '1.3rem', color: 'var(--accent)' }}>{p.signalScore}</div>
+                                        <div style={{ fontFamily: "'Syne', sans-serif", fontSize: '1.3rem', color: 'var(--accent)' }}>{p.signalScore}</div>
                                         <div style={{ fontSize: '0.62rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Signal Score</div>
                                     </div>
                                 </div>
@@ -174,7 +174,7 @@ const ScoutMode: React.FC = () => {
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0.2rem' }}>
                                     <span style={{
                                         fontSize: '0.68rem', padding: '0.25rem 0.6rem', borderRadius: 'var(--radius-full)',
-                                        background: 'var(--warning-soft)', color: 'var(--warning)', fontFamily: 'JetBrains Mono'
+                                        background: 'var(--warning-soft)', color: 'var(--warning)', fontFamily: 'Fira Code'
                                     }}>
                                         <Star size={10} style={{ verticalAlign: '-1px', marginRight: '0.25rem' }} />{p.topBadge}
                                     </span>
@@ -206,7 +206,7 @@ const ScoutMode: React.FC = () => {
                         padding: '1.5rem', width: '100%', maxWidth: '420px', boxShadow: 'var(--shadow-accent)'
                     }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                            <h3 style={{ margin: 0, fontFamily: 'Orbitron, monospace', fontSize: '1rem' }}>
+                            <h3 style={{ margin: 0, fontFamily: "'Syne', sans-serif", fontSize: '1rem' }}>
                                 <Briefcase size={16} style={{ verticalAlign: '-2px', marginRight: '0.4rem', color: 'var(--accent)' }} />
                                 Offer @{offerTarget.username}
                             </h3>

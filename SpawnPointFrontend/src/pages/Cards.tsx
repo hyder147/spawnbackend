@@ -35,8 +35,8 @@ interface CardOrder {
 interface CheckoutResponse { orderId: string; checkoutUrl: string; }
 
 const CARD_TYPES: { type: CardType; title: string; tagline: string; sample: string }[] = [
-    { type: 'Gaming', title: 'Gamer ID Card', tagline: 'Your rank, K/D, stats and gamer flex — custom designed.', sample: '/gaming-card-sample.png' },
-    { type: 'Developer', title: 'Developer ID Card', tagline: 'Your stack, proficiency and dev stats — custom designed.', sample: '/developer-card-sample.png' },
+    { type: 'Gaming', title: 'Gamer ID Card', tagline: 'Your rank, K/D, stats and gamer flex — custom designed.', sample: '/gaming-card-sample.jpg' },
+    { type: 'Developer', title: 'Developer ID Card', tagline: 'Your stack, proficiency and dev stats — custom designed.', sample: '/developer-card-sample.jpg' },
 ];
 
 const statusMeta: Record<string, { label: string; color: string }> = {
@@ -44,7 +44,7 @@ const statusMeta: Record<string, { label: string; color: string }> = {
     PaymentFailed: { label: 'Payment Failed', color: 'var(--danger)' },
     AwaitingDetails: { label: 'Payment Received — Add Details', color: 'var(--accent)' },
     Submitted: { label: 'Submitted — In Queue', color: 'var(--accent)' },
-    InProgress: { label: 'Being Designed', color: 'var(--purple, #7C5CFC)' },
+    InProgress: { label: 'Being Designed', color: 'var(--purple, #9D4EDD)' },
     Completed: { label: 'Delivered', color: 'var(--success)' },
     Rejected: { label: 'Rejected', color: 'var(--danger)' },
 };
@@ -113,7 +113,7 @@ const KeyValueListEditor: React.FC<{
             {values.length > 0 && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem', marginTop: '0.5rem' }}>
                     {values.map((row, i) => (
-                        <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', borderRadius: 6, padding: '0.4rem 0.7rem', fontSize: '0.8rem', fontFamily: 'JetBrains Mono' }}>
+                        <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', borderRadius: 6, padding: '0.4rem 0.7rem', fontSize: '0.8rem', fontFamily: 'Fira Code' }}>
                             <span><span style={{ color: 'var(--accent)' }}>{row.key}</span> — {row.value}</span>
                             <button type="button" onClick={() => onChange(values.filter((_, idx) => idx !== i))}
                                 style={{ background: 'none', border: 'none', color: 'var(--text-dim)', cursor: 'pointer' }}>✕</button>
@@ -144,7 +144,7 @@ const StatListEditor: React.FC<{ values: CardStat[]; onChange: (v: CardStat[]) =
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginTop: '0.6rem' }}>
                     {values.map((s, i) => (
                         <div key={i}>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', fontFamily: 'JetBrains Mono', marginBottom: '0.25rem' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', fontFamily: 'Fira Code', marginBottom: '0.25rem' }}>
                                 <span>{s.label}</span>
                                 <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                                     {s.percent}%
@@ -356,7 +356,7 @@ const CardTypeBlock: React.FC<{
                     {order && meta && (
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.75rem' }}>
                             <span className="status-dot" style={{ background: meta.color, boxShadow: `0 0 6px ${meta.color}` }} />
-                            <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.78rem', color: meta.color }}>{meta.label}</span>
+                            <span style={{ fontFamily: 'Fira Code', fontSize: '0.78rem', color: meta.color }}>{meta.label}</span>
                         </div>
                     )}
 
@@ -413,7 +413,7 @@ const CardTypeBlock: React.FC<{
                                     : 'Our team is currently designing your card.'}
                             </span>
                             {order.adminNote && (
-                                <span style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', borderRadius: 6, padding: '0.5rem 0.75rem', fontFamily: 'JetBrains Mono', fontSize: '0.78rem' }}>
+                                <span style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', borderRadius: 6, padding: '0.5rem 0.75rem', fontFamily: 'Fira Code', fontSize: '0.78rem' }}>
                                     Note from admin: {order.adminNote}
                                 </span>
                             )}
@@ -427,7 +427,7 @@ const CardTypeBlock: React.FC<{
                                 <CheckCircle size={14} /> Your card is ready!
                             </div>
                             {order.adminNote && (
-                                <span style={{ display: 'block', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', borderRadius: 6, padding: '0.5rem 0.75rem', fontFamily: 'JetBrains Mono', fontSize: '0.78rem', marginBottom: '0.5rem' }}>
+                                <span style={{ display: 'block', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', borderRadius: 6, padding: '0.5rem 0.75rem', fontFamily: 'Fira Code', fontSize: '0.78rem', marginBottom: '0.5rem' }}>
                                     Note from admin: {order.adminNote}
                                 </span>
                             )}

@@ -1,29 +1,35 @@
 /* ============================================================
-   SPAWNPOINT — COMPLETE VISUAL OVERHAUL v2
+   SPAWNPOINT — COMPLETE VISUAL OVERHAUL v3
    Esports · Indie Dev · Gaming Platform
-   Signature: "Aurora Arcade" — hot-magenta → ultraviolet → cyan
-   sweep on a deep space-indigo void.
+   Signature: "Cyber-Terminal" — neon magenta (gamer) + electric
+   cyan (dev, used sparingly) on deep obsidian.
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+/* Fonts: Syne, Plus Jakarta Sans, Fira Code — loaded via a single
+   <link> in index.html (not @import here). @import inside a bundled CSS
+   file is a second network round-trip that only starts *after* this whole
+   file downloads and parses, so it was causing a visible flash of
+   fallback-font text on first load. Keep font loading in index.html. */
 
 /* ── DESIGN TOKENS ── */
 :root {
-    --accent: #FF3EA5;
-    --accent-hover: #FF5FB6;
-    --accent-dim: #C22C7D;
-    --accent-soft: rgba(255,62,165,0.08);
-    --accent-border: rgba(255,62,165,0.28);
-    --accent-glow: rgba(255,62,165,0.22);
-    --accent-text: #FFFFFF;
-    --purple: #7C5CFC;
-    --purple-light: #A48CFF;
-    --purple-soft: rgba(124,92,252,0.12);
-    --purple-border: rgba(124,92,252,0.32);
-    --purple-glow: rgba(124,92,252,0.26);
-    --cyan: #22E5E5;
-    --cyan-soft: rgba(34,229,229,0.08);
-    --cyan-glow: rgba(34,229,229,0.22);
+    /* Cyber-Terminal — obsidian void, magenta as primary accent, electric
+       cyan reserved for developer-context UI and used sparingly */
+    --accent: #FF007F;
+    --accent-hover: #FF3D99;
+    --accent-dim: #C2005F;
+    --accent-soft: rgba(255,0,127,0.08);
+    --accent-border: rgba(255,0,127,0.28);
+    --accent-glow: rgba(255,0,127,0.22);
+    --accent-text: #000000;
+    --purple: #9D4EDD;
+    --purple-light: #BC8CF0;
+    --purple-soft: rgba(157,78,221,0.12);
+    --purple-border: rgba(157,78,221,0.32);
+    --purple-glow: rgba(157,78,221,0.26);
+    --cyan: #00F5D4;
+    --cyan-soft: rgba(0,245,212,0.08);
+    --cyan-glow: rgba(0,245,212,0.22);
     --success: #34D399;
     --success-soft: rgba(52,211,153,0.08);
     --success-border: rgba(52,211,153,0.25);
@@ -36,40 +42,40 @@
     --caution: #FF8A3D;
     --caution-soft: rgba(255,138,61,0.10);
     --caution-border: rgba(255,138,61,0.28);
-    --ai-accent: #C34BFF;
-    --ai-accent-soft: rgba(195,75,255,0.12);
-    --info: #22E5E5;
-    /* Backgrounds — deep space-indigo void */
-    --bg-base: #0A0B16;
-    --bg-surface: #10111F;
-    --bg-card: #151729;
-    --bg-card-hover: #1C1E38;
-    --bg-input: #0D0E1B;
-    --bg-overlay: rgba(10,11,22,0.95);
-    --bg-panel: #141628;
+    --ai-accent: #C77DFF;
+    --ai-accent-soft: rgba(199,125,255,0.12);
+    --info: #00F5D4;
+    /* Backgrounds — deep obsidian / space gray */
+    --bg-base: #0F111A;
+    --bg-surface: #14161F;
+    --bg-card: #1A1D2E;
+    --bg-card-hover: #22253A;
+    --bg-input: #0B0C13;
+    --bg-overlay: rgba(15,17,26,0.95);
+    --bg-panel: #171926;
     /* Borders */
     --border: rgba(255,255,255,0.06);
     --border-hover: rgba(255,255,255,0.13);
-    --border-accent: rgba(255,62,165,0.28);
-    --border-purple: rgba(124,92,252,0.32);
+    --border-accent: rgba(255,0,127,0.28);
+    --border-purple: rgba(157,78,221,0.32);
     /* Text */
-    --text-primary: #F3F2FB;
-    --text-secondary: #9793BE;
-    --text-muted: #716D97;
-    --text-accent: #FF3EA5;
+    --text-primary: #E2E8F0;
+    --text-secondary: #A0A8C0;
+    --text-muted: #7E86A4;
+    --text-accent: #FF007F;
     /* Shadows */
     --shadow-sm: 0 2px 8px rgba(0,0,0,0.6);
     --shadow-md: 0 4px 20px rgba(0,0,0,0.7);
     --shadow-lg: 0 8px 40px rgba(0,0,0,0.8);
-    --shadow-accent: 0 0 24px rgba(255,62,165,0.20), 0 4px 20px rgba(0,0,0,0.6);
-    --shadow-purple: 0 0 24px rgba(124,92,252,0.24), 0 4px 20px rgba(0,0,0,0.6);
+    --shadow-accent: 0 0 24px rgba(255,0,127,0.20), 0 4px 20px rgba(0,0,0,0.6);
+    --shadow-purple: 0 0 24px rgba(157,78,221,0.24), 0 4px 20px rgba(0,0,0,0.6);
     --shadow-card: 0 2px 20px rgba(0,0,0,0.5);
     /* Gradients */
-    --gradient-accent: linear-gradient(135deg, #FF3EA5 0%, #C34BFF 55%, #7C5CFC 100%);
-    --gradient-purple: linear-gradient(135deg, #7C5CFC 0%, #22E5E5 100%);
-    --gradient-card: linear-gradient(160deg, #151729 0%, #1B1D34 100%);
-    --gradient-hero: linear-gradient(120deg, rgba(255,62,165,0.10) 0%, rgba(195,75,255,0.07) 45%, rgba(34,229,229,0.06) 100%);
-    --gradient-dark: linear-gradient(180deg, #0A0B16 0%, #10111F 100%);
+    --gradient-accent: linear-gradient(135deg, #FF007F 0%, #C77DFF 55%, #9D4EDD 100%);
+    --gradient-purple: linear-gradient(135deg, #9D4EDD 0%, #00F5D4 100%);
+    --gradient-card: linear-gradient(160deg, #1A1D2E 0%, #20233A 100%);
+    --gradient-hero: linear-gradient(120deg, rgba(255,0,127,0.10) 0%, rgba(199,125,255,0.07) 45%, rgba(0,245,212,0.06) 100%);
+    --gradient-dark: linear-gradient(180deg, #0F111A 0%, #14161F 100%);
     /* Radius */
     --radius-sm: 6px;
     --radius-md: 10px;
@@ -77,10 +83,10 @@
     --radius-xl: 20px;
     --radius-full: 9999px;
     /* Aliases */
-    --neon-cyan: #22E5E5;
-    --neon-purple: #7C5CFC;
+    --neon-cyan: #00F5D4;
+    --neon-purple: #9D4EDD;
     --neon-green: #34D399;
-    --neon-pink: #FF3EA5;
+    --neon-pink: #FF007F;
     --neon-yellow: #FFB020;
     --border-dim: var(--border);
     --border-glow: var(--border-accent);
@@ -104,7 +110,7 @@ html {
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     background-color: var(--bg-base);
     color: var(--text-primary);
     min-height: 100vh;
@@ -119,7 +125,7 @@ body {
         content: '';
         position: fixed;
         inset: 0;
-        background-image: radial-gradient(ellipse 80% 50% at 0% 0%, rgba(255,62,165,0.05) 0%, transparent 55%), radial-gradient(ellipse 60% 50% at 100% 100%, rgba(124,92,252,0.05) 0%, transparent 55%), radial-gradient(ellipse 40% 30% at 50% 50%, rgba(34,229,229,0.02) 0%, transparent 70%);
+        background-image: radial-gradient(ellipse 80% 50% at 0% 0%, rgba(255,0,127,0.05) 0%, transparent 55%), radial-gradient(ellipse 60% 50% at 100% 100%, rgba(157,78,221,0.05) 0%, transparent 55%), radial-gradient(ellipse 40% 30% at 50% 50%, rgba(0,245,212,0.02) 0%, transparent 70%);
         pointer-events: none;
         z-index: 0;
     }
@@ -145,17 +151,17 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(255,62,165,0.20);
+    background: rgba(255,0,127,0.20);
     border-radius: 2px;
 }
 
     ::-webkit-scrollbar-thumb:hover {
-        background: rgba(255,62,165,0.40);
+        background: rgba(255,0,127,0.40);
     }
 
 /* ── TYPOGRAPHY ── */
 h1 {
-    font-family: 'Rajdhani', 'Inter', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-size: 2.2rem;
     font-weight: 800;
     color: var(--text-primary);
@@ -164,21 +170,21 @@ h1 {
 }
 
 h2 {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--text-primary);
 }
 
 h3 {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-size: 1.15rem;
     font-weight: 600;
     color: var(--text-primary);
 }
 
 h4 {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.95rem;
     font-weight: 600;
     color: var(--text-primary);
@@ -195,7 +201,7 @@ a {
 }
 
 label {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 0.65rem;
     font-weight: 600;
     letter-spacing: 0.12em;
@@ -217,7 +223,7 @@ label {
     pointer-events: none;
     z-index: 99999;
     transform: translate(-50%, -50%);
-    box-shadow: 0 0 10px var(--accent), 0 0 20px rgba(255,62,165,0.4);
+    box-shadow: 0 0 10px var(--accent), 0 0 20px rgba(255,0,127,0.4);
     transition: background 0.15s;
 }
 
@@ -227,7 +233,7 @@ label {
     left: 0;
     width: 30px;
     height: 30px;
-    border: 1.5px solid rgba(255,62,165,0.5);
+    border: 1.5px solid rgba(255,0,127,0.5);
     border-radius: 50%;
     pointer-events: none;
     z-index: 99998;
@@ -250,7 +256,7 @@ label {
     position: fixed;
     width: 44px;
     height: 44px;
-    border: 1px solid rgba(255,62,165,0.3);
+    border: 1px solid rgba(255,0,127,0.3);
     border-radius: 50%;
     pointer-events: none;
     z-index: 99997;
@@ -313,7 +319,7 @@ label {
     align-items: center;
     padding: 0 1.5rem;
     background: rgba(7,7,14,0.94);
-    border-bottom: 1px solid rgba(255,62,165,0.08);
+    border-bottom: 1px solid rgba(255,0,127,0.08);
     height: 56px;
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
@@ -327,7 +333,7 @@ label {
         left: 0;
         right: 0;
         height: 1px;
-        background: linear-gradient(90deg, transparent 0%, rgba(255,62,165,0.3) 30%, rgba(124,92,252,0.3) 70%, transparent 100%);
+        background: linear-gradient(90deg, transparent 0%, rgba(255,0,127,0.3) 30%, rgba(157,78,221,0.3) 70%, transparent 100%);
         pointer-events: none;
     }
 
@@ -335,14 +341,14 @@ label {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-size: 1.05rem;
     font-weight: 900;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--accent) !important;
     -webkit-text-fill-color: var(--accent) !important;
-    text-shadow: 0 0 24px rgba(255,62,165,0.45);
+    text-shadow: 0 0 24px rgba(255,0,127,0.45);
     flex-shrink: 0;
     margin-right: 2rem;
     text-decoration: none;
@@ -368,7 +374,7 @@ label {
     gap: 0.4rem;
     padding: 0 0.85rem;
     height: 56px;
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.08em;
@@ -383,13 +389,13 @@ label {
 
     .nav-link:hover {
         color: var(--text-primary);
-        background: rgba(255,62,165,0.03);
+        background: rgba(255,0,127,0.03);
     }
 
     .nav-link.active {
         color: var(--accent) !important;
         border-bottom-color: var(--accent);
-        background: rgba(255,62,165,0.05);
+        background: rgba(255,0,127,0.05);
         -webkit-text-fill-color: var(--accent) !important;
     }
 
@@ -427,10 +433,10 @@ label {
     align-items: center;
     gap: 0.5rem;
     padding: 0.3rem 0.75rem 0.3rem 0.3rem;
-    background: rgba(255,62,165,0.06);
-    border: 1px solid rgba(255,62,165,0.18);
+    background: rgba(255,0,127,0.06);
+    border: 1px solid rgba(255,0,127,0.18);
     border-radius: var(--radius-full);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 0.72rem;
     font-weight: 600;
     color: var(--accent);
@@ -440,8 +446,8 @@ label {
 }
 
     .user-chip:hover {
-        background: rgba(255,62,165,0.12);
-        border-color: rgba(255,62,165,0.35);
+        background: rgba(255,0,127,0.12);
+        border-color: rgba(255,0,127,0.35);
     }
 
     .user-chip .avatar-mini {
@@ -528,7 +534,7 @@ label {
     }
 
 .page-eyebrow {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 0.62rem;
     font-weight: 600;
     letter-spacing: 0.18em;
@@ -567,7 +573,7 @@ label {
 
 .card-accent {
     border-color: var(--border-accent);
-    background: linear-gradient(160deg, rgba(255,62,165,0.04) 0%, var(--bg-card) 100%);
+    background: linear-gradient(160deg, rgba(255,0,127,0.04) 0%, var(--bg-card) 100%);
 }
 
     .card-accent::before {
@@ -583,7 +589,7 @@ label {
 
 .card-purple {
     border-color: var(--purple-border);
-    background: linear-gradient(160deg, rgba(124,92,252,0.06) 0%, var(--bg-card) 100%);
+    background: linear-gradient(160deg, rgba(157,78,221,0.06) 0%, var(--bg-card) 100%);
 }
 
     .card-purple::before {
@@ -628,7 +634,7 @@ label {
         right: 0;
         width: 60px;
         height: 60px;
-        background: radial-gradient(circle, rgba(255,62,165,0.07) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(255,0,127,0.07) 0%, transparent 70%);
         border-radius: 50%;
     }
 
@@ -643,13 +649,13 @@ label {
         }
 
     .stat-card.highlight {
-        background: linear-gradient(135deg, rgba(255,62,165,0.12) 0%, rgba(255,62,165,0.04) 100%);
+        background: linear-gradient(135deg, rgba(255,0,127,0.12) 0%, rgba(255,0,127,0.04) 100%);
         border-color: var(--accent-border);
-        box-shadow: 0 0 30px rgba(255,62,165,0.08);
+        box-shadow: 0 0 30px rgba(255,0,127,0.08);
     }
 
 .stat-value {
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-size: 2.2rem;
     font-weight: 700;
     color: var(--text-primary);
@@ -659,7 +665,7 @@ label {
 }
 
 .stat-label {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 0.62rem;
     font-weight: 600;
     letter-spacing: 0.12em;
@@ -678,7 +684,7 @@ label {
     border: none;
     border-radius: var(--radius-md);
     color: #000;
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-size: 0.88rem;
     font-weight: 700;
     letter-spacing: 0.06em;
@@ -686,7 +692,7 @@ label {
     cursor: pointer;
     white-space: nowrap;
     transition: all 0.18s;
-    box-shadow: 0 0 20px rgba(255,62,165,0.15);
+    box-shadow: 0 0 20px rgba(255,0,127,0.15);
     position: relative;
     overflow: hidden;
 }
@@ -702,7 +708,7 @@ label {
 
     .btn-gradient:hover {
         transform: translateY(-1px);
-        box-shadow: 0 0 30px rgba(255,62,165,0.30), 0 4px 16px rgba(0,0,0,0.4);
+        box-shadow: 0 0 30px rgba(255,0,127,0.30), 0 4px 16px rgba(0,0,0,0.4);
     }
 
         .btn-gradient:hover::before {
@@ -729,7 +735,7 @@ label {
     border: 1px solid var(--border-hover);
     border-radius: var(--radius-md);
     color: var(--text-secondary);
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-size: 0.88rem;
     font-weight: 600;
     letter-spacing: 0.06em;
@@ -742,7 +748,7 @@ label {
     .btn-outline:hover {
         border-color: var(--accent);
         color: var(--accent);
-        background: rgba(255,62,165,0.05);
+        background: rgba(255,0,127,0.05);
     }
 
 .btn-danger {
@@ -754,7 +760,7 @@ label {
     border: 1px solid var(--danger-border);
     border-radius: var(--radius-md);
     color: var(--danger);
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-size: 0.82rem;
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -777,19 +783,19 @@ label {
     border: none;
     border-radius: var(--radius-md);
     color: #fff;
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-size: 0.88rem;
     font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.18s;
-    box-shadow: 0 0 20px rgba(124,92,252,0.20);
+    box-shadow: 0 0 20px rgba(157,78,221,0.20);
 }
 
     .btn-purple:hover {
         transform: translateY(-1px);
-        box-shadow: 0 0 30px rgba(124,92,252,0.35);
+        box-shadow: 0 0 30px rgba(157,78,221,0.35);
     }
 
 /* ── INPUTS ── */
@@ -807,7 +813,7 @@ label {
     border-radius: var(--radius-md);
     padding: 0.72rem 1rem;
     color: var(--text-primary);
-    font-family: 'Inter', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.9rem;
     outline: none;
     transition: border-color 0.18s, box-shadow 0.18s;
@@ -816,7 +822,7 @@ label {
 
     .form-control:focus {
         border-color: var(--accent-border);
-        box-shadow: 0 0 0 3px rgba(255,62,165,0.08);
+        box-shadow: 0 0 0 3px rgba(255,0,127,0.08);
     }
 
     .form-control::placeholder {
@@ -844,7 +850,7 @@ select.form-control {
     align-items: center;
     padding: 0.18rem 0.55rem;
     border-radius: var(--radius-full);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 0.62rem;
     font-weight: 600;
     letter-spacing: 0.06em;
@@ -863,7 +869,7 @@ select.form-control {
 .badge-cyan {
     background: var(--cyan-soft);
     color: var(--cyan);
-    border-color: rgba(34,229,229,0.25);
+    border-color: rgba(0,245,212,0.25);
 }
 
 .badge-danger {
@@ -887,12 +893,12 @@ select.form-control {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-size: 0.72rem;
     font-weight: 700;
     color: #000;
     flex-shrink: 0;
-    border: 1.5px solid rgba(255,62,165,0.2);
+    border: 1.5px solid rgba(255,0,127,0.2);
 }
 
 .avatar-lg {
@@ -915,9 +921,9 @@ select.form-control {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background: linear-gradient(135deg, rgba(255,62,165,0.12), rgba(124,92,252,0.12));
+    background: linear-gradient(135deg, rgba(255,0,127,0.12), rgba(157,78,221,0.12));
     border: 2px solid var(--accent-border);
-    box-shadow: 0 0 30px rgba(255,62,165,0.12), inset 0 0 20px rgba(255,62,165,0.04);
+    box-shadow: 0 0 30px rgba(255,0,127,0.12), inset 0 0 20px rgba(255,0,127,0.04);
     font-size: 2rem;
     position: relative;
     z-index: 1;
@@ -946,7 +952,7 @@ select.form-control {
         border: none;
         border-bottom: 2px solid transparent;
         color: var(--text-secondary);
-        font-family: 'Rajdhani', sans-serif;
+        font-family: 'Syne', sans-serif;
         font-size: 0.82rem;
         font-weight: 600;
         letter-spacing: 0.06em;
@@ -959,13 +965,13 @@ select.form-control {
 
         .tab-bar button:hover, .tab-bar a:hover, .tab-bar .tab-btn:hover {
             color: var(--text-primary);
-            background: rgba(255,62,165,0.03);
+            background: rgba(255,0,127,0.03);
         }
 
         .tab-bar button.active, .tab-bar a.active, .tab-bar .tab-btn.active {
             color: var(--accent);
             border-bottom-color: var(--accent);
-            background: rgba(255,62,165,0.05);
+            background: rgba(255,0,127,0.05);
         }
 
 /* ── GRIDS ── */
@@ -1025,7 +1031,7 @@ select.form-control {
 .spinner {
     width: 32px;
     height: 32px;
-    border: 2.5px solid rgba(255,62,165,0.1);
+    border: 2.5px solid rgba(255,0,127,0.1);
     border-top-color: var(--accent);
     border-radius: 50%;
     animation: spin 0.65s linear infinite;
@@ -1063,7 +1069,7 @@ select.form-control {
     width: 100%;
     max-height: 88vh;
     overflow-y: auto;
-    box-shadow: 0 0 0 1px rgba(255,62,165,0.05), var(--shadow-lg);
+    box-shadow: 0 0 0 1px rgba(255,0,127,0.05), var(--shadow-lg);
     position: relative;
     animation: modalIn 0.22s ease;
 }
@@ -1099,7 +1105,7 @@ select.form-control {
 }
 
 .modal-title {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-size: 1rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -1215,8 +1221,8 @@ select.form-control {
 }
 
     .message-bubble.sent {
-        background: linear-gradient(135deg, rgba(255,62,165,0.14) 0%, rgba(255,62,165,0.08) 100%);
-        border: 1px solid rgba(255,62,165,0.18);
+        background: linear-gradient(135deg, rgba(255,0,127,0.14) 0%, rgba(255,0,127,0.08) 100%);
+        border: 1px solid rgba(255,0,127,0.18);
         border-bottom-right-radius: 4px;
         color: var(--text-primary);
         margin-left: auto;
@@ -1246,7 +1252,7 @@ select.form-control {
     }
 
     .convo-item.active {
-        background: rgba(255,62,165,0.06);
+        background: rgba(255,0,127,0.06);
     }
 
         .convo-item.active::before {
@@ -1305,7 +1311,7 @@ select.form-control {
 
     .squad-card.active {
         border-color: var(--accent-border);
-        background: rgba(255,62,165,0.04);
+        background: rgba(255,0,127,0.04);
     }
 
 /* ── ADMIN PANEL ── */
@@ -1324,7 +1330,7 @@ select.form-control {
     }
 
     .admin-metric .metric-value {
-        font-family: 'Orbitron', sans-serif;
+        font-family: 'Syne', sans-serif;
         font-size: 2rem;
         font-weight: 700;
         color: var(--text-primary);
@@ -1333,7 +1339,7 @@ select.form-control {
     }
 
     .admin-metric .metric-label {
-        font-family: 'JetBrains Mono', monospace;
+        font-family: 'Fira Code', monospace;
         font-size: 0.62rem;
         letter-spacing: 0.1em;
         text-transform: uppercase;
@@ -1342,11 +1348,11 @@ select.form-control {
 
 /* ── AI PANEL ── */
 .ai-panel {
-    background: linear-gradient(160deg, rgba(124,92,252,0.08) 0%, var(--bg-card) 100%);
+    background: linear-gradient(160deg, rgba(157,78,221,0.08) 0%, var(--bg-card) 100%);
     border: 1px solid var(--purple-border);
     border-radius: var(--radius-lg);
     padding: 1.25rem;
-    box-shadow: inset 0 0 40px rgba(124,92,252,0.04);
+    box-shadow: inset 0 0 40px rgba(157,78,221,0.04);
     position: relative;
     overflow: hidden;
 }
@@ -1369,7 +1375,7 @@ select.form-control {
     background: var(--purple-soft);
     border: 1px solid var(--purple-border);
     border-radius: var(--radius-full);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 0.6rem;
     font-weight: 600;
     letter-spacing: 0.08em;
@@ -1454,13 +1460,13 @@ select.form-control {
 
 /* Success / Error banners */
 .success-banner {
-    background: rgba(255,62,165,0.07);
+    background: rgba(255,0,127,0.07);
     border: 1px solid var(--success-border);
     border-radius: var(--radius-md);
     padding: 0.75rem 1rem;
     color: var(--accent);
     font-size: 0.88rem;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Fira Code', monospace;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -1473,7 +1479,7 @@ select.form-control {
     padding: 0.75rem 1rem;
     color: var(--danger);
     font-size: 0.88rem;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Fira Code', monospace;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -1485,12 +1491,12 @@ select.form-control {
     align-items: center;
     gap: 0.3rem;
     padding: 0.2rem 0.6rem;
-    background: rgba(255,62,165,0.07);
-    border: 1px solid rgba(255,62,165,0.18);
+    background: rgba(255,0,127,0.07);
+    border: 1px solid rgba(255,0,127,0.18);
     border-radius: var(--radius-full);
     font-size: 0.75rem;
     color: var(--accent);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Fira Code', monospace;
 }
 
 .tag-container {
@@ -1510,7 +1516,7 @@ select.form-control {
     border-radius: var(--radius-full);
     font-size: 0.7rem;
     color: var(--purple-light);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Fira Code', monospace;
 }
 
 /* ── ACTIVITY / SPAWN GRAPH ── */
@@ -1557,7 +1563,7 @@ select.form-control {
 }
 
     .data-table th {
-        font-family: 'JetBrains Mono', monospace;
+        font-family: 'Fira Code', monospace;
         font-size: 0.62rem;
         letter-spacing: 0.1em;
         text-transform: uppercase;
@@ -1605,29 +1611,29 @@ select.form-control {
 }
 
 .text-mono {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Fira Code', monospace;
 }
 
 .text-orbitron {
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Syne', sans-serif;
 }
 
 .text-rajdhani {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Syne', sans-serif;
 }
 
 .text-gaming {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Syne', sans-serif;
     letter-spacing: 0.06em;
     text-transform: uppercase;
 }
 
 .glow-accent {
-    text-shadow: 0 0 20px rgba(255,62,165,0.5);
+    text-shadow: 0 0 20px rgba(255,0,127,0.5);
 }
 
 .glow-purple {
-    text-shadow: 0 0 20px rgba(124,92,252,0.5);
+    text-shadow: 0 0 20px rgba(157,78,221,0.5);
 }
 
 /* ── FLEX/LAYOUT UTILS ── */
@@ -1788,6 +1794,24 @@ select.form-control {
     }
 }
 
+/* ── Custom cursor, other half of the fix above: hide the native
+   arrow on mouse devices so it isn't rendered twice (arrow + pink
+   dot stacked). Form fields get the native text/pointer cursor back
+   since a 7px dot doesn't show where a caret will land. ── */
+@media (pointer: fine) and (hover: hover) {
+    * {
+        cursor: none !important;
+    }
+
+    input, textarea, select, [contenteditable="true"] {
+        cursor: text !important;
+    }
+
+        input[type="checkbox"], input[type="radio"], input[type="range"], select, option {
+            cursor: pointer !important;
+        }
+}
+
 /* ── Tactile press feedback for touch + mouse ── */
 .btn-gradient:active,
 .btn-outline:active,
@@ -1827,7 +1851,7 @@ select.form-control {
 /* ── Hamburger menu button (mobile/tablet nav) ── */
 .nav-hamburger {
     display: none;
-    background: rgba(255,62,165,0.06);
+    background: rgba(255,0,127,0.06);
     border: 1px solid var(--border);
     color: var(--accent);
     border-radius: var(--radius-sm);
@@ -1840,7 +1864,7 @@ select.form-control {
 }
 
     .nav-hamburger:hover {
-        background: rgba(255,62,165,0.12);
+        background: rgba(255,0,127,0.12);
         border-color: var(--accent-border);
     }
 

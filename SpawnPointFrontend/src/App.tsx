@@ -93,9 +93,9 @@ const CustomCursor: React.FC = () => {
 /* ─── Ambient Orbs ─── */
 const AmbientOrbs: React.FC = () => (
     <>
-        <div className="ambient-orb" style={{ width: 500, height: 500, background: '#FF3EA5', top: '-10%', left: '-5%', animationDelay: '0s', animationDuration: '10s' }} />
-        <div className="ambient-orb" style={{ width: 400, height: 400, background: '#7C5CFC', top: '60%', right: '-8%', animationDelay: '3s', animationDuration: '13s' }} />
-        <div className="ambient-orb" style={{ width: 300, height: 300, background: '#22E5E5', bottom: '5%', left: '30%', animationDelay: '6s', animationDuration: '9s' }} />
+        <div className="ambient-orb" style={{ width: 500, height: 500, background: '#FF007F', top: '-10%', left: '-5%', animationDelay: '0s', animationDuration: '10s' }} />
+        <div className="ambient-orb" style={{ width: 400, height: 400, background: '#9D4EDD', top: '60%', right: '-8%', animationDelay: '3s', animationDuration: '13s' }} />
+        <div className="ambient-orb" style={{ width: 300, height: 300, background: '#00F5D4', bottom: '5%', left: '30%', animationDelay: '6s', animationDuration: '9s' }} />
     </>
 );
 
@@ -112,7 +112,7 @@ const NotifToast: React.FC<NotifProps> = ({ message, type, onClose }) => {
         <div className="notif-toast">
             <span style={{ color: colors[type], flexShrink: 0, marginTop: 1, display: 'flex' }}>{icons[type]}</span>
             <div style={{ flex: 1 }}>
-                <div style={{ fontSize: '0.72rem', color: colors[type], fontFamily: 'JetBrains Mono', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '0.2rem' }}>
+                <div style={{ fontSize: '0.72rem', color: colors[type], fontFamily: 'Fira Code', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '0.2rem' }}>
                     SPAWN.AI ALERT
                 </div>
                 <div style={{ fontSize: '0.85rem', lineHeight: 1.4, color: 'var(--text-primary)' }}>{message}</div>
@@ -178,7 +178,7 @@ const NavBar: React.FC<{ onNotif: () => void }> = ({ onNotif }) => {
                     <Link key={item.to} to={item.to}
                         onClick={() => { haptic(); setMobileMenuOpen(false); }}
                         className={`nav-link${location.pathname === item.to ? ' active' : ''}`}
-                        style={location.pathname === item.to ? { color: 'var(--accent)', borderBottomColor: 'var(--accent)', background: 'rgba(255,62,165,0.06)' } : {}}>
+                        style={location.pathname === item.to ? { color: 'var(--accent)', borderBottomColor: 'var(--accent)', background: 'rgba(255,0,127,0.06)' } : {}}>
                         {item.icon}
                         {item.label}
                     </Link>
@@ -186,7 +186,7 @@ const NavBar: React.FC<{ onNotif: () => void }> = ({ onNotif }) => {
             </div>
             <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
                 <button onClick={onNotif} title="Notifications" style={{
-                    background: 'rgba(255,62,165,0.06)', border: '1px solid var(--border)',
+                    background: 'rgba(255,0,127,0.06)', border: '1px solid var(--border)',
                     color: 'var(--accent)', borderRadius: '4px', padding: '0.45rem 0.7rem',
                     cursor: 'none', fontSize: '1rem', transition: 'all 0.2s',
                     display: 'flex', alignItems: 'center', justifyContent: 'center'
@@ -194,14 +194,14 @@ const NavBar: React.FC<{ onNotif: () => void }> = ({ onNotif }) => {
                 {isLoggedIn ? (
                     <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
                         <span className="username-label" style={{
-                            fontFamily: "'Rajdhani', sans-serif",
+                            fontFamily: "'Syne', sans-serif",
                             fontSize: '0.82rem',
                             fontWeight: 600,
                             letterSpacing: '0.06em',
                             textTransform: 'uppercase',
                             color: 'var(--accent)',
                             padding: '0.4rem 0.75rem',
-                            background: 'rgba(255,62,165,0.06)',
+                            background: 'rgba(255,0,127,0.06)',
                             borderRadius: '4px',
                             border: '1px solid var(--accent-border)',
                         }}>
@@ -261,7 +261,7 @@ const AdminRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 const ComingSoon: React.FC<{ label: string }> = ({ label }) => (
     <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '1rem' }}>
         <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--accent)' }}>{label}</div>
-        <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.85rem', color: 'var(--text-muted)' }}>// Coming soon</div>
+        <div style={{ fontFamily: 'Fira Code', fontSize: '0.85rem', color: 'var(--text-muted)' }}>// Coming soon</div>
     </div>
 );
 

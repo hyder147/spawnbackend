@@ -65,12 +65,12 @@ const GameCard: React.FC<{ game: Game; onApply: (g: Game) => void }> = ({ game, 
                                 {game.genre === 'Action' ? <Zap size={13} /> : game.genre === 'RPG' ? <Swords size={13} /> : game.genre === 'Strategy' ? <Brain size={13} /> : <Joystick size={13} />}
                             </div>
                         </div>
-                        <h3 style={{ margin: '0 0 0.4rem', fontFamily: 'Orbitron, monospace', fontSize: '0.95rem' }}>{game.title}</h3>
+                        <h3 style={{ margin: '0 0 0.4rem', fontFamily: "'Syne', sans-serif", fontSize: '0.95rem' }}>{game.title}</h3>
                         <p style={{ color: 'var(--text-secondary)', fontSize: '0.82rem', lineHeight: 1.4, margin: 0 }}>{game.description.slice(0, 60)}...</p>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1rem' }}>
                         <span className="badge" style={{ borderColor: `${c}44`, color: c, background: `${c}11` }}>{game.genre}</span>
-                        <span style={{ fontSize: '0.75rem', color: 'var(--text-dim)', fontFamily: 'JetBrains Mono' }}>{game.status}</span>
+                        <span style={{ fontSize: '0.75rem', color: 'var(--text-dim)', fontFamily: 'Fira Code' }}>{game.status}</span>
                     </div>
                 </div>
 
@@ -82,9 +82,9 @@ const GameCard: React.FC<{ game: Game; onApply: (g: Game) => void }> = ({ game, 
                     borderColor: `${c}66`, background: `linear-gradient(135deg, ${c}10, rgba(0,0,0,0.8))`
                 }}>
                     <div>
-                        <div style={{ fontFamily: 'Orbitron, monospace', fontSize: '0.9rem', color: c, marginBottom: '0.75rem' }}>{game.title}</div>
+                        <div style={{ fontFamily: "'Syne', sans-serif", fontSize: '0.9rem', color: c, marginBottom: '0.75rem' }}>{game.title}</div>
                         <p style={{ fontSize: '0.85rem', lineHeight: 1.6, color: 'var(--text-primary)', margin: '0 0 1rem' }}>{game.description}</p>
-                        <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', fontFamily: 'JetBrains Mono' }}>by {game.developerName}</div>
+                        <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', fontFamily: 'Fira Code' }}>by {game.developerName}</div>
                     </div>
                     <button className="btn-gradient" style={{ width: '100%' }} onClick={e => { e.stopPropagation(); onApply(game); }}>
                         Apply for Beta
@@ -162,12 +162,12 @@ const GameListing: React.FC = () => {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2.5rem', paddingBottom: '2rem', borderBottom: '1px solid var(--border)', flexWrap: 'wrap', gap: '1rem', position: 'relative' }}>
                 <div style={{ position: 'absolute', bottom: -1, left: 0, width: 80, height: 1, background: 'var(--gradient-accent)' }} />
                 <div>
-                    <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem', color: 'var(--accent)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <div style={{ fontFamily: 'Fira Code', fontSize: '0.62rem', color: 'var(--accent)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                         <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--accent)', boxShadow: '0 0 8px var(--accent)', display: 'inline-block' }} />
                         Beta Pipeline
                     </div>
-                    <h1 style={{ fontFamily: 'Rajdhani, sans-serif', fontSize: '2.4rem', fontWeight: 800, margin: 0, textTransform: 'uppercase', letterSpacing: '-0.5px' }}>Explore Games</h1>
-                    <p style={{ color: 'var(--text-secondary)', fontFamily: 'JetBrains Mono', fontSize: '0.72rem', marginTop: '0.4rem', marginBottom: 0 }}>
+                    <h1 style={{ fontFamily: "'Syne', sans-serif", fontSize: '2.4rem', fontWeight: 800, margin: 0, textTransform: 'uppercase', letterSpacing: '-0.5px' }}>Explore Games</h1>
+                    <p style={{ color: 'var(--text-secondary)', fontFamily: 'Fira Code', fontSize: '0.72rem', marginTop: '0.4rem', marginBottom: 0 }}>
                         {games.length} titles available
                     </p>
                 </div>
@@ -186,7 +186,7 @@ const GameListing: React.FC = () => {
 
             {loading ? <div className="spinner" /> : filtered.length === 0 ? (
                 <div className="card" style={{ textAlign: 'center', padding: '3rem 1.5rem' }}>
-                    <p style={{ color: 'var(--text-dim)', fontFamily: 'JetBrains Mono', fontSize: '0.88rem' }}>
+                    <p style={{ color: 'var(--text-dim)', fontFamily: 'Fira Code', fontSize: '0.88rem' }}>
                         No games found. {user?.userType === 'Developer' ? 'Upload your first game!' : 'Check back later!'}
                     </p>
                 </div>
@@ -240,7 +240,7 @@ const GameListing: React.FC = () => {
                 <div className="modal-overlay" onClick={() => setApplyGame(null)}>
                     <div className="modal-box" onClick={e => e.stopPropagation()}>
                         <h2 style={{ marginBottom: '0.5rem' }}>Apply for Beta</h2>
-                        <p style={{ color: 'var(--neon-cyan)', fontFamily: 'JetBrains Mono', fontSize: '0.9rem', marginBottom: '1.5rem' }}>{applyGame.title}</p>
+                        <p style={{ color: 'var(--neon-cyan)', fontFamily: 'Fira Code', fontSize: '0.9rem', marginBottom: '1.5rem' }}>{applyGame.title}</p>
                         <div className="form-group">
                             <label>Why do you want to test this game?</label>
                             <textarea className="form-control" placeholder="Share your experience and motivation..." rows={4}

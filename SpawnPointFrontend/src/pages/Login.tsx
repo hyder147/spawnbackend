@@ -88,10 +88,6 @@ const Login: React.FC = () => {
                         ))}
                     </div>
                 </div>
-
-                {/* Decorative orbs */}
-                <div style={{ position: 'absolute', top: '20%', right: '-60px', width: 200, height: 200, borderRadius: '50%', background: 'rgba(255,62,165,0.05)', filter: 'blur(60px)', pointerEvents: 'none' }} />
-                <div style={{ position: 'absolute', bottom: '15%', left: '10%', width: 150, height: 150, borderRadius: '50%', background: 'rgba(124,92,252,0.07)', filter: 'blur(50px)', pointerEvents: 'none' }} />
             </div>
 
             {/* Right panel — form */}
@@ -103,14 +99,14 @@ const Login: React.FC = () => {
                     {/* Logo — only shown on phones/tablets where the left branding panel is hidden */}
                     <div style={styles.mobileBrand} className="auth-mobile-brand">
                         <SpawnLogo size={36} />
-                        <span style={{ fontFamily: "'Orbitron', sans-serif", fontSize: '1rem', fontWeight: 900, letterSpacing: '4px', color: 'var(--accent)' }}>SPAWNPOINT</span>
+                        <span style={{ fontFamily: "'Syne', sans-serif", fontSize: '1rem', fontWeight: 900, letterSpacing: '4px', color: 'var(--accent)' }}>SPAWNPOINT</span>
                     </div>
 
                     {/* Header */}
                     <div style={styles.header}>
                         <div style={styles.tagline}>// IDENTITY VERIFICATION</div>
                         <h2 style={styles.title}>SIGN IN</h2>
-                        <p style={{ color: 'var(--text-muted)', fontFamily: "'JetBrains Mono', monospace", fontSize: '0.72rem', margin: 0 }}>Enter your credentials to access your account</p>
+                        <p style={{ color: 'var(--text-muted)', fontFamily: "'Fira Code', monospace", fontSize: '0.72rem', margin: 0 }}>Enter your credentials to access your account</p>
                     </div>
 
                     {/* Error */}
@@ -178,8 +174,6 @@ const Login: React.FC = () => {
                         <span style={{ color: 'var(--text-muted)', fontSize: '0.82rem' }}>No account? </span>
                         <Link to="/register" style={{ ...styles.link, position: 'relative', zIndex: 2 }}>Create one →</Link>
                     </div>
-
-                    <div style={styles.scanline} />
                 </div>
             </div>
         </div>
@@ -199,8 +193,8 @@ const styles: Record<string, React.CSSProperties> = {
         position: 'absolute',
         inset: 0,
         backgroundImage: `
-            linear-gradient(rgba(255,62,165,0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,62,165,0.03) 1px, transparent 1px)
+            linear-gradient(rgba(255,0,127,0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,0,127,0.03) 1px, transparent 1px)
         `,
         backgroundSize: '60px 60px',
         pointerEvents: 'none',
@@ -214,8 +208,8 @@ const styles: Record<string, React.CSSProperties> = {
         flexDirection: 'column',
         justifyContent: 'center',
         padding: '3rem 3.5rem',
-        background: 'linear-gradient(135deg, rgba(255,62,165,0.03) 0%, transparent 60%)',
-        borderRight: '1px solid rgba(255,62,165,0.06)',
+        background: 'linear-gradient(135deg, rgba(255,0,127,0.03) 0%, transparent 60%)',
+        borderRight: '1px solid rgba(255,0,127,0.06)',
         position: 'relative',
         zIndex: 1,
     } as React.CSSProperties,
@@ -229,15 +223,15 @@ const styles: Record<string, React.CSSProperties> = {
         marginBottom: '3.5rem',
     },
     brandName: {
-        fontFamily: "'Orbitron', sans-serif",
+        fontFamily: "'Syne', sans-serif",
         fontSize: '1.3rem',
         fontWeight: 900,
         letterSpacing: '5px',
         textTransform: 'uppercase' as const,
-        textShadow: '0 0 30px rgba(255,62,165,0.4)',
+        textShadow: '0 0 30px rgba(255,0,127,0.4)',
     },
     heroEyebrow: {
-        fontFamily: "'JetBrains Mono', monospace",
+        fontFamily: "'Fira Code', monospace",
         fontSize: '0.68rem',
         color: 'var(--accent)',
         letterSpacing: '3px',
@@ -248,7 +242,7 @@ const styles: Record<string, React.CSSProperties> = {
         marginBottom: '3rem',
     },
     heroHeadline: {
-        fontFamily: "'Rajdhani', sans-serif",
+        fontFamily: "'Syne', sans-serif",
         fontSize: '3.8rem',
         fontWeight: 800,
         lineHeight: 1.0,
@@ -273,18 +267,18 @@ const styles: Record<string, React.CSSProperties> = {
         gap: '0.2rem',
     },
     statValue: {
-        fontFamily: "'Orbitron', sans-serif",
+        fontFamily: "'Syne', sans-serif",
         fontSize: '1.6rem',
         fontWeight: 700,
         color: 'var(--accent)',
         lineHeight: 1,
-        textShadow: '0 0 20px rgba(255,62,165,0.3)',
+        textShadow: '0 0 20px rgba(255,0,127,0.3)',
     },
     statLabel: {
-        fontFamily: "'JetBrains Mono', monospace",
-        fontSize: '0.6rem',
+        fontFamily: "'Fira Code', monospace",
+        fontSize: '0.68rem',
         color: 'var(--text-muted)',
-        letterSpacing: '2px',
+        letterSpacing: '1.5px',
         textTransform: 'uppercase' as const,
     },
 
@@ -302,11 +296,11 @@ const styles: Record<string, React.CSSProperties> = {
         position: 'relative',
         width: '100%',
         maxWidth: '400px',
-        background: 'linear-gradient(160deg, #16162A 0%, #111120 100%)',
-        border: '1px solid rgba(255,62,165,0.10)',
+        background: 'var(--gradient-card)',
+        border: '1px solid var(--border-accent)',
         borderRadius: '16px',
         padding: '2.5rem',
-        boxShadow: '0 0 80px rgba(255,62,165,0.05), 0 0 0 1px rgba(255,62,165,0.03), 0 32px 80px rgba(0,0,0,0.8)',
+        boxShadow: 'var(--shadow-lg)',
         overflow: 'hidden',
     },
     mobileBrand: {
@@ -320,30 +314,29 @@ const styles: Record<string, React.CSSProperties> = {
         marginBottom: '2rem',
     },
     tagline: {
-        fontFamily: "'JetBrains Mono', monospace",
-        fontSize: '0.6rem',
+        fontFamily: "'Fira Code', monospace",
+        fontSize: '0.68rem',
         color: 'var(--text-muted)',
-        letterSpacing: '3px',
+        letterSpacing: '2px',
         marginBottom: '0.5rem',
     },
     title: {
-        fontFamily: "'Orbitron', sans-serif",
-        fontSize: '1.8rem',
+        fontFamily: "'Syne', sans-serif",
+        fontSize: '2rem',
         fontWeight: 700,
         color: 'var(--accent)',
         margin: '0 0 0.4rem',
-        letterSpacing: '4px',
-        textShadow: '0 0 24px rgba(255,62,165,0.35)',
+        letterSpacing: '1px',
+        textTransform: 'uppercase' as const,
     },
     form: { display: 'flex', flexDirection: 'column' as const, gap: '1.1rem' },
     field: { display: 'flex', flexDirection: 'column' as const, gap: '0.4rem' },
     label: {
-        fontFamily: "'JetBrains Mono', monospace",
-        fontSize: '0.62rem',
+        fontFamily: "'Fira Code', monospace",
+        fontSize: '0.7rem',
         color: 'var(--accent)',
-        letterSpacing: '2px',
+        letterSpacing: '1.5px',
         textTransform: 'uppercase' as const,
-        opacity: 0.8,
     },
     inputWrap: {
         position: 'relative' as const,
@@ -357,7 +350,7 @@ const styles: Record<string, React.CSSProperties> = {
         borderRadius: '8px',
         padding: '0.8rem 0.9rem 0.8rem 2.5rem',
         color: 'var(--text-primary)',
-        fontFamily: "'Inter', sans-serif",
+        fontFamily: "'Plus Jakarta Sans', sans-serif",
         fontSize: '0.9rem',
         outline: 'none',
         transition: 'border-color 0.2s, box-shadow 0.2s',
@@ -383,13 +376,14 @@ const styles: Record<string, React.CSSProperties> = {
         border: 'none',
         borderRadius: '8px',
         color: '#000',
-        fontFamily: "'Orbitron', sans-serif",
+        fontFamily: "'Syne', sans-serif",
         fontWeight: 700,
-        fontSize: '0.75rem',
-        letterSpacing: '2px',
+        fontSize: '0.92rem',
+        letterSpacing: '0.06em',
+        textTransform: 'uppercase' as const,
         cursor: 'pointer',
         transition: 'all 0.2s',
-        boxShadow: '0 0 24px rgba(255,62,165,0.20)',
+        boxShadow: '0 0 24px rgba(255,0,127,0.20)',
     },
     spinner: {
         display: 'inline-block',
@@ -408,7 +402,7 @@ const styles: Record<string, React.CSSProperties> = {
         fontSize: '0.82rem',
         color: 'var(--danger)',
         marginBottom: '0.5rem',
-        fontFamily: "'JetBrains Mono', monospace",
+        fontFamily: "'Fira Code', monospace",
         display: 'flex',
         alignItems: 'center',
         gap: '0.5rem',
@@ -423,26 +417,16 @@ const styles: Record<string, React.CSSProperties> = {
     link: {
         color: 'var(--accent)',
         textDecoration: 'none',
-        fontFamily: "'JetBrains Mono', monospace",
+        fontFamily: "'Fira Code', monospace",
         fontSize: '0.82rem',
         fontWeight: 600,
     },
     linkSmall: {
         color: 'var(--text-muted)',
         textDecoration: 'none',
-        fontFamily: "'JetBrains Mono', monospace",
+        fontFamily: "'Fira Code', monospace",
         fontSize: '0.68rem',
         transition: 'color 0.2s',
-    },
-    scanline: {
-        position: 'absolute' as const,
-        bottom: 0,
-        left: 0,
-        right: 0,
-        height: '2px',
-        background: 'var(--gradient-accent)',
-        opacity: 0.5,
-        pointerEvents: 'none' as const,
     },
 };
 

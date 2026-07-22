@@ -20,7 +20,7 @@ const CardPaymentResult: React.FC = () => {
     return (
         <div style={{ minHeight: '70vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
             <div className="spinner" />
-            <p style={{ color: 'var(--text-secondary)', fontFamily: 'JetBrains Mono', fontSize: '0.85rem' }}>Confirming your payment...</p>
+            <p style={{ color: 'var(--text-secondary)', fontFamily: 'Fira Code', fontSize: '0.85rem' }}>Confirming your payment...</p>
         </div>
     );
 };

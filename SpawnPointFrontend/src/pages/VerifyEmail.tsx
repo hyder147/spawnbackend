@@ -116,7 +116,7 @@ const VerifyEmail: React.FC = () => {
                     <h1 style={styles.title}>VERIFY EMAIL</h1>
                     <p style={styles.subtitle}>
                         A 6-digit code was sent to<br />
-                        <span style={{ color: 'var(--accent)', fontFamily: "'JetBrains Mono', monospace" }}>
+                        <span style={{ color: 'var(--accent)', fontFamily: "'Fira Code', monospace" }}>
                             {email || 'your email'}
                         </span>
                     </p>
@@ -237,7 +237,7 @@ const styles: Record<string, React.CSSProperties> = {
     },
     header: { textAlign: 'center', marginBottom: '2rem' },
     logo: {
-        fontFamily: "'Orbitron', monospace",
+        fontFamily: "'Syne', sans-serif",
         fontSize: '1.1rem',
         fontWeight: 900,
         background: 'var(--gradient-accent)',
@@ -248,7 +248,7 @@ const styles: Record<string, React.CSSProperties> = {
         marginBottom: '0.5rem',
     },
     tagline: {
-        fontFamily: "'JetBrains Mono', monospace",
+        fontFamily: "'Fira Code', monospace",
         fontSize: '0.65rem',
         color: 'var(--text-muted)',
         letterSpacing: '2px',
@@ -268,7 +268,7 @@ const styles: Record<string, React.CSSProperties> = {
     },
     icon: { fontSize: '1.75rem', color: 'var(--accent)' },
     title: {
-        fontFamily: "'Orbitron', monospace",
+        fontFamily: "'Syne', sans-serif",
         fontSize: '1.5rem',
         fontWeight: 700,
         color: 'var(--accent)',
@@ -296,7 +296,7 @@ const styles: Record<string, React.CSSProperties> = {
         border: '1px solid var(--border)',
         borderRadius: '8px',
         color: 'var(--text-primary)',
-        fontFamily: "'Orbitron', monospace",
+        fontFamily: "'Syne', sans-serif",
         fontSize: '1.4rem',
         fontWeight: 700,
         outline: 'none',
@@ -305,7 +305,7 @@ const styles: Record<string, React.CSSProperties> = {
     },
     field: { display: 'flex', flexDirection: 'column', gap: '0.4rem', marginBottom: '1.25rem' },
     label: {
-        fontFamily: "'JetBrains Mono', monospace",
+        fontFamily: "'Fira Code', monospace",
         fontSize: '0.65rem',
         color: 'var(--accent)',
         letterSpacing: '2px',
@@ -317,7 +317,7 @@ const styles: Record<string, React.CSSProperties> = {
         borderRadius: '6px',
         padding: '0.75rem 1rem',
         color: 'var(--text-primary)',
-        fontFamily: "'JetBrains Mono', monospace",
+        fontFamily: "'Fira Code', monospace",
         fontSize: '0.9rem',
         outline: 'none',
         boxSizing: 'border-box',
@@ -329,7 +329,7 @@ const styles: Record<string, React.CSSProperties> = {
         border: 'none',
         borderRadius: '6px',
         color: '#000',
-        fontFamily: "'Orbitron', monospace",
+        fontFamily: "'Syne', sans-serif",
         fontWeight: 700,
         fontSize: '0.8rem',
         letterSpacing: '2px',
@@ -355,14 +355,14 @@ const styles: Record<string, React.CSSProperties> = {
         background: 'none',
         border: 'none',
         color: 'var(--accent)',
-        fontFamily: "'JetBrains Mono', monospace",
+        fontFamily: "'Fira Code', monospace",
         fontSize: '0.82rem',
         cursor: 'pointer',
         textDecoration: 'underline',
         padding: 0,
     },
     countdown: {
-        fontFamily: "'JetBrains Mono', monospace",
+        fontFamily: "'Fira Code', monospace",
         fontSize: '0.8rem',
         color: 'var(--text-muted)',
     },
@@ -374,7 +374,7 @@ const styles: Record<string, React.CSSProperties> = {
         fontSize: '0.85rem',
         color: 'var(--text-primary)',
         marginBottom: '1.25rem',
-        fontFamily: "'JetBrains Mono', monospace",
+        fontFamily: "'Fira Code', monospace",
     },
     successBox: {
         background: 'rgba(52,211,153,0.08)',
@@ -384,13 +384,13 @@ const styles: Record<string, React.CSSProperties> = {
         fontSize: '0.85rem',
         color: 'var(--text-primary)',
         marginBottom: '1.25rem',
-        fontFamily: "'JetBrains Mono', monospace",
+        fontFamily: "'Fira Code', monospace",
     },
     footer: { textAlign: 'center', marginTop: '1.5rem' },
     backLink: {
         color: 'var(--text-muted)',
         textDecoration: 'none',
-        fontFamily: "'JetBrains Mono', monospace",
+        fontFamily: "'Fira Code', monospace",
         fontSize: '0.78rem',
         transition: 'color 0.2s',
     },

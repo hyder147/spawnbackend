@@ -159,10 +159,10 @@ const CommunityChat: React.FC<{ community: Community; onClose: () => void }> = (
                             <span style={{ fontSize: '1.1rem' }}>{typeIcons[community.type] || <span style={{ fontSize: '0.7rem' }}>●</span>}</span>
                         </div>
                         <div>
-                            <div style={{ fontFamily: 'Orbitron, monospace', fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+                            <div style={{ fontFamily: "'Syne', sans-serif", fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                                 {community.name}
                             </div>
-                            <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)', fontFamily: 'JetBrains Mono' }}>
+                            <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)', fontFamily: 'Fira Code' }}>
                                 <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}><Users size={13} /> {community.memberIds.length} members</span>
                             </div>
                         </div>
@@ -189,13 +189,13 @@ const CommunityChat: React.FC<{ community: Community; onClose: () => void }> = (
 
                 {/* ── Active Call Bar ── */}
                 {callState.active && (
-                    <div style={{ ...styles.callBar, borderColor: callState.type === 'video' ? 'var(--neon-cyan)40' : 'var(--neon-green)40', background: callState.type === 'video' ? 'rgba(0,255,255,0.05)' : 'rgba(0,255,136,0.05)' }}>
+                    <div style={{ ...styles.callBar, borderColor: callState.type === 'video' ? 'var(--neon-cyan)40' : 'var(--neon-green)40', background: callState.type === 'video' ? 'rgba(0,255,255,0.05)' : 'rgba(52,211,153,0.05)' }}>
                         {callState.type === 'video' && (
                             <div style={styles.videoArea}>
                                 <div style={styles.videoMain}>
                                     {callState.videoOff
-                                        ? <div style={styles.videoOff}><User size={32} /><span style={{ fontSize: '0.75rem', color: 'var(--text-dim)', fontFamily: 'JetBrains Mono', marginTop: '0.4rem' }}>Camera off</span></div>
-                                        : <div style={styles.videoFeed}><div style={styles.videoScanline} /><span style={{ color: 'var(--neon-cyan)', fontSize: '0.7rem', fontFamily: 'JetBrains Mono', opacity: 0.7 }}>LIVE</span></div>
+                                        ? <div style={styles.videoOff}><User size={32} /><span style={{ fontSize: '0.75rem', color: 'var(--text-dim)', fontFamily: 'Fira Code', marginTop: '0.4rem' }}>Camera off</span></div>
+                                        : <div style={styles.videoFeed}><div style={styles.videoScanline} /><span style={{ color: 'var(--neon-cyan)', fontSize: '0.7rem', fontFamily: 'Fira Code', opacity: 0.7 }}>LIVE</span></div>
                                     }
                                     <div style={styles.videoLabel}>NeonRider</div>
                                 </div>
@@ -211,10 +211,10 @@ const CommunityChat: React.FC<{ community: Community; onClose: () => void }> = (
                         <div style={styles.callControls}>
                             <div style={styles.callInfo}>
                                 <span style={{ width: 8, height: 8, borderRadius: '50%', background: callState.type === 'video' ? 'var(--neon-cyan)' : 'var(--neon-green)', display: 'inline-block', marginRight: '0.5rem', boxShadow: `0 0 6px ${callState.type === 'video' ? 'var(--neon-cyan)' : 'var(--neon-green)'}`, animation: 'pulse 1.5s infinite' }} />
-                                <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.78rem', color: 'var(--text-primary)' }}>
+                                <span style={{ fontFamily: 'Fira Code', fontSize: '0.78rem', color: 'var(--text-primary)' }}>
                                     <span style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>{callState.type === 'video' ? <><Video size={13} /> Video</> : <><Mic size={13} /> Audio</>} Call · {formatDuration(callState.duration)}</span>
                                 </span>
-                                <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.72rem', color: 'var(--text-dim)', marginLeft: '0.75rem' }}>
+                                <span style={{ fontFamily: 'Fira Code', fontSize: '0.72rem', color: 'var(--text-dim)', marginLeft: '0.75rem' }}>
                                     {callState.participants.join(', ')}
                                 </span>
                             </div>
@@ -307,10 +307,10 @@ const CommunityChat: React.FC<{ community: Community; onClose: () => void }> = (
                         <div style={{ fontSize: '2rem', marginBottom: '0.75rem' }}>
                             <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{showCallPrompt === 'video' ? <Video size={20} /> : <Mic size={20} />}</span>
                         </div>
-                        <h3 style={{ fontFamily: 'Orbitron, monospace', fontSize: '0.9rem', marginBottom: '0.5rem' }}>
+                        <h3 style={{ fontFamily: "'Syne', sans-serif", fontSize: '0.9rem', marginBottom: '0.5rem' }}>
                             Start {showCallPrompt} call?
                         </h3>
-                        <p style={{ fontSize: '0.8rem', color: 'var(--text-dim)', fontFamily: 'JetBrains Mono', marginBottom: '1.5rem' }}>
+                        <p style={{ fontSize: '0.8rem', color: 'var(--text-dim)', fontFamily: 'Fira Code', marginBottom: '1.5rem' }}>
                             This will notify all members of {community.name}
                         </p>
                         <div style={{ display: 'flex', gap: '0.75rem' }}>
@@ -346,19 +346,19 @@ const styles: Record<string, React.CSSProperties> = {
     videoFeed: { width: '100%', height: '100%', background: 'linear-gradient(135deg, #0a1628 0%, #0d1117 50%, #1a0533 100%)', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' },
     videoScanline: { position: 'absolute', left: 0, right: 0, height: '30%', background: 'linear-gradient(180deg, transparent, rgba(0,255,255,0.04), transparent)', animation: 'scanline 3s linear infinite' },
     videoOff: { width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#0a0d13' },
-    videoLabel: { position: 'absolute', bottom: 6, left: 8, fontSize: '0.7rem', fontFamily: 'JetBrains Mono', color: 'rgba(255,255,255,0.7)', background: 'rgba(0,0,0,0.5)', padding: '1px 6px', borderRadius: '4px' },
+    videoLabel: { position: 'absolute', bottom: 6, left: 8, fontSize: '0.7rem', fontFamily: 'Fira Code', color: 'rgba(255,255,255,0.7)', background: 'rgba(0,0,0,0.5)', padding: '1px 6px', borderRadius: '4px' },
     callControls: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.6rem 0.75rem', gap: '0.5rem' },
     callInfo: { display: 'flex', alignItems: 'center', flex: 1, minWidth: 0, overflow: 'hidden' },
     callBtn: { width: 30, height: 30, borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', transition: 'all 0.15s' },
     messages: { flex: 1, overflowY: 'auto', overflowX: 'hidden', padding: '0.75rem 1rem 0.5rem', display: 'flex', flexDirection: 'column' },
-    systemMsg: { textAlign: 'center', fontSize: '0.72rem', color: 'var(--text-dim)', fontFamily: 'JetBrains Mono', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0.75rem 0' },
+    systemMsg: { textAlign: 'center', fontSize: '0.72rem', color: 'var(--text-dim)', fontFamily: 'Fira Code', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0.75rem 0' },
     msgRow: { display: 'flex', alignItems: 'flex-end', gap: '0.5rem' },
-    avatar: { width: 28, height: 28, borderRadius: '8px', flexShrink: 0, background: 'linear-gradient(135deg, var(--neon-purple), var(--neon-cyan))', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.6rem', fontWeight: 700, color: '#000', fontFamily: 'JetBrains Mono', marginBottom: 2 },
-    senderName: { fontSize: '0.72rem', fontFamily: 'JetBrains Mono', color: 'var(--text-dim)', marginBottom: '0.2rem', marginLeft: '0.25rem' },
+    avatar: { width: 28, height: 28, borderRadius: '8px', flexShrink: 0, background: 'linear-gradient(135deg, var(--neon-purple), var(--neon-cyan))', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.6rem', fontWeight: 700, color: '#000', fontFamily: 'Fira Code', marginBottom: 2 },
+    senderName: { fontSize: '0.72rem', fontFamily: 'Fira Code', color: 'var(--text-dim)', marginBottom: '0.2rem', marginLeft: '0.25rem' },
     bubble: { padding: '0.55rem 0.75rem', borderRadius: '12px', fontSize: '0.85rem', lineHeight: 1.5, wordBreak: 'break-word', display: 'flex', alignItems: 'flex-end', gap: '0.5rem', flexWrap: 'wrap' },
     bubbleOther: { background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)', color: 'var(--text-primary)', borderBottomLeftRadius: 4 },
     bubbleOwn: { background: 'linear-gradient(135deg, rgba(0,255,255,0.18), rgba(0,255,255,0.08))', border: '1px solid rgba(0,255,255,0.2)', color: 'var(--text-primary)', borderBottomRightRadius: 4 },
-    msgTime: { fontSize: '0.65rem', color: 'var(--text-dim)', fontFamily: 'JetBrains Mono', marginLeft: 'auto', flexShrink: 0, alignSelf: 'flex-end' },
+    msgTime: { fontSize: '0.65rem', color: 'var(--text-dim)', fontFamily: 'Fira Code', marginLeft: 'auto', flexShrink: 0, alignSelf: 'flex-end' },
     inputRow: { display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem', borderTop: '1px solid', background: 'rgba(255,255,255,0.02)', flexShrink: 0 },
     input: { flex: 1, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '10px', padding: '0.55rem 0.85rem', color: 'var(--text-primary)', fontFamily: 'inherit', fontSize: '0.85rem', outline: 'none' },
     sendBtn: { width: 36, height: 36, borderRadius: '10px', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s', flexShrink: 0 },
@@ -470,11 +470,11 @@ const Communities: React.FC = () => {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2.5rem', paddingBottom: '2rem', borderBottom: '1px solid var(--border)', position: 'relative' }}>
                 <div style={{ position: 'absolute', bottom: -1, left: 0, width: 80, height: 1, background: 'var(--gradient-accent)' }} />
                 <div>
-                    <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem', color: 'var(--accent)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <div style={{ fontFamily: 'Fira Code', fontSize: '0.62rem', color: 'var(--accent)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                         <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--accent)', boxShadow: '0 0 8px var(--accent)', display: 'inline-block' }} />
                         Communities
                     </div>
-                    <h1 style={{ fontFamily: 'Rajdhani, sans-serif', fontSize: '2.4rem', fontWeight: 800, margin: 0, textTransform: 'uppercase' }}>All Communities</h1>
+                    <h1 style={{ fontFamily: "'Syne', sans-serif", fontSize: '2.4rem', fontWeight: 800, margin: 0, textTransform: 'uppercase' }}>All Communities</h1>
                 </div>
                 <button onClick={() => setShowCreate(true)} className="btn-gradient">+ Create</button>
             </div>
@@ -501,7 +501,7 @@ const Communities: React.FC = () => {
 
             {/* ── Community Grid ── */}
             {loading ? (
-                <div style={{ textAlign: 'center', color: 'var(--text-muted)', fontFamily: 'JetBrains Mono', padding: '4rem' }}>Loading communities...</div>
+                <div style={{ textAlign: 'center', color: 'var(--text-muted)', fontFamily: 'Fira Code', padding: '4rem' }}>Loading communities...</div>
             ) : communities.length === 0 ? (
                 <div style={{ textAlign: 'center', padding: '5rem 2rem', border: '1px dashed var(--border)', borderRadius: 16 }}>
                     <Globe size={48} style={{ marginBottom: '1rem', color: 'var(--text-dim)' }} />
@@ -532,10 +532,10 @@ const Communities: React.FC = () => {
                                         <div style={{ width: 44, height: 44, borderRadius: 12, background: `${accent}18`, border: `1px solid ${accent}40`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.3rem' }}>{communityIcon}</div>
                                         <div>
                                             <div style={{ fontWeight: 700, fontSize: '1rem' }}>{c.name}</div>
-                                            <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.63rem', color: accent, background: `${accent}15`, border: `1px solid ${accent}35`, padding: '2px 7px', borderRadius: 5 }}>{c.type}</span>
+                                            <span style={{ fontFamily: 'Fira Code', fontSize: '0.63rem', color: accent, background: `${accent}15`, border: `1px solid ${accent}35`, padding: '2px 7px', borderRadius: 5 }}>{c.type}</span>
                                         </div>
                                     </div>
-                                    {member && <span style={{ fontSize: '0.63rem', fontFamily: 'JetBrains Mono', background: 'var(--success-soft)', border: '1px solid var(--success-border)', color: 'var(--success)', padding: '2px 8px', borderRadius: 6 }}>Joined</span>}
+                                    {member && <span style={{ fontSize: '0.63rem', fontFamily: 'Fira Code', background: 'var(--success-soft)', border: '1px solid var(--success-border)', color: 'var(--success)', padding: '2px 8px', borderRadius: 6 }}>Joined</span>}
                                 </div>
 
                                 {/* Description */}
@@ -546,8 +546,8 @@ const Communities: React.FC = () => {
                                 {/* Member bar */}
                                 <div>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.4rem' }}>
-                                        <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.68rem', color: 'var(--text-muted)' }}>Members</span>
-                                        <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.68rem', color: 'var(--text-secondary)' }}>{memberCount}</span>
+                                        <span style={{ fontFamily: 'Fira Code', fontSize: '0.68rem', color: 'var(--text-muted)' }}>Members</span>
+                                        <span style={{ fontFamily: 'Fira Code', fontSize: '0.68rem', color: 'var(--text-secondary)' }}>{memberCount}</span>
                                     </div>
                                     <div style={{ height: 5, background: 'rgba(255,255,255,0.05)', borderRadius: 99, overflow: 'hidden' }}>
                                         <div style={{ height: '100%', width: `${Math.min(100, memberCount * 10)}%`, background: accent, borderRadius: 99, transition: 'width 0.8s ease' }} />
@@ -559,7 +559,7 @@ const Communities: React.FC = () => {
                                     {member ? (
                                         <button onClick={() => setActive(c)} className="btn-gradient" style={{ width: '100%' }}>Open Chat →</button>
                                     ) : isPending ? (
-                                        <div style={{ textAlign: 'center', padding: '0.6rem', background: 'var(--warning-soft)', border: '1px solid var(--warning-border)', borderRadius: 8, color: 'var(--warning)', fontFamily: 'JetBrains Mono', fontSize: '0.75rem' }}>⏳ Pending Approval</div>
+                                        <div style={{ textAlign: 'center', padding: '0.6rem', background: 'var(--warning-soft)', border: '1px solid var(--warning-border)', borderRadius: 8, color: 'var(--warning)', fontFamily: 'Fira Code', fontSize: '0.75rem' }}>⏳ Pending Approval</div>
                                     ) : (
                                         <button onClick={() => handleJoin(c)} disabled={isRequesting} className="btn-outline" style={{ width: '100%' }}>{isRequesting ? 'Sending...' : 'Request to Join'}</button>
                                     )}

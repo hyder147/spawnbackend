@@ -416,14 +416,14 @@ const Messages: React.FC = () => {
                 <div className="messages-sidebar" style={{ width: '280px', flexShrink: 0, background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '12px', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
                     <div style={{ padding: '1rem', borderBottom: '1px solid var(--border)' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                            <h2 style={{ margin: 0, fontSize: '0.9rem', fontFamily: 'Orbitron, monospace' }}>Messages</h2>
+                            <h2 style={{ margin: 0, fontSize: '0.9rem', fontFamily: "'Syne', sans-serif" }}>Messages</h2>
                             <button className="btn-gradient" style={{ fontSize: '0.72rem', padding: '0.3rem 0.6rem', display: 'flex', alignItems: 'center', gap: '0.3rem' }} onClick={() => setShowNewChat(true)}><Edit3 size={12} /> New</button>
                         </div>
                         <input className="form-control" placeholder="Search..." style={{ fontSize: '0.82rem', padding: '0.5rem 0.75rem' }} value={search} onChange={e => setSearch(e.target.value)} />
                     </div>
                     <div style={{ flex: 1, overflowY: 'auto' }}>
                         {filtered.length === 0
-                            ? <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem', fontFamily: 'JetBrains Mono', padding: '1rem', textAlign: 'center' }}>No conversations yet</p>
+                            ? <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem', fontFamily: 'Fira Code', padding: '1rem', textAlign: 'center' }}>No conversations yet</p>
                             : filtered.map(conv => (
                                 <div key={conv.id} onClick={() => selectConversation(conv)} style={{
                                     padding: '0.85rem 1rem', cursor: 'pointer', borderBottom: '1px solid var(--border)',
@@ -449,7 +449,7 @@ const Messages: React.FC = () => {
                             {/* Header with call buttons */}
                             <div style={{ padding: '0.85rem 1.25rem', borderBottom: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                                 <div className="avatar" style={{ width: 38, height: 38, fontSize: '0.9rem' }}>{activeConvName[0]?.toUpperCase()}</div>
-                                <div style={{ fontWeight: 600, fontFamily: 'Orbitron, monospace', fontSize: '0.9rem', flex: 1 }}>{activeConvName}</div>
+                                <div style={{ fontWeight: 600, fontFamily: "'Syne', sans-serif", fontSize: '0.9rem', flex: 1 }}>{activeConvName}</div>
 
                                 {/* Call action buttons — only show when idle */}
                                 {callState === 'idle' && (
@@ -469,7 +469,7 @@ const Messages: React.FC = () => {
 
                                 {/* Call status badge */}
                                 {callState !== 'idle' && (
-                                    <div style={{ fontSize: '0.75rem', fontFamily: 'JetBrains Mono', color: 'var(--success)', background: 'rgba(52,211,153,0.08)', border: '1px solid rgba(52,211,153,0.2)', borderRadius: '6px', padding: '0.3rem 0.7rem' }}>
+                                    <div style={{ fontSize: '0.75rem', fontFamily: 'Fira Code', color: 'var(--success)', background: 'rgba(52,211,153,0.08)', border: '1px solid rgba(52,211,153,0.2)', borderRadius: '6px', padding: '0.3rem 0.7rem' }}>
                                         {callState === 'outgoing' ? <><PhoneCall size={12} /> Calling…</> : callState === 'incoming' ? <><PhoneIncoming size={12} /> Incoming…</> : <><span style={{ color: 'var(--success)', fontSize: 8 }}>●</span> {formatDuration(callDuration)}</>}
                                     </div>
                                 )}
@@ -495,7 +495,7 @@ const Messages: React.FC = () => {
                                                     width: '100%', padding: '0.75rem 1rem', background: 'transparent',
                                                     border: 'none', cursor: 'pointer', color: 'var(--danger)',
                                                     display: 'flex', alignItems: 'center', gap: '0.6rem',
-                                                    fontSize: '0.85rem', fontFamily: 'JetBrains Mono',
+                                                    fontSize: '0.85rem', fontFamily: 'Fira Code',
                                                     transition: 'background 0.15s',
                                                 }}
                                                 onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,107,107,0.1)')}
@@ -510,7 +510,7 @@ const Messages: React.FC = () => {
                                                     width: '100%', padding: '0.75rem 1rem', background: 'transparent',
                                                     border: 'none', cursor: 'pointer', color: 'var(--warning)',
                                                     display: 'flex', alignItems: 'center', gap: '0.6rem',
-                                                    fontSize: '0.85rem', fontFamily: 'JetBrains Mono',
+                                                    fontSize: '0.85rem', fontFamily: 'Fira Code',
                                                     transition: 'background 0.15s',
                                                 }}
                                                 onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,169,77,0.1)')}
@@ -543,9 +543,9 @@ const Messages: React.FC = () => {
                                     {(callType === 'audio' && callState !== 'incoming') && (
                                         <div style={{ textAlign: 'center' }}>
                                             <div className="avatar" style={{ width: 80, height: 80, fontSize: '2rem', margin: '0 auto 0.75rem' }}>{activeConvName[0]?.toUpperCase()}</div>
-                                            <div style={{ fontFamily: 'Orbitron, monospace', fontSize: '1rem', color: 'var(--accent)' }}>{activeConvName}</div>
-                                            {callState === 'outgoing' && <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.5rem', fontFamily: 'JetBrains Mono' }}>Ringing…</div>}
-                                            {callState === 'connected' && <div style={{ fontSize: '0.85rem', color: 'var(--success)', marginTop: '0.5rem', fontFamily: 'JetBrains Mono' }}>{formatDuration(callDuration)}</div>}
+                                            <div style={{ fontFamily: "'Syne', sans-serif", fontSize: '1rem', color: 'var(--accent)' }}>{activeConvName}</div>
+                                            {callState === 'outgoing' && <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.5rem', fontFamily: 'Fira Code' }}>Ringing…</div>}
+                                            {callState === 'connected' && <div style={{ fontSize: '0.85rem', color: 'var(--success)', marginTop: '0.5rem', fontFamily: 'Fira Code' }}>{formatDuration(callDuration)}</div>}
                                         </div>
                                     )}
 
@@ -553,8 +553,8 @@ const Messages: React.FC = () => {
                                     {callState === 'incoming' && (
                                         <div style={{ textAlign: 'center' }}>
                                             <div className="avatar" style={{ width: 80, height: 80, fontSize: '2rem', margin: '0 auto 0.75rem' }}>{activeConvName[0]?.toUpperCase()}</div>
-                                            <div style={{ fontFamily: 'Orbitron, monospace', fontSize: '1rem', color: 'var(--accent)' }}>{activeConvName}</div>
-                                            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.4rem', fontFamily: 'JetBrains Mono' }}>
+                                            <div style={{ fontFamily: "'Syne', sans-serif", fontSize: '1rem', color: 'var(--accent)' }}>{activeConvName}</div>
+                                            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.4rem', fontFamily: 'Fira Code' }}>
                                                 Incoming {incomingCallType} call…
                                             </div>
                                         </div>
@@ -569,22 +569,22 @@ const Messages: React.FC = () => {
                                             </>
                                         ) : (
                                             <>
-                                                <button style={{ ...callBtnStyle(isMuted ? '#444' : 'rgba(0,245,255,0.15)'), border: '1px solid rgba(0,245,255,0.25)' }} onClick={toggleMute} title={isMuted ? 'Unmute' : 'Mute'}>
+                                                <button style={{ ...callBtnStyle(isMuted ? '#444' : 'rgba(0,245,212,0.15)'), border: '1px solid rgba(0,245,212,0.25)' }} onClick={toggleMute} title={isMuted ? 'Unmute' : 'Mute'}>
                                                     {isMuted ? <MicOff size={18} /> : <Mic size={18} />}
                                                 </button>
                                                 {(callType === 'video') && (
-                                                    <button style={{ ...callBtnStyle(isCamOff ? '#444' : 'rgba(0,245,255,0.15)'), border: '1px solid rgba(0,245,255,0.25)' }} onClick={toggleCam} title={isCamOff ? 'Turn cam on' : 'Turn cam off'}>
+                                                    <button style={{ ...callBtnStyle(isCamOff ? '#444' : 'rgba(0,245,212,0.15)'), border: '1px solid rgba(0,245,212,0.25)' }} onClick={toggleCam} title={isCamOff ? 'Turn cam on' : 'Turn cam off'}>
                                                         {isCamOff ? <CameraOff size={18} /> : <Camera size={18} />}
                                                     </button>
                                                 )}
-                                                <button style={{ ...callBtnStyle(isSpeakerOff ? '#444' : 'rgba(0,245,255,0.15)'), border: '1px solid rgba(0,245,255,0.25)' }} onClick={toggleSpeaker} title={isSpeakerOff ? 'Speaker on' : 'Speaker off'}>
+                                                <button style={{ ...callBtnStyle(isSpeakerOff ? '#444' : 'rgba(0,245,212,0.15)'), border: '1px solid rgba(0,245,212,0.25)' }} onClick={toggleSpeaker} title={isSpeakerOff ? 'Speaker on' : 'Speaker off'}>
                                                     {isSpeakerOff ? <VolumeX size={18} /> : <Volume2 size={18} />}
                                                 </button>
                                                 <button style={callBtnStyle('linear-gradient(135deg,var(--neon-pink),var(--caution))')} onClick={() => hangUp()} title="Hang up"><PhoneOff size={18} /></button>
                                             </>
                                         )}
                                     </div>
-                                    <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontFamily: 'JetBrains Mono', textAlign: 'center' }}>
+                                    <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontFamily: 'Fira Code', textAlign: 'center' }}>
                                         P2P • WebRTC • End-to-End Encrypted
                                     </div>
                                 </div>
@@ -602,8 +602,8 @@ const Messages: React.FC = () => {
                                             {!isMe && <div className="avatar" style={{ width: 28, height: 28, fontSize: '0.65rem', flexShrink: 0 }}>{activeConvName[0]}</div>}
                                             <div style={{
                                                 maxWidth: '65%',
-                                                background: isMe ? 'rgba(0,245,255,0.1)' : 'rgba(255,255,255,0.05)',
-                                                border: `1px solid ${isMe ? 'rgba(0,245,255,0.25)' : 'var(--border)'}`,
+                                                background: isMe ? 'rgba(0,245,212,0.1)' : 'rgba(255,255,255,0.05)',
+                                                border: `1px solid ${isMe ? 'rgba(0,245,212,0.25)' : 'var(--border)'}`,
                                                 borderRadius: isMe ? '12px 12px 2px 12px' : '12px 12px 12px 2px',
                                                 padding: '0.6rem 0.9rem',
                                             }}>
@@ -612,7 +612,7 @@ const Messages: React.FC = () => {
                                                         <span style={{ fontSize: '1.4rem', display: 'flex' }}><Paperclip size={20} /></span>
                                                         <div>
                                                             <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--accent)' }}>{parsed.fileName}</div>
-                                                            <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontFamily: 'JetBrains Mono' }}>
+                                                            <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontFamily: 'Fira Code' }}>
                                                                 {parsed.fileSize ? formatBytes(parsed.fileSize) : ''} • tap to download
                                                             </div>
                                                         </div>
@@ -620,7 +620,7 @@ const Messages: React.FC = () => {
                                                 ) : (
                                                     <p style={{ margin: 0, fontSize: '0.88rem', lineHeight: 1.45 }}>{parsed.content}</p>
                                                 )}
-                                                <p style={{ margin: '0.25rem 0 0', fontSize: '0.68rem', color: 'var(--text-muted)', textAlign: 'right', fontFamily: 'JetBrains Mono' }}>{timeAgo(parsed.sentAt)}</p>
+                                                <p style={{ margin: '0.25rem 0 0', fontSize: '0.68rem', color: 'var(--text-muted)', textAlign: 'right', fontFamily: 'Fira Code' }}>{timeAgo(parsed.sentAt)}</p>
                                             </div>
                                         </div>
                                     );
@@ -649,7 +649,7 @@ const Messages: React.FC = () => {
                             </div>
                         </>
                     ) : (
-                        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)', fontFamily: 'JetBrains Mono', fontSize: '0.85rem' }}>
+                        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)', fontFamily: 'Fira Code', fontSize: '0.85rem' }}>
                             Select a conversation or start a new one
                         </div>
                     )}
@@ -681,7 +681,7 @@ const Messages: React.FC = () => {
                     <div className="modal-box" onClick={e => e.stopPropagation()} style={{ maxWidth: 380 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1rem' }}>
                             <ShieldX size={20} color="var(--danger)" />
-                            <h2 style={{ margin: 0, fontSize: '1rem', fontFamily: 'Orbitron, monospace', color: 'var(--danger)' }}>Block User</h2>
+                            <h2 style={{ margin: 0, fontSize: '1rem', fontFamily: "'Syne', sans-serif", color: 'var(--danger)' }}>Block User</h2>
                         </div>
                         <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', lineHeight: 1.55, marginBottom: '1.5rem' }}>
                             Are you sure you want to block <strong style={{ color: 'var(--text-primary)' }}>{activeConvName}</strong>? They won't be able to send you messages.
@@ -689,7 +689,7 @@ const Messages: React.FC = () => {
                         <div style={{ display: 'flex', gap: '0.75rem' }}>
                             <button
                                 onClick={handleBlock}
-                                style={{ flex: 1, padding: '0.65rem', borderRadius: 8, border: 'none', cursor: 'pointer', background: 'linear-gradient(135deg,var(--neon-pink),#ff4444)', color: '#fff', fontFamily: 'JetBrains Mono', fontSize: '0.85rem', fontWeight: 600 }}
+                                style={{ flex: 1, padding: '0.65rem', borderRadius: 8, border: 'none', cursor: 'pointer', background: 'linear-gradient(135deg,var(--neon-pink),var(--danger))', color: '#fff', fontFamily: 'Fira Code', fontSize: '0.85rem', fontWeight: 600 }}
                             >Block</button>
                             <button className="btn-outline" style={{ flex: 1 }} onClick={() => setShowBlockConfirm(false)}>Cancel</button>
                         </div>
@@ -703,7 +703,7 @@ const Messages: React.FC = () => {
                     <div className="modal-box" onClick={e => e.stopPropagation()} style={{ maxWidth: 380 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1rem' }}>
                             <Flag size={20} color="var(--warning)" />
-                            <h2 style={{ margin: 0, fontSize: '1rem', fontFamily: 'Orbitron, monospace', color: 'var(--warning)' }}>Report User</h2>
+                            <h2 style={{ margin: 0, fontSize: '1rem', fontFamily: "'Syne', sans-serif", color: 'var(--warning)' }}>Report User</h2>
                         </div>
                         <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', lineHeight: 1.55, marginBottom: '1.5rem' }}>
                             Report <strong style={{ color: 'var(--text-primary)' }}>{activeConvName}</strong> for inappropriate behavior? Our moderation team will review this.
@@ -711,7 +711,7 @@ const Messages: React.FC = () => {
                         <div style={{ display: 'flex', gap: '0.75rem' }}>
                             <button
                                 onClick={handleReport}
-                                style={{ flex: 1, padding: '0.65rem', borderRadius: 8, border: 'none', cursor: 'pointer', background: 'linear-gradient(135deg,var(--warning),var(--caution))', color: '#fff', fontFamily: 'JetBrains Mono', fontSize: '0.85rem', fontWeight: 600 }}
+                                style={{ flex: 1, padding: '0.65rem', borderRadius: 8, border: 'none', cursor: 'pointer', background: 'linear-gradient(135deg,var(--warning),var(--caution))', color: '#fff', fontFamily: 'Fira Code', fontSize: '0.85rem', fontWeight: 600 }}
                             >Report</button>
                             <button className="btn-outline" style={{ flex: 1 }} onClick={() => setShowReportConfirm(false)}>Cancel</button>
                         </div>

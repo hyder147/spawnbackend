@@ -96,7 +96,7 @@ const ResetPassword: React.FC = () => {
                     <h1 style={styles.title}>RESET PASSWORD</h1>
                     <p style={styles.subtitle}>
                         Enter the code sent to{' '}
-                        <span style={{ color: 'var(--neon-cyan)', fontFamily: "'JetBrains Mono', monospace" }}>
+                        <span style={{ color: 'var(--neon-cyan)', fontFamily: "'Fira Code', monospace" }}>
                             {email || 'your email'}
                         </span>
                         , then choose a new password.
@@ -145,7 +145,7 @@ const ResetPassword: React.FC = () => {
                                         ...styles.otpInput,
                                         borderColor: digit ? 'var(--neon-cyan)' : 'var(--border-dim)',
                                         color: digit ? 'var(--neon-cyan)' : 'var(--text-primary)',
-                                        boxShadow: digit ? '0 0 10px rgba(0,245,255,0.2)' : 'none',
+                                        boxShadow: digit ? '0 0 10px rgba(0,245,212,0.2)' : 'none',
                                     }}
                                     autoFocus={i === 0}
                                 />
@@ -236,7 +236,7 @@ const styles: Record<string, React.CSSProperties> = {
     },
     header: { textAlign: 'center', marginBottom: '2rem' },
     logo: {
-        fontFamily: "'Orbitron', monospace",
+        fontFamily: "'Syne', sans-serif",
         fontSize: '1.1rem',
         fontWeight: 900,
         background: 'var(--primary-gradient)',
@@ -247,20 +247,20 @@ const styles: Record<string, React.CSSProperties> = {
         marginBottom: '0.5rem',
     },
     tagline: {
-        fontFamily: "'JetBrains Mono', monospace",
+        fontFamily: "'Fira Code', monospace",
         fontSize: '0.65rem',
         color: 'var(--text-dim)',
         letterSpacing: '2px',
         marginBottom: '1rem',
     },
     title: {
-        fontFamily: "'Orbitron', monospace",
+        fontFamily: "'Syne', sans-serif",
         fontSize: '1.4rem',
         fontWeight: 700,
         color: 'var(--neon-cyan)',
         margin: '0 0 0.75rem',
         letterSpacing: '3px',
-        textShadow: '0 0 20px rgba(0,245,255,0.4)',
+        textShadow: '0 0 20px rgba(0,245,212,0.4)',
     },
     subtitle: {
         color: 'var(--text-secondary)',
@@ -271,7 +271,7 @@ const styles: Record<string, React.CSSProperties> = {
     form: { display: 'flex', flexDirection: 'column', gap: '1.25rem' },
     field: { display: 'flex', flexDirection: 'column', gap: '0.4rem' },
     label: {
-        fontFamily: "'JetBrains Mono', monospace",
+        fontFamily: "'Fira Code', monospace",
         fontSize: '0.65rem',
         color: 'var(--neon-cyan)',
         letterSpacing: '2px',
@@ -289,7 +289,7 @@ const styles: Record<string, React.CSSProperties> = {
         border: '1px solid var(--border-dim)',
         borderRadius: '8px',
         color: 'var(--text-primary)',
-        fontFamily: "'Orbitron', monospace",
+        fontFamily: "'Syne', sans-serif",
         fontSize: '1.3rem',
         fontWeight: 700,
         outline: 'none',
@@ -312,7 +312,7 @@ const styles: Record<string, React.CSSProperties> = {
         borderRadius: '6px',
         padding: '0.75rem 0.9rem 0.75rem 2.5rem',
         color: 'var(--text-primary)',
-        fontFamily: "'JetBrains Mono', monospace",
+        fontFamily: "'Fira Code', monospace",
         fontSize: '0.9rem',
         outline: 'none',
         boxSizing: 'border-box',
@@ -335,13 +335,13 @@ const styles: Record<string, React.CSSProperties> = {
         border: 'none',
         borderRadius: '6px',
         color: '#000',
-        fontFamily: "'Orbitron', monospace",
+        fontFamily: "'Syne', sans-serif",
         fontWeight: 700,
         fontSize: '0.8rem',
         letterSpacing: '2px',
         cursor: 'pointer',
         transition: 'opacity 0.2s',
-        boxShadow: '0 0 20px rgba(0,245,255,0.2)',
+        boxShadow: '0 0 20px rgba(0,245,212,0.2)',
     },
     spinnerRow: { display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' },
     spinner: {
@@ -361,16 +361,16 @@ const styles: Record<string, React.CSSProperties> = {
         fontSize: '0.85rem',
         color: 'var(--text-primary)',
         marginBottom: '0.5rem',
-        fontFamily: "'JetBrains Mono', monospace",
+        fontFamily: "'Fira Code', monospace",
     },
     successIcon: {
         fontSize: '3rem',
         color: 'var(--neon-green)',
         marginBottom: '1rem',
-        textShadow: '0 0 30px rgba(0,255,136,0.6)',
+        textShadow: '0 0 30px rgba(52,211,153,0.6)',
     },
     successTitle: {
-        fontFamily: "'Orbitron', monospace",
+        fontFamily: "'Syne', sans-serif",
         fontSize: '1.2rem',
         fontWeight: 700,
         color: 'var(--neon-green)',
@@ -399,7 +399,7 @@ const styles: Record<string, React.CSSProperties> = {
     backLink: {
         color: 'var(--text-dim)',
         textDecoration: 'none',
-        fontFamily: "'JetBrains Mono', monospace",
+        fontFamily: "'Fira Code', monospace",
         fontSize: '0.78rem',
     },
     scanline: {

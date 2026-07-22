@@ -47,8 +47,8 @@ interface LeaderboardEntry {
 const badgeStyle: Record<string, { bg: string; color: string }> = {
     EliteHunter: { bg: 'rgba(255,200,0,0.15)', color: 'var(--warning)' },
     GoldTester: { bg: 'rgba(255,165,0,0.15)', color: '#ffa500' },
-    PriorityTester: { bg: 'rgba(34,229,229,0.15)', color: '#22e5e5' },
-    BugHunter: { bg: 'rgba(0,255,136,0.12)', color: 'var(--success)' },
+    PriorityTester: { bg: 'rgba(0,245,212,0.15)', color: '#00f5d4' },
+    BugHunter: { bg: 'rgba(52,211,153,0.12)', color: 'var(--success)' },
 };
 
 const rewardLabels: Record<string, string> = {
@@ -223,13 +223,13 @@ const CrashBounty: React.FC = () => {
     // ─── UI ─────────────────────────────────────────────────────────────────────
 
     return (
-        <div className="page-shell" style={{ padding: '2rem', maxWidth: '1100px', margin: '0 auto', fontFamily: 'JetBrains Mono, monospace' }}>
+        <div className="page-shell" style={{ padding: '2rem', maxWidth: '1100px', margin: '0 auto', fontFamily: 'Fira Code, monospace' }}>
 
             {/* Header */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
                 <Target size={32} color="var(--neon-cyan)" />
                 <div>
-                    <h1 style={{ margin: 0, fontFamily: 'Orbitron, monospace', fontSize: '1.6rem', color: 'var(--accent)' }}>
+                    <h1 style={{ margin: 0, fontFamily: "'Syne', sans-serif", fontSize: '1.6rem', color: 'var(--accent)' }}>
                         CRASH BOUNTY
                     </h1>
                     <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.85rem' }}>
@@ -255,7 +255,7 @@ const CrashBounty: React.FC = () => {
                 {(['bounties', 'leaderboard'] as const).map(tab => (
                     <button key={tab} onClick={() => setActiveTab(tab)} style={{
                         padding: '0.5rem 1.2rem', borderRadius: '8px', border: 'none', cursor: 'pointer',
-                        fontFamily: 'JetBrains Mono, monospace', fontSize: '0.85rem', textTransform: 'uppercase',
+                        fontFamily: 'Fira Code, monospace', fontSize: '0.85rem', textTransform: 'uppercase',
                         background: activeTab === tab ? 'var(--accent)' : 'var(--card-bg)',
                         color: activeTab === tab ? '#000' : 'var(--text)'
                     }}>
@@ -267,7 +267,7 @@ const CrashBounty: React.FC = () => {
             {/* ── LEADERBOARD TAB ─────────────────────────────────────────────── */}
             {activeTab === 'leaderboard' && (
                 <div>
-                    <h2 style={{ fontFamily: 'Orbitron, monospace', fontSize: '1rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>
+                    <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: '1rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>
                         TOP BUG HUNTERS
                     </h2>
                     {leaderboard.length === 0 ? (
@@ -334,14 +334,14 @@ const CrashBounty: React.FC = () => {
                             background: 'var(--card-bg)', border: '1px solid var(--border)',
                             borderRadius: '12px', padding: '1.5rem', marginBottom: '2rem'
                         }}>
-                            <h3 style={{ margin: '0 0 1.25rem', fontFamily: 'Orbitron, monospace', fontSize: '0.95rem', color: 'var(--accent)' }}>
+                            <h3 style={{ margin: '0 0 1.25rem', fontFamily: "'Syne', sans-serif", fontSize: '0.95rem', color: 'var(--accent)' }}>
                                 NEW BOUNTY
                             </h3>
                             <div style={{ display: 'grid', gap: '1rem' }}>
                                 <div>
                                     <label style={{ color: 'var(--text-muted)', fontSize: '0.8rem', display: 'block', marginBottom: '0.4rem' }}>Game</label>
                                     <select value={createForm.gameId} onChange={e => setCreateForm(f => ({ ...f, gameId: e.target.value }))}
-                                        style={{ width: '100%', background: 'var(--card-bg)', border: '1px solid var(--border)', color: 'var(--text)', padding: '0.6rem', borderRadius: '6px', fontFamily: 'JetBrains Mono, monospace' }}>
+                                        style={{ width: '100%', background: 'var(--card-bg)', border: '1px solid var(--border)', color: 'var(--text)', padding: '0.6rem', borderRadius: '6px', fontFamily: 'Fira Code, monospace' }}>
                                         {myGames.map(g => <option key={g.id} value={g.id}>{g.title}</option>)}
                                     </select>
                                 </div>
@@ -352,7 +352,7 @@ const CrashBounty: React.FC = () => {
                                     </label>
                                     <textarea value={createForm.symptom} onChange={e => setCreateForm(f => ({ ...f, symptom: e.target.value }))}
                                         placeholder="e.g. Game freezes when entering Level 3 under a specific condition..."
-                                        rows={3} style={{ width: '100%', background: 'var(--card-bg)', border: '1px solid var(--border)', color: 'var(--text)', padding: '0.7rem', borderRadius: '6px', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.85rem', resize: 'vertical', boxSizing: 'border-box' }} />
+                                        rows={3} style={{ width: '100%', background: 'var(--card-bg)', border: '1px solid var(--border)', color: 'var(--text)', padding: '0.7rem', borderRadius: '6px', fontFamily: 'Fira Code, monospace', fontSize: '0.85rem', resize: 'vertical', boxSizing: 'border-box' }} />
                                 </div>
                                 <div>
                                     <label style={{ color: 'var(--text-muted)', fontSize: '0.8rem', display: 'block', marginBottom: '0.4rem' }}>
@@ -361,12 +361,12 @@ const CrashBounty: React.FC = () => {
                                     </label>
                                     <textarea value={createForm.privateContext} onChange={e => setCreateForm(f => ({ ...f, privateContext: e.target.value }))}
                                         placeholder="Your internal notes about what might be causing it..."
-                                        rows={2} style={{ width: '100%', background: 'var(--card-bg)', border: '1px solid var(--border)', color: 'var(--text)', padding: '0.7rem', borderRadius: '6px', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.85rem', resize: 'vertical', boxSizing: 'border-box' }} />
+                                        rows={2} style={{ width: '100%', background: 'var(--card-bg)', border: '1px solid var(--border)', color: 'var(--text)', padding: '0.7rem', borderRadius: '6px', fontFamily: 'Fira Code, monospace', fontSize: '0.85rem', resize: 'vertical', boxSizing: 'border-box' }} />
                                 </div>
                                 <div>
                                     <label style={{ color: 'var(--text-muted)', fontSize: '0.8rem', display: 'block', marginBottom: '0.4rem' }}>Reward Type</label>
                                     <select value={createForm.rewardType} onChange={e => setCreateForm(f => ({ ...f, rewardType: e.target.value }))}
-                                        style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', color: 'var(--text)', padding: '0.6rem', borderRadius: '6px', fontFamily: 'JetBrains Mono, monospace' }}>
+                                        style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', color: 'var(--text)', padding: '0.6rem', borderRadius: '6px', fontFamily: 'Fira Code, monospace' }}>
                                         {Object.entries(rewardLabels).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
                                     </select>
                                 </div>
@@ -381,7 +381,7 @@ const CrashBounty: React.FC = () => {
                     )}
 
                     {/* My Bounties List */}
-                    <h3 style={{ fontFamily: 'Orbitron, monospace', fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>
+                    <h3 style={{ fontFamily: "'Syne', sans-serif", fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>
                         YOUR BOUNTIES ({myBounties.length})
                     </h3>
                     {myBounties.length === 0 ? (
@@ -391,7 +391,7 @@ const CrashBounty: React.FC = () => {
                             {myBounties.map(b => (
                                 <div key={b.id} style={{
                                     background: 'var(--card-bg)',
-                                    border: `1px solid ${b.status === 'Open' ? 'rgba(0,255,136,0.25)' : b.status === 'Claimed' ? 'rgba(255,200,0,0.3)' : 'var(--border)'}`,
+                                    border: `1px solid ${b.status === 'Open' ? 'rgba(52,211,153,0.25)' : b.status === 'Claimed' ? 'rgba(255,200,0,0.3)' : 'var(--border)'}`,
                                     borderRadius: '10px', overflow: 'hidden'
                                 }}>
                                     <div style={{ padding: '1rem 1.25rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -399,7 +399,7 @@ const CrashBounty: React.FC = () => {
                                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.4rem' }}>
                                                 <span style={{
                                                     fontSize: '0.7rem', padding: '0.15rem 0.5rem', borderRadius: '4px',
-                                                    background: b.status === 'Open' ? 'rgba(0,255,136,0.12)' : b.status === 'Claimed' ? 'rgba(255,200,0,0.12)' : 'rgba(255,255,255,0.06)',
+                                                    background: b.status === 'Open' ? 'rgba(52,211,153,0.12)' : b.status === 'Claimed' ? 'rgba(255,200,0,0.12)' : 'rgba(255,255,255,0.06)',
                                                     color: b.status === 'Open' ? 'var(--success)' : b.status === 'Claimed' ? 'var(--warning)' : 'var(--text-muted)'
                                                 }}>
                                                     {b.status.toUpperCase()}
@@ -417,12 +417,12 @@ const CrashBounty: React.FC = () => {
                                             {b.status === 'Open' && (
                                                 <>
                                                     <button onClick={() => setSelectedBountyId(selectedBountyId === b.id ? null : b.id)}
-                                                        style={{ padding: '0.4rem 0.8rem', borderRadius: '6px', border: '1px solid var(--border)', background: 'transparent', color: 'var(--text)', cursor: 'pointer', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.78rem' }}>
+                                                        style={{ padding: '0.4rem 0.8rem', borderRadius: '6px', border: '1px solid var(--border)', background: 'transparent', color: 'var(--text)', cursor: 'pointer', fontFamily: 'Fira Code, monospace', fontSize: '0.78rem' }}>
                                                         {selectedBountyId === b.id ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
                                                         &nbsp;Submissions
                                                     </button>
                                                     <button onClick={() => handleClose(b.id)} disabled={loading}
-                                                        style={{ padding: '0.4rem 0.8rem', borderRadius: '6px', border: '1px solid var(--danger)', background: 'transparent', color: 'var(--danger)', cursor: 'pointer', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.78rem' }}>
+                                                        style={{ padding: '0.4rem 0.8rem', borderRadius: '6px', border: '1px solid var(--danger)', background: 'transparent', color: 'var(--danger)', cursor: 'pointer', fontFamily: 'Fira Code, monospace', fontSize: '0.78rem' }}>
                                                         Close
                                                     </button>
                                                 </>
@@ -456,7 +456,7 @@ const CrashBounty: React.FC = () => {
                                                             {sub.status === 'Pending' && (
                                                                 <button onClick={() => handleAccept(b.id, sub.id, sub.testerUsername)}
                                                                     disabled={loading}
-                                                                    style={{ marginTop: '0.75rem', padding: '0.4rem 0.9rem', borderRadius: '6px', border: 'none', background: 'var(--accent)', color: '#000', cursor: 'pointer', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.8rem', fontWeight: 700 }}>
+                                                                    style={{ marginTop: '0.75rem', padding: '0.4rem 0.9rem', borderRadius: '6px', border: 'none', background: 'var(--accent)', color: '#000', cursor: 'pointer', fontFamily: 'Fira Code, monospace', fontSize: '0.8rem', fontWeight: 700 }}>
                                                                     ✓ Accept & Award
                                                                 </button>
                                                             )}
@@ -479,7 +479,7 @@ const CrashBounty: React.FC = () => {
             {/* ── BOUNTIES TAB — GAMER ────────────────────────────────────────── */}
             {activeTab === 'bounties' && isGamer && (
                 <div>
-                    <h3 style={{ fontFamily: 'Orbitron, monospace', fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>
+                    <h3 style={{ fontFamily: "'Syne', sans-serif", fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>
                         OPEN BOUNTIES ({allBounties.length})
                     </h3>
                     {allBounties.length === 0 ? (
@@ -494,13 +494,13 @@ const CrashBounty: React.FC = () => {
                                 const isExpanded = expandedBountyId === b.id;
                                 return (
                                     <div key={b.id} style={{
-                                        background: 'var(--card-bg)', border: '1px solid rgba(0,255,136,0.2)',
+                                        background: 'var(--card-bg)', border: '1px solid rgba(52,211,153,0.2)',
                                         borderRadius: '10px', overflow: 'hidden'
                                     }}>
                                         <div style={{ padding: '1rem 1.25rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                                             <div style={{ flex: 1 }}>
                                                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.5rem' }}>
-                                                    <span style={{ color: 'var(--success)', fontSize: '0.75rem', background: 'rgba(0,255,136,0.1)', padding: '0.15rem 0.5rem', borderRadius: '4px' }}>
+                                                    <span style={{ color: 'var(--success)', fontSize: '0.75rem', background: 'rgba(52,211,153,0.1)', padding: '0.15rem 0.5rem', borderRadius: '4px' }}>
                                                         OPEN
                                                     </span>
                                                     <span style={{ color: 'var(--accent)', fontSize: '0.8rem' }}>{rewardLabels[b.rewardType]}</span>
@@ -508,7 +508,7 @@ const CrashBounty: React.FC = () => {
                                                 <p style={{ margin: 0, color: 'var(--text)', fontSize: '0.9rem' }}>{b.symptom}</p>
                                             </div>
                                             <button onClick={() => setExpandedBountyId(isExpanded ? null : b.id)}
-                                                style={{ marginLeft: '1rem', padding: '0.45rem 0.9rem', borderRadius: '6px', border: '1px solid var(--neon-cyan)', background: 'transparent', color: 'var(--neon-cyan)', cursor: 'pointer', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.8rem', whiteSpace: 'nowrap' }}>
+                                                style={{ marginLeft: '1rem', padding: '0.45rem 0.9rem', borderRadius: '6px', border: '1px solid var(--neon-cyan)', background: 'transparent', color: 'var(--neon-cyan)', cursor: 'pointer', fontFamily: 'Fira Code, monospace', fontSize: '0.8rem', whiteSpace: 'nowrap' }}>
                                                 {isExpanded ? <ChevronUp size={13} /> : <><Send size={13} style={{ marginRight: '0.35rem' }} />Submit</>}
                                             </button>
                                         </div>
@@ -526,7 +526,7 @@ const CrashBounty: React.FC = () => {
                                                             onChange={e => setSubmitForm(f => ({ ...f, [b.id]: { ...form, reproSteps: e.target.value } }))}
                                                             placeholder="1. Launch the game&#10;2. Go to Level 3&#10;3. ..."
                                                             rows={5}
-                                                            style={{ width: '100%', background: 'var(--card-bg)', border: '1px solid var(--border)', color: 'var(--text)', padding: '0.7rem', borderRadius: '6px', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.85rem', resize: 'vertical', boxSizing: 'border-box' }} />
+                                                            style={{ width: '100%', background: 'var(--card-bg)', border: '1px solid var(--border)', color: 'var(--text)', padding: '0.7rem', borderRadius: '6px', fontFamily: 'Fira Code, monospace', fontSize: '0.85rem', resize: 'vertical', boxSizing: 'border-box' }} />
                                                     </div>
                                                     <div>
                                                         <label style={{ color: 'var(--text-muted)', fontSize: '0.8rem', display: 'block', marginBottom: '0.4rem' }}>
@@ -537,7 +537,7 @@ const CrashBounty: React.FC = () => {
                                                             value={form.evidenceUrl}
                                                             onChange={e => setSubmitForm(f => ({ ...f, [b.id]: { ...form, evidenceUrl: e.target.value } }))}
                                                             placeholder="https://..."
-                                                            style={{ width: '100%', background: 'var(--card-bg)', border: '1px solid var(--border)', color: 'var(--text)', padding: '0.6rem', borderRadius: '6px', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.85rem', boxSizing: 'border-box' }} />
+                                                            style={{ width: '100%', background: 'var(--card-bg)', border: '1px solid var(--border)', color: 'var(--text)', padding: '0.6rem', borderRadius: '6px', fontFamily: 'Fira Code, monospace', fontSize: '0.85rem', boxSizing: 'border-box' }} />
                                                     </div>
                                                     <button onClick={() => handleSubmit(b.id)} disabled={loading}
                                                         className="btn-gradient" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>

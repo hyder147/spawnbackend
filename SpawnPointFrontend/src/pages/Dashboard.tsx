@@ -11,7 +11,7 @@ interface Squad { id: string; name: string; memberIds: string[]; }
 interface FriendRequest { id: string; senderId: string; status: string; }
 
 const typeColor: Record<string, string> = {
-    post: 'var(--neon-cyan)', friend: 'var(--neon-green)',
+    post: 'var(--accent)', friend: 'var(--neon-green)',
     request: 'var(--neon-yellow)', squad: 'var(--neon-purple)',
 };
 
@@ -110,7 +110,7 @@ const ReleaseScore: React.FC<{ postCount: number; friendCount: number; squadCoun
         <div className="ai-panel">
             <div className="ai-badge" style={{ marginBottom: '1rem' }}>Release Readiness Score</div>
             <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
-                <div style={{ fontFamily: 'Orbitron, monospace', fontSize: '3.5rem', fontWeight: 900, color, filter: `drop-shadow(0 0 16px ${color})`, lineHeight: 1 }}>
+                <div style={{ fontFamily: "'Syne', sans-serif", fontSize: '3.5rem', fontWeight: 900, color, filter: `drop-shadow(0 0 16px ${color})`, lineHeight: 1 }}>
                     {loading ? '...' : score !== null ? score : '--'}
                 </div>
                 <div style={{ color: 'var(--text-secondary)', fontSize: '0.75rem', letterSpacing: '1px', marginTop: '0.3rem' }}>/ 100</div>
@@ -159,8 +159,8 @@ const ActivityGraph: React.FC<{ posts: Post[] }> = ({ posts }) => {
     return (
         <div className="card">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.5rem' }}>
-                <h3 style={{ fontFamily: 'JetBrains Mono', fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--text-secondary)' }}>Activity — Last 14 Days</h3>
-                <span style={{ fontFamily: 'Orbitron, monospace', fontSize: '0.85rem', color: 'var(--neon-cyan)', textShadow: '0 0 8px var(--neon-cyan)' }}>{totalPosts} posts</span>
+                <h3 style={{ fontFamily: 'Fira Code', fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--text-secondary)' }}>Activity — Last 14 Days</h3>
+                <span style={{ fontFamily: "'Syne', sans-serif", fontSize: '0.85rem', color: 'var(--accent)', textShadow: '0 0 8px var(--accent)' }}>{totalPosts} posts</span>
             </div>
             <style>{`
                 @keyframes spawn-draw-line {
@@ -198,8 +198,8 @@ const ActivityGraph: React.FC<{ posts: Post[] }> = ({ posts }) => {
             <svg viewBox={`0 0 ${W} ${H}`} style={{ width: '100%', height: 'auto', overflow: 'visible' }}>
                 <defs>
                     <linearGradient id="spawnActivityGradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="var(--neon-cyan)" stopOpacity="0.35" />
-                        <stop offset="100%" stopColor="var(--neon-cyan)" stopOpacity="0" />
+                        <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.35" />
+                        <stop offset="100%" stopColor="var(--accent)" stopOpacity="0" />
                     </linearGradient>
                 </defs>
 
@@ -216,9 +216,9 @@ const ActivityGraph: React.FC<{ posts: Post[] }> = ({ posts }) => {
                 <path d={areaPath} fill="url(#spawnActivityGradient)" className="spawn-activity-area" />
 
                 {/* Line */}
-                <path d={linePath} fill="none" stroke="var(--neon-cyan)" strokeWidth="2.5"
+                <path d={linePath} fill="none" stroke="var(--accent)" strokeWidth="2.5"
                     strokeLinecap="round" strokeLinejoin="round"
-                    style={{ filter: 'drop-shadow(0 0 6px var(--neon-cyan))' }}
+                    style={{ filter: 'drop-shadow(0 0 6px var(--accent))' }}
                     className="spawn-activity-line"
                 />
 
@@ -226,10 +226,10 @@ const ActivityGraph: React.FC<{ posts: Post[] }> = ({ posts }) => {
                 {points.map((p, i) => (
                     <g key={i} className="spawn-activity-dot" style={{ animationDelay: `${0.8 + i * 0.05}s` }}>
                         {p.count > 0 && (
-                            <circle cx={p.x} cy={p.y} r="9" fill="var(--neon-cyan)" opacity="0.15" className="spawn-activity-dot-glow" />
+                            <circle cx={p.x} cy={p.y} r="9" fill="var(--accent)" opacity="0.15" className="spawn-activity-dot-glow" />
                         )}
-                        <circle cx={p.x} cy={p.y} r="4" fill={p.count > 0 ? 'var(--neon-cyan)' : 'var(--bg-card)'}
-                            stroke="var(--neon-cyan)" strokeWidth="1.5"
+                        <circle cx={p.x} cy={p.y} r="4" fill={p.count > 0 ? 'var(--accent)' : 'var(--bg-card)'}
+                            stroke="var(--accent)" strokeWidth="1.5"
                             style={{ cursor: 'pointer' }}
                         >
                             <title>{`${p.date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}: ${p.count} post${p.count === 1 ? '' : 's'}`}</title>
@@ -241,7 +241,7 @@ const ActivityGraph: React.FC<{ posts: Post[] }> = ({ posts }) => {
                 {points.map((p, i) => (
                     (i % 2 === 0 || i === points.length - 1) && (
                         <text key={i} x={p.x} y={H - 4} textAnchor="middle"
-                            fontFamily="JetBrains Mono" fontSize="9" fill="var(--text-dim)">
+                            fontFamily="Fira Code" fontSize="9" fill="var(--text-dim)">
                             {p.date.toLocaleDateString('en-US', { weekday: 'short' })}
                         </text>
                     )
@@ -274,8 +274,8 @@ const SentimentAnalyzerWidget: React.FC<{ posts: Post[] }> = ({ posts }) => {
     return (
         <div className="card">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}><TrendingUp size={13} /> Sentiment Tracker</div>
-                <button onClick={analyze} style={{ background: 'none', border: '1px solid var(--border-dim)', color: 'var(--neon-cyan)', borderRadius: 6, padding: '0.25rem 0.6rem', cursor: 'pointer', fontSize: '0.72rem', fontFamily: 'JetBrains Mono', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>{loading ? <><Loader size={11} /> Refreshing</> : 'Refresh'}</button>
+                <div style={{ fontFamily: 'Fira Code', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}><TrendingUp size={13} /> Sentiment Tracker</div>
+                <button onClick={analyze} style={{ background: 'none', border: '1px solid var(--border-dim)', color: 'var(--neon-cyan)', borderRadius: 6, padding: '0.25rem 0.6rem', cursor: 'pointer', fontSize: '0.72rem', fontFamily: 'Fira Code', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>{loading ? <><Loader size={11} /> Refreshing</> : 'Refresh'}</button>
             </div>
             {data ? (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
@@ -286,8 +286,8 @@ const SentimentAnalyzerWidget: React.FC<{ posts: Post[] }> = ({ posts }) => {
                     ].map(row => (
                         <div key={row.label}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
-                                <span style={{ fontSize: '0.8rem', color: row.color, fontFamily: 'JetBrains Mono' }}>{row.label}</span>
-                                <span style={{ fontSize: '0.8rem', color: row.color, fontFamily: 'JetBrains Mono' }}>{row.val}%</span>
+                                <span style={{ fontSize: '0.8rem', color: row.color, fontFamily: 'Fira Code' }}>{row.label}</span>
+                                <span style={{ fontSize: '0.8rem', color: row.color, fontFamily: 'Fira Code' }}>{row.val}%</span>
                             </div>
                             <div style={{ background: 'rgba(0,0,0,0.4)', borderRadius: 4, height: 7, border: '1px solid var(--border-dim)', overflow: 'hidden' }}>
                                 <div style={{ height: '100%', borderRadius: 4, width: `${row.val}%`, background: `linear-gradient(90deg, ${row.color}, ${row.color}88)`, transition: 'width 1s ease' }} />
@@ -318,24 +318,24 @@ const PlayCoachWidget: React.FC = () => {
     useEffect(() => { setAdvice('Click a topic to get AI coaching advice.'); }, []);
 
     return (
-        <div style={{ background: 'linear-gradient(135deg, rgba(0,255,136,0.04), rgba(0,245,255,0.03))', border: '1px solid rgba(0,255,136,0.2)', borderRadius: 12, padding: '1.5rem', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ background: 'linear-gradient(135deg, rgba(52,211,153,0.06), rgba(0,245,212,0.04))', border: '1px solid rgba(52,211,153,0.22)', borderRadius: 12, padding: '1.5rem', position: 'relative', overflow: 'hidden' }}>
             <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: 'linear-gradient(90deg, var(--neon-green), var(--neon-cyan))' }} />
             <div style={{ marginBottom: '0.75rem' }}>
-                <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--neon-green)' }}>● PLAY COACH AI</div>
-                <div style={{ fontFamily: 'Orbitron, monospace', fontSize: '0.9rem', marginTop: '0.2rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}><Gamepad2 size={15} /> Personalized Insights</div>
+                <div style={{ fontFamily: 'Fira Code', fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--neon-green)' }}>● PLAY COACH AI</div>
+                <div style={{ fontFamily: "'Syne', sans-serif", fontSize: '0.9rem', marginTop: '0.2rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}><Gamepad2 size={15} /> Personalized Insights</div>
             </div>
             <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginBottom: '0.85rem' }}>
                 {topics.map(t => (
                     <button key={t.key} onClick={() => { setTopic(t.key); getAdvice(t.key); }} style={{
-                        background: topic === t.key ? 'rgba(0,255,136,0.12)' : 'transparent',
-                        border: `1px solid ${topic === t.key ? 'rgba(0,255,136,0.4)' : 'var(--border-dim)'}`,
+                        background: topic === t.key ? 'rgba(52,211,153,0.12)' : 'transparent',
+                        border: `1px solid ${topic === t.key ? 'rgba(52,211,153,0.4)' : 'var(--border-dim)'}`,
                         color: topic === t.key ? 'var(--neon-green)' : 'var(--text-secondary)',
-                        borderRadius: 6, padding: '0.3rem 0.65rem', cursor: 'pointer', fontSize: '0.72rem', fontFamily: 'JetBrains Mono', transition: 'all 0.2s'
+                        borderRadius: 6, padding: '0.3rem 0.65rem', cursor: 'pointer', fontSize: '0.72rem', fontFamily: 'Fira Code', transition: 'all 0.2s'
                     }}>{t.label}</button>
                 ))}
             </div>
             {loading
-                ? <div style={{ color: 'var(--neon-green)', fontSize: '0.82rem', fontFamily: 'JetBrains Mono', display: 'flex', alignItems: 'center', gap: '0.4rem' }}><Loader size={12} /> Analyzing...</div>
+                ? <div style={{ color: 'var(--neon-green)', fontSize: '0.82rem', fontFamily: 'Fira Code', display: 'flex', alignItems: 'center', gap: '0.4rem' }}><Loader size={12} /> Analyzing...</div>
                 : <div style={{ fontSize: '0.85rem', lineHeight: 1.7, color: 'var(--text-primary)', whiteSpace: 'pre-line' }}>{advice}</div>}
         </div>
     );
@@ -359,13 +359,13 @@ const WeeklyDigestWidget: React.FC<{ postCount: number; friendCount: number }> =
         <div className="digest-card">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
                 <div>
-                    <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--ai-accent)' }}>● WEEKLY AI DIGEST</div>
-                    <div style={{ fontFamily: 'Orbitron, monospace', fontSize: '0.9rem', marginTop: '0.2rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}><BarChart2 size={15} /> Dev Summary</div>
-                    <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.7rem', color: 'var(--text-dim)', marginTop: '0.2rem' }}>
+                    <div style={{ fontFamily: 'Fira Code', fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--ai-accent)' }}>● WEEKLY AI DIGEST</div>
+                    <div style={{ fontFamily: "'Syne', sans-serif", fontSize: '0.9rem', marginTop: '0.2rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}><BarChart2 size={15} /> Dev Summary</div>
+                    <div style={{ fontFamily: 'Fira Code', fontSize: '0.7rem', color: 'var(--text-dim)', marginTop: '0.2rem' }}>
                         Week of {new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                     </div>
                 </div>
-                <button onClick={generate} style={{ background: 'rgba(191,0,255,0.12)', border: '1px solid rgba(191,0,255,0.35)', color: 'var(--ai-accent)', borderRadius: 8, padding: '0.4rem 0.9rem', cursor: 'pointer', fontSize: '0.75rem', fontFamily: 'JetBrains Mono' }}>
+                <button onClick={generate} style={{ background: 'var(--ai-accent-soft)', border: '1px solid rgba(199,125,255,0.35)', color: 'var(--ai-accent)', borderRadius: 8, padding: '0.4rem 0.9rem', cursor: 'pointer', fontSize: '0.75rem', fontFamily: 'Fira Code' }}>
                     {loading ? <><Loader size={12} style={{ display: 'inline' }} /></> : done ? '↺ Regen' : 'Generate'}
                 </button>
             </div>
@@ -422,7 +422,7 @@ const Dashboard: React.FC = () => {
     ].slice(0, 5);
 
     const stats = [
-        { label: 'My Posts', value: posts.length.toString(), icon: <FileText size={24} />, color: 'var(--neon-cyan)' },
+        { label: 'My Posts', value: posts.length.toString(), icon: <FileText size={24} />, color: 'var(--accent)' },
         { label: 'Friends', value: friends.length.toString(), icon: <Users size={24} />, color: 'var(--neon-green)' },
         { label: 'Pending Requests', value: requests.length.toString(), icon: <Inbox size={24} />, color: 'var(--neon-purple)' },
         { label: 'My Squads', value: squads.length.toString(), icon: <Swords size={24} />, color: 'var(--neon-pink)' },
@@ -433,14 +433,21 @@ const Dashboard: React.FC = () => {
             {/* Hero header */}
             <div style={{ marginBottom: '2.5rem', paddingBottom: '2rem', borderBottom: '1px solid var(--border)', position: 'relative' }}>
                 <div style={{ position: 'absolute', bottom: -1, left: 0, width: 100, height: 1, background: 'var(--gradient-accent)' }} />
+                <style>{`
+                    @keyframes spawn-status-pulse {
+                        0%, 100% { box-shadow: 0 0 6px var(--accent); opacity: 1; }
+                        50% { box-shadow: 0 0 14px var(--accent); opacity: 0.7; }
+                    }
+                    .spawn-status-dot { animation: spawn-status-pulse 2.2s ease-in-out infinite; }
+                `}</style>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
-                    <div style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--accent)', boxShadow: '0 0 10px var(--accent)' }} />
-                    <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem', color: 'var(--accent)', letterSpacing: '3px', textTransform: 'uppercase' }}>System Online</span>
+                    <div className="spawn-status-dot" style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--accent)' }} />
+                    <span style={{ fontFamily: 'Fira Code', fontSize: '0.7rem', color: 'var(--accent)', letterSpacing: '2px', textTransform: 'uppercase' }}>System Online</span>
                 </div>
-                <h1 style={{ fontFamily: 'Rajdhani, sans-serif', fontSize: '2.6rem', fontWeight: 800, margin: '0 0 0.4rem', letterSpacing: '-0.5px', textTransform: 'uppercase' }}>
-                    Welcome back, <span style={{ color: 'var(--accent)', textShadow: '0 0 30px rgba(255,62,165,0.3)' }}>{user?.username ?? 'Developer'}</span>
+                <h1 style={{ fontFamily: "'Syne', sans-serif", fontSize: '2.6rem', fontWeight: 800, margin: '0 0 0.4rem', letterSpacing: '-0.5px', textTransform: 'uppercase' }}>
+                    Welcome back, <span style={{ color: 'var(--accent)', textShadow: '0 0 30px rgba(255,0,127,0.3)' }}>{user?.username ?? 'Developer'}</span>
                 </h1>
-                <p style={{ color: 'var(--text-secondary)', fontFamily: 'JetBrains Mono', fontSize: '0.72rem', margin: 0, letterSpacing: '1px' }}>
+                <p style={{ color: 'var(--text-secondary)', fontFamily: 'Fira Code', fontSize: '0.72rem', margin: 0, letterSpacing: '1px' }}>
                     {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
                 </p>
             </div>
@@ -451,7 +458,7 @@ const Dashboard: React.FC = () => {
                     <div className="grid-4" style={{ marginBottom: '2rem' }}>
                         {stats.map((s, i) => (
                             <div key={i} className={`stat-card${i === 0 ? ' highlight' : ''}`}>
-                                <div style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>{s.icon}</div>
+                                <div style={{ fontSize: '1.5rem', marginBottom: '0.5rem', color: s.color, filter: `drop-shadow(0 0 6px ${s.color}66)` }}>{s.icon}</div>
                                 <div className="stat-value" style={{ color: i === 0 ? 'var(--accent)' : 'var(--text-primary)' }}>{s.value}</div>
                                 <div className="stat-label">{s.label}</div>
                             </div>
@@ -465,7 +472,7 @@ const Dashboard: React.FC = () => {
 
                             {/* Recent activity from real data */}
                             <div className="card">
-                                <h3 style={{ fontFamily: 'JetBrains Mono', fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--text-secondary)', marginBottom: '1rem' }}>Recent Activity</h3>
+                                <h3 style={{ fontFamily: 'Fira Code', fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--text-secondary)', marginBottom: '1rem' }}>Recent Activity</h3>
                                 {recentActivity.length === 0
                                     ? <p style={{ color: 'var(--text-dim)', fontSize: '0.85rem' }}>No activity yet. Create a post or add some friends!</p>
                                     : recentActivity.map((a, i) => (
@@ -473,7 +480,7 @@ const Dashboard: React.FC = () => {
                                             <div style={{ width: 8, height: 8, borderRadius: '50%', background: typeColor[a.type], flexShrink: 0, marginTop: 6, boxShadow: `0 0 6px ${typeColor[a.type]}` }} />
                                             <div style={{ flex: 1 }}>
                                                 <p style={{ fontSize: '0.88rem', margin: 0, lineHeight: 1.4 }}>{a.text}</p>
-                                                <span style={{ fontSize: '0.75rem', color: 'var(--text-dim)', fontFamily: 'JetBrains Mono' }}>{a.time}</span>
+                                                <span style={{ fontSize: '0.75rem', color: 'var(--text-dim)', fontFamily: 'Fira Code' }}>{a.time}</span>
                                             </div>
                                         </div>
                                     ))
@@ -482,7 +489,7 @@ const Dashboard: React.FC = () => {
 
                             {/* Recent posts list */}
                             <div className="card">
-                                <h3 style={{ fontFamily: 'JetBrains Mono', fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--text-secondary)', marginBottom: '1rem' }}>My Recent Posts</h3>
+                                <h3 style={{ fontFamily: 'Fira Code', fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--text-secondary)', marginBottom: '1rem' }}>My Recent Posts</h3>
                                 {posts.length === 0
                                     ? <p style={{ color: 'var(--text-dim)', fontSize: '0.85rem' }}>No posts yet. Head to the Feed to get started!</p>
                                     : <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
@@ -490,7 +497,7 @@ const Dashboard: React.FC = () => {
                                             <div key={p.id} className="kanban-item">
                                                 <p style={{ margin: 0, fontSize: '0.82rem', lineHeight: 1.4 }}>{p.content.slice(0, 100)}{p.content.length > 100 ? '...' : ''}</p>
                                                 <div style={{ marginTop: '0.4rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                                    <span style={{ fontSize: '0.7rem', color: 'var(--text-dim)', fontFamily: 'JetBrains Mono' }}>{timeAgo(p.createdAt)}</span>
+                                                    <span style={{ fontSize: '0.7rem', color: 'var(--text-dim)', fontFamily: 'Fira Code' }}>{timeAgo(p.createdAt)}</span>
                                                     <span style={{ fontSize: '0.7rem', color: 'var(--neon-cyan)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                                                         <Heart size={11} /> {p.likedByUserIds.length}
                                                         <MessageCircle size={11} /> {p.comments.length}
@@ -509,7 +516,7 @@ const Dashboard: React.FC = () => {
 
                             {/* Squad heartbeat using real squad data */}
                             <div className="card">
-                                <h3 style={{ fontFamily: 'JetBrains Mono', fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--text-secondary)', marginBottom: '1rem' }}>Squad Heartbeat</h3>
+                                <h3 style={{ fontFamily: 'Fira Code', fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--text-secondary)', marginBottom: '1rem' }}>Squad Heartbeat</h3>
                                 {squads.length === 0
                                     ? <p style={{ color: 'var(--text-dim)', fontSize: '0.85rem' }}>No squads yet. Visit the Squads page to join one!</p>
                                     : squads.slice(0, 3).map((squad, _i) => {
@@ -518,7 +525,7 @@ const Dashboard: React.FC = () => {
                                             <div key={squad.id} style={{ marginBottom: '1rem' }}>
                                                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.3rem' }}>
                                                     <span style={{ fontSize: '0.85rem' }}>{squad.name}</span>
-                                                    <span style={{ fontSize: '0.8rem', color: c, fontFamily: 'JetBrains Mono' }}>{(squad.memberIds ?? []).length} members</span>
+                                                    <span style={{ fontSize: '0.8rem', color: c, fontFamily: 'Fira Code' }}>{(squad.memberIds ?? []).length} members</span>
                                                     <div className="progress-bar-fill" style={{ width: `${pct}%`, background: `linear-gradient(90deg, ${c}, ${c}66)`, boxShadow: `0 0 8px ${c}` }} />
                                                 </div>
                                             </div>

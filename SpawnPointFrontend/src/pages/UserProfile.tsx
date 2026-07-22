@@ -35,7 +35,7 @@ const RadarChart: React.FC<{ labels: string[]; values: number[]; max: number; co
             {Array.from({ length: n }, (_, i) => { const [x, y] = pointFor(i, 1); return <line key={i} x1={center} y1={center} x2={x} y2={y} stroke="rgba(255,255,255,0.07)" strokeWidth="1" />; })}
             <path d={dataPath} fill={color} fillOpacity="0.2" stroke={color} strokeWidth="2" strokeLinejoin="round" style={{ filter: `drop-shadow(0 0 8px ${color})` }} />
             {dataPoints.map(([x, y], i) => <circle key={i} cx={x} cy={y} r="3.5" fill={color} />)}
-            {labels.map((label, i) => { const [x, y] = pointFor(i, 1.26); return <text key={i} x={x} y={y} textAnchor="middle" dominantBaseline="middle" fontFamily="JetBrains Mono" fontSize="9" fill="var(--text-secondary)">{label}</text>; })}
+            {labels.map((label, i) => { const [x, y] = pointFor(i, 1.26); return <text key={i} x={x} y={y} textAnchor="middle" dominantBaseline="middle" fontFamily="Fira Code" fontSize="9" fill="var(--text-secondary)">{label}</text>; })}
         </svg>
     );
 };
@@ -49,7 +49,7 @@ const ProficiencyRow: React.FC<{ icon: React.ReactNode; name: string; current: n
                     <div style={{ width: 28, height: 28, borderRadius: 8, background: 'var(--accent-soft)', border: '1px solid var(--accent-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent)' }}>{icon}</div>
                     <span style={{ fontWeight: 600, fontSize: '0.88rem' }}>{name}</span>
                 </div>
-                <div style={{ display: 'flex', gap: '0.75rem', fontFamily: 'JetBrains Mono', fontSize: '0.68rem', color: 'var(--text-muted)' }}>
+                <div style={{ display: 'flex', gap: '0.75rem', fontFamily: 'Fira Code', fontSize: '0.68rem', color: 'var(--text-muted)' }}>
                     <span>Skill <b style={{ color: 'var(--text-primary)' }}>{current}</b></span>
                     {buff > 0 && <span style={{ color: 'var(--accent)' }}>+{buff}</span>}
                     {talent > 0 && <span style={{ color: 'var(--success)' }}>{talent}</span>}
@@ -60,7 +60,7 @@ const ProficiencyRow: React.FC<{ icon: React.ReactNode; name: string; current: n
                 <div style={{ width: `${buff}%`, background: 'var(--success)', transition: 'width 0.8s ease' }} />
                 <div style={{ width: `${talent}%`, background: 'var(--warning)', transition: 'width 0.8s ease' }} />
             </div>
-            <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.67rem', color: 'var(--text-muted)' }}>{total}/100</div>
+            <div style={{ fontFamily: 'Fira Code', fontSize: '0.67rem', color: 'var(--text-muted)' }}>{total}/100</div>
         </div>
     );
 };
@@ -164,25 +164,25 @@ const UserProfile: React.FC = () => {
                             </span>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
                                 <div style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--success)', boxShadow: '0 0 6px var(--success)' }} />
-                                <span style={{ fontSize: '0.72rem', color: 'var(--success)', fontFamily: 'JetBrains Mono' }}>Online</span>
+                                <span style={{ fontSize: '0.72rem', color: 'var(--success)', fontFamily: 'Fira Code' }}>Online</span>
                             </div>
                         </div>
 
                         {/* Identity */}
                         <div style={{ flex: 1, minWidth: 220, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
                             <div>
-                                <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.68rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.3rem' }}>Player Profile</div>
+                                <div style={{ fontFamily: 'Fira Code', fontSize: '0.68rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.3rem' }}>Player Profile</div>
                                 <h1 style={{ fontSize: '2rem', fontWeight: 800, margin: 0, letterSpacing: '-0.5px' }}>{profile.username}</h1>
-                                <p style={{ color: 'var(--text-secondary)', fontFamily: 'JetBrains Mono', fontSize: '0.8rem', margin: '0.25rem 0 0' }}>{profile.email}</p>
+                                <p style={{ color: 'var(--text-secondary)', fontFamily: 'Fira Code', fontSize: '0.8rem', margin: '0.25rem 0 0' }}>{profile.email}</p>
                             </div>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
                                 {(isDev ? profile.skillsets.slice(0, 5) : [profile.gpu, profile.cpu].filter(Boolean)).map((s, i) => (
                                     <span key={i} className="tag">{s}</span>
                                 ))}
-                                {isDev && profile.skillsets.length === 0 && <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', fontFamily: 'JetBrains Mono' }}>No skills yet</span>}
+                                {isDev && profile.skillsets.length === 0 && <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', fontFamily: 'Fira Code' }}>No skills yet</span>}
                             </div>
                             {profile.portfolioUrls.filter(Boolean)[0] && (
-                                <a href={profile.portfolioUrls[0]} target="_blank" rel="noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: 'var(--accent)', fontSize: '0.8rem', fontFamily: 'JetBrains Mono', textDecoration: 'none' }}>
+                                <a href={profile.portfolioUrls[0]} target="_blank" rel="noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: 'var(--accent)', fontSize: '0.8rem', fontFamily: 'Fira Code', textDecoration: 'none' }}>
                                     <Link2 size={13} />{profile.portfolioUrls[0]}
                                 </a>
                             )}
@@ -194,11 +194,11 @@ const UserProfile: React.FC = () => {
                         {/* Radar charts */}
                         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                             <div>
-                                <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.63rem', textTransform: 'uppercase', letterSpacing: '1.5px', color: 'var(--text-muted)', textAlign: 'center', marginBottom: '0.4rem' }}>◆ Activity</div>
+                                <div style={{ fontFamily: 'Fira Code', fontSize: '0.63rem', textTransform: 'uppercase', letterSpacing: '1.5px', color: 'var(--text-muted)', textAlign: 'center', marginBottom: '0.4rem' }}>◆ Activity</div>
                                 <RadarChart labels={activityLabels} values={activityValues} max={10} color="var(--accent)" size={190} />
                             </div>
                             <div>
-                                <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.63rem', textTransform: 'uppercase', letterSpacing: '1.5px', color: 'var(--text-muted)', textAlign: 'center', marginBottom: '0.4rem' }}>◇ Social</div>
+                                <div style={{ fontFamily: 'Fira Code', fontSize: '0.63rem', textTransform: 'uppercase', letterSpacing: '1.5px', color: 'var(--text-muted)', textAlign: 'center', marginBottom: '0.4rem' }}>◇ Social</div>
                                 <RadarChart labels={['Community', 'Squads', 'Links', 'Skills', 'Rating']} values={socialValues} max={10} color="var(--success)" size={190} />
                             </div>
                         </div>
@@ -220,7 +220,7 @@ const UserProfile: React.FC = () => {
                     <div className="card">
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
                             <h3 style={{ fontSize: '0.95rem', margin: 0 }}>Favourite Communities</h3>
-                            <a href="/communities" style={{ fontSize: '0.75rem', color: 'var(--accent)', fontFamily: 'JetBrains Mono', textDecoration: 'none' }}>View all →</a>
+                            <a href="/communities" style={{ fontSize: '0.75rem', color: 'var(--accent)', fontFamily: 'Fira Code', textDecoration: 'none' }}>View all →</a>
                         </div>
                         {communities.length === 0
                             ? <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>No communities yet.</p>
@@ -232,7 +232,7 @@ const UserProfile: React.FC = () => {
                                         </div>
                                         <div style={{ minWidth: 0 }}>
                                             <div style={{ fontWeight: 600, fontSize: '0.88rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.name}</div>
-                                            <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.68rem', color: 'var(--text-muted)' }}>{(c.memberIds || []).length} members · {c.type}</div>
+                                            <div style={{ fontFamily: 'Fira Code', fontSize: '0.68rem', color: 'var(--text-muted)' }}>{(c.memberIds || []).length} members · {c.type}</div>
                                         </div>
                                     </div>
                                 ))}
@@ -243,7 +243,7 @@ const UserProfile: React.FC = () => {
                     <div className="card">
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
                             <h3 style={{ fontSize: '0.95rem', margin: 0 }}>Squad Proficiency</h3>
-                            <a href="/squads" style={{ fontSize: '0.75rem', color: 'var(--accent)', fontFamily: 'JetBrains Mono', textDecoration: 'none' }}>View all →</a>
+                            <a href="/squads" style={{ fontSize: '0.75rem', color: 'var(--accent)', fontFamily: 'Fira Code', textDecoration: 'none' }}>View all →</a>
                         </div>
                         {squads.length === 0
                             ? <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>No squads yet.</p>
@@ -289,7 +289,7 @@ const UserProfile: React.FC = () => {
                                 </>
                             ) : (
                                 <>
-                                    <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '1.5px', color: 'var(--text-muted)', margin: '0.5rem 0 1rem' }}>Hardware Specs</div>
+                                    <div style={{ fontFamily: 'Fira Code', fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '1.5px', color: 'var(--text-muted)', margin: '0.5rem 0 1rem' }}>Hardware Specs</div>
                                     <div className="rg-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                                         {hwItems.map(f => (
                                             <div className="form-group" key={f.key}>
@@ -314,4 +314,4 @@ const UserProfile: React.FC = () => {
     );
 };
 
-export default UserProfile;
+export default UserProfile;s

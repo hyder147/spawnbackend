@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { api } from '../api';
-import { Heart, MessageCircle, Share2, Trash2, Send } from 'lucide-react';
+import { Heart, MessageCircle, Share2, Trash2, Send, Inbox } from 'lucide-react';
 import '../App.css';
 
 interface Comment { id: string; userId: string; content: string; createdAt: string; }
@@ -71,11 +71,11 @@ const Feed: React.FC = () => {
             {/* Header */}
             <div style={{ marginBottom: '2.5rem', paddingBottom: '2rem', borderBottom: '1px solid var(--border)', position: 'relative' }}>
                 <div style={{ position: 'absolute', bottom: -1, left: 0, width: 80, height: 1, background: 'var(--gradient-accent)' }} />
-                <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem', color: 'var(--accent)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <div style={{ fontFamily: 'Fira Code', fontSize: '0.7rem', color: 'var(--accent)', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--accent)', boxShadow: '0 0 8px var(--accent)', display: 'inline-block' }} />
                     Community
                 </div>
-                <h1 style={{ fontFamily: 'Rajdhani, sans-serif', fontSize: '2.4rem', fontWeight: 800, margin: 0, textTransform: 'uppercase' }}>Feed</h1>
+                <h1 style={{ fontFamily: "'Syne', sans-serif", fontSize: '2.4rem', fontWeight: 800, margin: 0, textTransform: 'uppercase' }}>Feed</h1>
             </div>
 
             {/* Compose */}
@@ -85,7 +85,7 @@ const Feed: React.FC = () => {
                     <div style={{ flex: 1 }}>
                         <textarea className="form-control" placeholder="What's shipping today?" value={newPostContent} onChange={e => setNewPostContent(e.target.value)} rows={3} style={{ resize: 'none', marginBottom: '0.75rem' }} />
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontFamily: 'JetBrains Mono' }}>{newPostContent.length} chars</span>
+                            <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontFamily: 'Fira Code' }}>{newPostContent.length} chars</span>
                             <button className="btn-gradient" onClick={createPost} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.85rem' }}>
                                 <Send size={14} /> Publish
                             </button>
@@ -99,8 +99,8 @@ const Feed: React.FC = () => {
 
             {!loading && posts.length === 0 && (
                 <div className="card" style={{ textAlign: 'center', padding: '4rem 2rem' }}>
-                    <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>📭</div>
-                    <p style={{ color: 'var(--text-muted)', fontFamily: 'JetBrains Mono', fontSize: '0.88rem' }}>No posts yet. Be the first to share something!</p>
+                    <Inbox size={40} strokeWidth={1.5} style={{ color: 'var(--text-muted)', marginBottom: '1rem' }} />
+                    <p style={{ color: 'var(--text-muted)', fontFamily: 'Fira Code', fontSize: '0.88rem' }}>No posts yet. Be the first to share something!</p>
                 </div>
             )}
 
@@ -122,7 +122,7 @@ const Feed: React.FC = () => {
                                         <div className="avatar" style={{ background: 'var(--gradient-accent)', color: '#fff' }}>{postAuthor[0].toUpperCase()}</div>
                                         <div>
                                             <div style={{ fontWeight: 700, fontSize: '0.92rem' }}>{postAuthor}</div>
-                                            <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontFamily: 'JetBrains Mono' }}>{timeAgo(post.createdAt)}</div>
+                                            <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontFamily: 'Fira Code' }}>{timeAgo(post.createdAt)}</div>
                                         </div>
                                     </div>
                                     {isMyPost && (
@@ -147,7 +147,7 @@ const Feed: React.FC = () => {
                                             border: `1px solid ${btn.active ? 'var(--accent-border)' : 'var(--border)'}`,
                                             color: btn.active ? 'var(--accent)' : 'var(--text-secondary)',
                                             padding: '0.35rem 0.85rem', borderRadius: 8, cursor: 'pointer',
-                                            fontSize: '0.82rem', fontFamily: 'JetBrains Mono', transition: 'all 0.2s',
+                                            fontSize: '0.82rem', fontFamily: 'Fira Code', transition: 'all 0.2s',
                                             display: 'flex', alignItems: 'center', gap: '0.4rem'
                                         }}>{btn.icon} {btn.count}</button>
                                     ))}

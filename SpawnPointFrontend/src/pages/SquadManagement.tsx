@@ -163,10 +163,10 @@ const SquadChat: React.FC<{ squad: Squad; onClose: () => void }> = ({ squad, onC
                             ))}
                         </div>
                         <div style={{ marginLeft: squad.members.length > 0 ? `${Math.min(squad.members.length, 3) * 18 + 8}px` : '0.75rem' }}>
-                            <div style={{ fontFamily: 'Orbitron, monospace', fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+                            <div style={{ fontFamily: "'Syne', sans-serif", fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                                 {squad.name}
                             </div>
-                            <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)', fontFamily: 'JetBrains Mono' }}>
+                            <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)', fontFamily: 'Fira Code' }}>
                                 #{squad.projectId} · {squad.members.length} members
                             </div>
                         </div>
@@ -195,8 +195,8 @@ const SquadChat: React.FC<{ squad: Squad; onClose: () => void }> = ({ squad, onC
                 {callState.active && (
                     <div style={{
                         ...styles.callBar,
-                        borderColor: callState.type === 'video' ? 'rgba(0,255,255,0.25)' : 'rgba(0,255,136,0.25)',
-                        background: callState.type === 'video' ? 'rgba(0,255,255,0.04)' : 'rgba(0,255,136,0.04)',
+                        borderColor: callState.type === 'video' ? 'rgba(0,255,255,0.25)' : 'rgba(52,211,153,0.25)',
+                        background: callState.type === 'video' ? 'rgba(0,255,255,0.04)' : 'rgba(52,211,153,0.04)',
                     }}>
                         {callState.type === 'video' && (
                             <div style={styles.videoArea}>
@@ -224,7 +224,7 @@ const SquadChat: React.FC<{ squad: Squad; onClose: () => void }> = ({ squad, onC
                                     boxShadow: `0 0 6px ${callState.type === 'video' ? 'var(--neon-cyan)' : 'var(--neon-green)'}`,
                                     animation: 'sqPulse 1.5s infinite',
                                 }} />
-                                <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.76rem', color: 'var(--text-primary)', whiteSpace: 'nowrap' }}>
+                                <span style={{ fontFamily: 'Fira Code', fontSize: '0.76rem', color: 'var(--text-primary)', whiteSpace: 'nowrap' }}>
                                     <span style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>{callState.type === 'video' ? <><Video size={13} /> Video</> : <><Mic size={13} /> Audio</>} · {formatDuration(callState.duration)}</span>
                                 </span>
                             </div>
@@ -327,10 +327,10 @@ const SquadChat: React.FC<{ squad: Squad; onClose: () => void }> = ({ squad, onC
                         <div style={{ fontSize: '2.2rem', marginBottom: '0.75rem' }}>
                             <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{showCallPrompt === 'video' ? <Video size={20} /> : <Mic size={20} />}</span>
                         </div>
-                        <h3 style={{ fontFamily: 'Orbitron, monospace', fontSize: '0.88rem', marginBottom: '0.4rem' }}>
+                        <h3 style={{ fontFamily: "'Syne', sans-serif", fontSize: '0.88rem', marginBottom: '0.4rem' }}>
                             Start {showCallPrompt} call?
                         </h3>
-                        <p style={{ fontSize: '0.78rem', color: 'var(--text-dim)', fontFamily: 'JetBrains Mono', marginBottom: '1.5rem' }}>
+                        <p style={{ fontSize: '0.78rem', color: 'var(--text-dim)', fontFamily: 'Fira Code', marginBottom: '1.5rem' }}>
                             Notifies all {squad.members.length} members of {squad.name}
                         </p>
                         <div style={{ display: 'flex', gap: '0.75rem' }}>
@@ -384,7 +384,7 @@ const styles: Record<string, React.CSSProperties> = {
         width: 28, height: 28, borderRadius: '50%',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         fontSize: '0.6rem', fontWeight: 800, color: '#000',
-        fontFamily: 'Orbitron, monospace',
+        fontFamily: "'Syne', sans-serif",
     },
     iconBtn: {
         width: 32, height: 32, borderRadius: '8px',
@@ -418,7 +418,7 @@ const styles: Record<string, React.CSSProperties> = {
     liveBadge: {
         position: 'absolute', top: 6, left: 8,
         color: 'var(--neon-cyan)', fontSize: '0.65rem',
-        fontFamily: 'JetBrains Mono', opacity: 0.8,
+        fontFamily: 'Fira Code', opacity: 0.8,
         background: 'rgba(0,0,0,0.45)', padding: '1px 5px', borderRadius: '3px',
     },
     videoOff: {
@@ -426,10 +426,10 @@ const styles: Record<string, React.CSSProperties> = {
         display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
         background: '#0a0d13',
     },
-    videoOffLabel: { fontSize: '0.72rem', color: 'var(--text-dim)', fontFamily: 'JetBrains Mono', marginTop: '0.4rem' },
+    videoOffLabel: { fontSize: '0.72rem', color: 'var(--text-dim)', fontFamily: 'Fira Code', marginTop: '0.4rem' },
     videoLabel: {
         position: 'absolute', bottom: 5, left: 7,
-        fontSize: '0.68rem', fontFamily: 'JetBrains Mono',
+        fontSize: '0.68rem', fontFamily: 'Fira Code',
         color: 'rgba(255,255,255,0.65)',
         background: 'rgba(0,0,0,0.5)', padding: '1px 5px', borderRadius: '3px',
     },
@@ -450,7 +450,7 @@ const styles: Record<string, React.CSSProperties> = {
     },
     systemMsg: {
         textAlign: 'center', fontSize: '0.7rem',
-        color: 'var(--text-dim)', fontFamily: 'JetBrains Mono',
+        color: 'var(--text-dim)', fontFamily: 'Fira Code',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         margin: '0.75rem 0', letterSpacing: '0.03em',
     },
@@ -459,10 +459,10 @@ const styles: Record<string, React.CSSProperties> = {
         width: 28, height: 28, borderRadius: '8px', flexShrink: 0,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         fontSize: '0.58rem', fontWeight: 800, color: '#000',
-        fontFamily: 'Orbitron, monospace', marginBottom: 2,
+        fontFamily: "'Syne', sans-serif", marginBottom: 2,
     },
     senderName: {
-        fontSize: '0.7rem', fontFamily: 'JetBrains Mono',
+        fontSize: '0.7rem', fontFamily: 'Fira Code',
         marginBottom: '0.2rem', marginLeft: '0.2rem',
     },
     bubble: {
@@ -483,7 +483,7 @@ const styles: Record<string, React.CSSProperties> = {
     },
     msgTime: {
         fontSize: '0.63rem', color: 'var(--text-dim)',
-        fontFamily: 'JetBrains Mono', marginLeft: 'auto', flexShrink: 0, alignSelf: 'flex-end',
+        fontFamily: 'Fira Code', marginLeft: 'auto', flexShrink: 0, alignSelf: 'flex-end',
     },
     inputRow: {
         display: 'flex', alignItems: 'center', gap: '0.5rem',
@@ -633,11 +633,11 @@ const SquadManagement: React.FC = () => {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2.5rem', paddingBottom: '2rem', borderBottom: '1px solid var(--border)', position: 'relative' }}>
                 <div style={{ position: 'absolute', bottom: -1, left: 0, width: 80, height: 1, background: 'var(--gradient-accent)' }} />
                 <div>
-                    <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem', color: 'var(--accent)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <div style={{ fontFamily: 'Fira Code', fontSize: '0.62rem', color: 'var(--accent)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                         <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--accent)', boxShadow: '0 0 8px var(--accent)', display: 'inline-block' }} />
                         Squad Management
                     </div>
-                    <h1 style={{ fontFamily: 'Rajdhani, sans-serif', fontSize: '2.4rem', fontWeight: 800, margin: 0, textTransform: 'uppercase' }}>My Squads</h1>
+                    <h1 style={{ fontFamily: "'Syne', sans-serif", fontSize: '2.4rem', fontWeight: 800, margin: 0, textTransform: 'uppercase' }}>My Squads</h1>
                 </div>
                 <button onClick={() => setShowCreate(true)} className="btn-gradient">+ Create Squad</button>
             </div>
@@ -661,7 +661,7 @@ const SquadManagement: React.FC = () => {
 
             {/* ── Squad Grid ── */}
             {loading ? (
-                <div style={{ textAlign: 'center', color: 'var(--text-muted)', fontFamily: 'JetBrains Mono', padding: '4rem' }}>Loading squads...</div>
+                <div style={{ textAlign: 'center', color: 'var(--text-muted)', fontFamily: 'Fira Code', padding: '4rem' }}>Loading squads...</div>
             ) : squads.length === 0 ? (
                 <div style={{ textAlign: 'center', padding: '5rem 2rem', border: '1px dashed var(--border)', borderRadius: 16 }}>
                     <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>⚔️</div>
@@ -694,17 +694,17 @@ const SquadManagement: React.FC = () => {
                                         <div style={{ width: 42, height: 42, borderRadius: 12, background: `${accent}18`, border: `1px solid ${accent}40`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem' }}>⚔️</div>
                                         <div>
                                             <div style={{ fontWeight: 700, fontSize: '1rem' }}>{squad.name}</div>
-                                            <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.68rem', color: accent }}>#{squad.projectId}</div>
+                                            <div style={{ fontFamily: 'Fira Code', fontSize: '0.68rem', color: accent }}>#{squad.projectId}</div>
                                         </div>
                                     </div>
-                                    {member && <span style={{ fontSize: '0.65rem', fontFamily: 'JetBrains Mono', background: 'var(--success-soft)', border: '1px solid var(--success-border)', color: 'var(--success)', padding: '2px 8px', borderRadius: 6 }}>Member</span>}
+                                    {member && <span style={{ fontSize: '0.65rem', fontFamily: 'Fira Code', background: 'var(--success-soft)', border: '1px solid var(--success-border)', color: 'var(--success)', padding: '2px 8px', borderRadius: 6 }}>Member</span>}
                                 </div>
 
                                 {/* Member capacity bar */}
                                 <div>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.4rem' }}>
-                                        <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.7rem', color: 'var(--text-muted)' }}>Team Size</span>
-                                        <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.7rem', color: 'var(--text-secondary)' }}>{memberCount} members</span>
+                                        <span style={{ fontFamily: 'Fira Code', fontSize: '0.7rem', color: 'var(--text-muted)' }}>Team Size</span>
+                                        <span style={{ fontFamily: 'Fira Code', fontSize: '0.7rem', color: 'var(--text-secondary)' }}>{memberCount} members</span>
                                     </div>
                                     <div style={{ height: 6, background: 'rgba(255,255,255,0.05)', borderRadius: 99, overflow: 'hidden' }}>
                                         <div style={{ height: '100%', width: `${fillPct}%`, background: accent, borderRadius: 99, transition: 'width 0.8s ease' }} />
@@ -715,7 +715,7 @@ const SquadManagement: React.FC = () => {
                                 {squad.vacancyRoles?.length > 0 && (
                                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
                                         {squad.vacancyRoles.slice(0, 4).map((role, i) => (
-                                            <span key={i} style={{ fontFamily: 'JetBrains Mono', fontSize: '0.63rem', background: 'var(--accent-soft)', border: '1px solid var(--accent-border)', color: 'var(--text-accent)', padding: '2px 8px', borderRadius: 6 }}>{role}</span>
+                                            <span key={i} style={{ fontFamily: 'Fira Code', fontSize: '0.63rem', background: 'var(--accent-soft)', border: '1px solid var(--accent-border)', color: 'var(--text-accent)', padding: '2px 8px', borderRadius: 6 }}>{role}</span>
                                         ))}
                                     </div>
                                 )}
@@ -725,7 +725,7 @@ const SquadManagement: React.FC = () => {
                                     {member ? (
                                         <button onClick={() => setActiveSquad(squad)} className="btn-gradient" style={{ width: '100%' }}>Open Chat →</button>
                                     ) : isPending ? (
-                                        <div style={{ textAlign: 'center', padding: '0.6rem', background: 'var(--warning-soft)', border: '1px solid var(--warning-border)', borderRadius: 8, color: 'var(--warning)', fontFamily: 'JetBrains Mono', fontSize: '0.75rem' }}>⏳ Pending Approval</div>
+                                        <div style={{ textAlign: 'center', padding: '0.6rem', background: 'var(--warning-soft)', border: '1px solid var(--warning-border)', borderRadius: 8, color: 'var(--warning)', fontFamily: 'Fira Code', fontSize: '0.75rem' }}>⏳ Pending Approval</div>
                                     ) : (
                                         <button onClick={() => handleJoin(squad)} disabled={isRequesting} className="btn-outline" style={{ width: '100%' }}>{isRequesting ? 'Sending...' : 'Request to Join'}</button>
                                     )}
