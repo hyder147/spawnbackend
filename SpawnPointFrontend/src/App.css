@@ -1807,9 +1807,9 @@ select.form-control {
         cursor: text !important;
     }
 
-        input[type="checkbox"], input[type="radio"], input[type="range"], select, option {
-            cursor: pointer !important;
-        }
+    input[type="checkbox"], input[type="radio"], input[type="range"], select, option {
+        cursor: pointer !important;
+    }
 }
 
 /* ── Tactile press feedback for touch + mouse ── */

@@ -314,4 +314,4 @@ const UserProfile: React.FC = () => {
     );
 };
 
-export default UserProfile;s
+export default UserProfile;
