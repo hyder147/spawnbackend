@@ -3,6 +3,7 @@ SpawnPointBackend/bin/
 SpawnPointBackend/obj/
 SpawnPointBackend/*.user
 SpawnPointBackend/appsettings.Production.json
+SpawnPointBackend/appsettings.json
 
 # ─── Frontend ─────────────────────────────────────────────────
 SpawnPointFrontend/node_modules/
