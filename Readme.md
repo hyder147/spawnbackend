@@ -8,7 +8,7 @@
 
 # SpawnPoint
 
-SpawnPoint is a social platform for gamers — find squads, scout players, join communities, track games, and connect with other players. It has a React (TypeScript) frontend and an ASP.NET Core backend backed by MongoDB.
+SpawnPoint is a social platform for gamers find squads, scout players, join communities, track games, and connect with other players. It has a React (TypeScript) frontend and an ASP.NET Core backend backed by MongoDB.
 
 ## Features
 
