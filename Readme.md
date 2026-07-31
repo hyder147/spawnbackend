@@ -1,3 +1,11 @@
+## 🎬 Project Demo
+
+[![SpawnPoint Demo](https://img.youtube.com/vi/dh6YjS-m93w/hqdefault.jpg)](https://youtu.be/dh6YjS-m93w)
+
+
+
+
+
 # SpawnPoint
 
 SpawnPoint is a social platform for gamers — find squads, scout players, join communities, track games, and connect with other players. It has a React (TypeScript) frontend and an ASP.NET Core backend backed by MongoDB.
