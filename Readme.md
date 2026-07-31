@@ -36,7 +36,7 @@ SpawnPoint is a social platform for gamers — find squads, scout players, join 
 - BCrypt for password hashing
 - Swagger / OpenAPI
 
-## Project Structure`
+## Project Structure
 CompleteSpawn/
 ├── SpawnPointFrontend/ # React + Vite client
 └── SpawnPointBackend/ # ASP.NET Core API
